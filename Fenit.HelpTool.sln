@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FenitApp", "FenitApp\FenitApp.csproj", "{FF31B808-BECF-41B2-9DEA-57E5FDEE7EA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.App", "Fenit.HelpTool.App\Fenit.HelpTool.App.csproj", "{FF31B808-BECF-41B2-9DEA-57E5FDEE7EA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
