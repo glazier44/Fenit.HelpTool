@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.App", "Fenit.HelpTool.App\Fenit.HelpTool.App.csproj", "{FF31B808-BECF-41B2-9DEA-57E5FDEE7EA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Login", "Module\Fenit.HelpTool.Login\Fenit.HelpTool.Login.csproj", "{B747A702-135A-4765-BC11-EF2FCB2F86D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{A53D772C-7DE9-4863-9C9D-033671728199}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{FF31B808-BECF-41B2-9DEA-57E5FDEE7EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF31B808-BECF-41B2-9DEA-57E5FDEE7EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF31B808-BECF-41B2-9DEA-57E5FDEE7EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B747A702-135A-4765-BC11-EF2FCB2F86D2} = {A53D772C-7DE9-4863-9C9D-033671728199}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}

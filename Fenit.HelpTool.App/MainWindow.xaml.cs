@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Prism.Modularity;
 
 namespace Fenit.HelpTool.App
 {
@@ -7,9 +8,14 @@ namespace Fenit.HelpTool.App
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        IModuleManager _moduleManager;
+
+        public MainWindow(IModuleManager moduleManager)
         {
             InitializeComponent();
+            _moduleManager = moduleManager;
+
+            _moduleManager.LoadModule("ModuleLogin");
         }
     }
 }
