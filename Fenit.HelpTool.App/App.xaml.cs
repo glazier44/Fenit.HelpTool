@@ -26,13 +26,15 @@ namespace Fenit.HelpTool.App
         }
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            var moduleLogin = typeof(ModuleLogin);
-            moduleCatalog.AddModule(new ModuleInfo()
-            {
-                ModuleName = moduleLogin.Name,
-                ModuleType = moduleLogin.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
-            });
+            moduleCatalog.AddModule<ModuleLogin>();
+
+            //var moduleLogin = typeof(ModuleLogin);
+            //moduleCatalog.AddModule(new ModuleInfo()
+            //{
+            //    ModuleName = moduleLogin.Name,
+            //    ModuleType = moduleLogin.AssemblyQualifiedName,
+            //    InitializationMode = InitializationMode.OnDemand
+            //});
 
             //var modulbType = typeof(ModuleBModule);
             //moduleCatalog.AddModule(new ModuleInfo()

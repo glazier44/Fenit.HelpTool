@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace Fenit.HelpTool.Login.ViewModel
+namespace Fenit.HelpTool.Login.ViewModels
 {
-    public class MainWindowViewModel : BindableBase, INavigationAware
+    public class LoginWindowViewModel : BindableBase, INavigationAware
     {
         private string _login, _password, _message;
 
-        public MainWindowViewModel()
+        public LoginWindowViewModel()
         {
             LoginCommand = new DelegateCommand(Login, CanLogin);
         }
@@ -30,12 +25,20 @@ namespace Fenit.HelpTool.Login.ViewModel
         public string UserName
         {
             get => _login;
-            set => SetProperty(ref _login, value);
+            set
+            {
+                SetProperty(ref _login, value);
+                LoginCommand.RaiseCanExecuteChanged();
+            }
         }
         public string Password
         {
             get => _password;
-            set => SetProperty(ref _password, value);
+            set
+            { 
+                SetProperty(ref _password, value);
+                LoginCommand.RaiseCanExecuteChanged();
+            }
         }
         public string Message
         {

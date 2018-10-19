@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fenit.HelpTool.Login.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -14,12 +15,12 @@ namespace Fenit.HelpTool.Login
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(MainWindow));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(LoginWindow));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            //containerRegistry.RegisterForNavigation<PersonList>();
+            containerRegistry.RegisterForNavigation<LoginWindow>();
             //containerRegistry.RegisterForNavigation<PersonDetail>();
         }
     }

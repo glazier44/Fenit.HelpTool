@@ -3,12 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
         xmlns:regions="http://prismlibrary.com/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="Auto">
+        Title="MainWindow" Height="800" Width="1000">
     <Grid>
-        <ContentControl regions:RegionManager.RegionName="MenuRegion" />
-        <ContentControl regions:RegionManager.RegionName="ContentRegion" />
-        <ContentControl regions:RegionManager.RegionName="FooterRegion" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <ContentControl VerticalAlignment="Top" Grid.Row="0" regions:RegionManager.RegionName="MenuRegion" />
+        <ContentControl Grid.Row="1" regions:RegionManager.RegionName="ContentRegion" />
+        <ContentControl Grid.Row="2" regions:RegionManager.RegionName="FooterRegion" />
     </Grid>
 </Window>
