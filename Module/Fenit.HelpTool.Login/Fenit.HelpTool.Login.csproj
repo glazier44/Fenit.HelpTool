@@ -65,7 +65,7 @@
     <Compile Include="LoginSentEvent.cs" />
     <Compile Include="PasswordBoxAssistant.cs" />
     <Compile Include="ModuleLogin.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

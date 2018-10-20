@@ -122,6 +122,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fenit.HelpTool.SqlLog\Fenit.HelpTool.SqlLog.csproj">
+      <Project>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</Project>
+      <Name>Fenit.HelpTool.SqlLog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module\Fenit.HelpTool.Login\Fenit.HelpTool.Login.csproj">
       <Project>{b747a702-135a-4765-bc11-ef2fcb2f86d2}</Project>
       <Name>Fenit.HelpTool.Login</Name>

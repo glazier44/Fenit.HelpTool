@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using CommonServiceLocator;
 using Fenit.HelpTool.Login;
+using Fenit.HelpTool.SqlLog;
 using Prism.Ioc;
 using Prism.Modularity;
 
@@ -27,6 +28,7 @@ namespace Fenit.HelpTool.App
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<ModuleLogin>();
+            moduleCatalog.AddModule<ModuleSqlLog>();
 
             //var moduleLogin = typeof(ModuleLogin);
             //moduleCatalog.AddModule(new ModuleInfo()

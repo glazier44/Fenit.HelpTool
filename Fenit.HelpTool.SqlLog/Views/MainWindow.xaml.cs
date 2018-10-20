@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace Fenit.HelpTool.Login.Views
+namespace Fenit.HelpTool.SqlLog.Views
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoginWindow : UserControl
+    public partial class MainWindow : UserControl
     {
-        public LoginWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }

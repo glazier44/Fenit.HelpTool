@@ -7,15 +7,21 @@
         xmlns:regions="http://prismlibrary.com/"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1000">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35" />
             <RowDefinition Height="*" />
             <RowDefinition Height="35" />
         </Grid.RowDefinitions>
-
-        <ContentControl VerticalAlignment="Top" Grid.Row="0" regions:RegionManager.RegionName="MenuRegion" />
+        <ContentControl VerticalAlignment="Top" Grid.Row="0" regions:RegionManager.RegionName="MenuRegion" Style="{StaticResource MenuTheme}" />
         <ContentControl Grid.Row="1" regions:RegionManager.RegionName="ContentRegion" />
-        <ContentControl Grid.Row="2" regions:RegionManager.RegionName="FooterRegion" />
+        <ContentControl Grid.Row="2" regions:RegionManager.RegionName="FooterRegion"  Style="{StaticResource FooterTheme}" />
     </Grid>
 </Window>
