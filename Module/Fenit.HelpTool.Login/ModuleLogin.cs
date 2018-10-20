@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Fenit.HelpTool.App.Service;
+using Fenit.HelpTool.App.UserService;
 using Fenit.HelpTool.Login.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -20,7 +22,8 @@ namespace Fenit.HelpTool.Login
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<LoginWindow>();
-            //containerRegistry.RegisterForNavigation<PersonDetail>();
+
+            containerRegistry.RegisterSingleton<IUserService, UserService>();
         }
     }
 }

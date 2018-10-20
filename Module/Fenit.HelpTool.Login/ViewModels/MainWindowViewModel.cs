@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Fenit.HelpTool.App.Service;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -7,20 +8,21 @@ namespace Fenit.HelpTool.Login.ViewModels
 {
     public class LoginWindowViewModel : BindableBase, INavigationAware
     {
-        private string _login, _password, _message;
-
-        public LoginWindowViewModel()
+        private string _userName, _password, _message;
+        private readonly IUserService _userService;
+        public LoginWindowViewModel(IUserService userService)
         {
+            _userService = userService;
             LoginCommand = new DelegateCommand(Login, CanLogin);
             ExitCommand = new DelegateCommand(Close);
         }
 
         public string UserName
         {
-            get => _login;
+            get => _userName;
             set
             {
-                SetProperty(ref _login, value);
+                SetProperty(ref _userName, value);
                 LoginCommand.RaiseCanExecuteChanged();
             }
         }
@@ -62,7 +64,15 @@ namespace Fenit.HelpTool.Login.ViewModels
 
         private void Login()
         {
-            Message = "asdasdasdasd";
+            if (_userService.Login(UserName, Password).Value)
+            {
+                Message = "ok";
+
+            }
+            else
+            {
+                Message = "asdasdasdasd";
+            }
         }
 
         private void Close()

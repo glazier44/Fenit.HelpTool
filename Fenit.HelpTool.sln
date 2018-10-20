@@ -9,7 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Login", "Mod
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{A53D772C-7DE9-4863-9C9D-033671728199}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{23C1FB97-5619-43E4-85BD-8FEBBB6D441B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{23C1FB97-5619-43E4-85BD-8FEBBB6D441B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.App.UserService", "Fenit.HelpTool.App.Service.Login\Fenit.HelpTool.App.UserService.csproj", "{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.App.Service", "Fenit.HelpTool.App.Service\Fenit.HelpTool.App.Service.csproj", "{70BF6F5C-1691-4476-902E-A8620409D0FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Core", "..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj", "{D469322B-1A48-434D-BA78-49D668822EFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,12 +33,26 @@ Global
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70BF6F5C-1691-4476-902E-A8620409D0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70BF6F5C-1691-4476-902E-A8620409D0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70BF6F5C-1691-4476-902E-A8620409D0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70BF6F5C-1691-4476-902E-A8620409D0FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D469322B-1A48-434D-BA78-49D668822EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D469322B-1A48-434D-BA78-49D668822EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D469322B-1A48-434D-BA78-49D668822EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D469322B-1A48-434D-BA78-49D668822EFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2} = {A53D772C-7DE9-4863-9C9D-033671728199}
+		{8F6EDC08-F61C-4942-AFD5-F24F8A73B526} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
+		{D469322B-1A48-434D-BA78-49D668822EFE} = {96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}
