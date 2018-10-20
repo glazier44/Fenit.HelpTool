@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 
 namespace Fenit.HelpTool.Login.Views
 {
@@ -9,7 +10,11 @@ namespace Fenit.HelpTool.Login.Views
     {
         public LoginWindow()
         {
-            InitializeComponent();
+ 
+  
+                InitializeComponent();
+
+
         }
 
 

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using System.Windows;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -11,15 +12,7 @@ namespace Fenit.HelpTool.Login.ViewModels
         public LoginWindowViewModel()
         {
             LoginCommand = new DelegateCommand(Login, CanLogin);
-        }
-        private void Login()
-        {
-            Message = "asdasdasdasd";
-        }
-
-        private bool CanLogin()
-        {
-            return !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password);
+            ExitCommand = new DelegateCommand(Close);
         }
 
         public string UserName
@@ -31,26 +24,29 @@ namespace Fenit.HelpTool.Login.ViewModels
                 LoginCommand.RaiseCanExecuteChanged();
             }
         }
+
         public string Password
         {
             get => _password;
             set
-            { 
+            {
                 SetProperty(ref _password, value);
                 LoginCommand.RaiseCanExecuteChanged();
             }
         }
+
         public string Message
         {
             get => _message;
             set => SetProperty(ref _message, value);
         }
+
         public DelegateCommand LoginCommand { get; set; }
         public DelegateCommand ExitCommand { get; set; }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -62,6 +58,21 @@ namespace Fenit.HelpTool.Login.ViewModels
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
+        }
+
+        private void Login()
+        {
+            Message = "asdasdasdasd";
+        }
+
+        private void Close()
+        {
+            Application.Current.Shutdown();
+        }
+
+        private bool CanLogin()
+        {
+            return !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password);
         }
     }
 }

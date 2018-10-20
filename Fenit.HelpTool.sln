@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{A53D77
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{23C1FB97-5619-43E4-85BD-8FEBBB6D441B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.App.Resources", "Fenit.HelpTool.App.Resources\Fenit.HelpTool.App.Resources.csproj", "{878EE32D-5E4F-4A86-A1DB-9091D3B611C2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{878EE32D-5E4F-4A86-A1DB-9091D3B611C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{878EE32D-5E4F-4A86-A1DB-9091D3B611C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{878EE32D-5E4F-4A86-A1DB-9091D3B611C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{878EE32D-5E4F-4A86-A1DB-9091D3B611C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
