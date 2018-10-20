@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Fenit.HelpTool.App.Service;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -10,9 +11,13 @@ namespace Fenit.HelpTool.Login.ViewModels
     {
         private string _userName, _password, _message;
         private readonly IUserService _userService;
-        public LoginWindowViewModel(IUserService userService)
+        readonly IEventAggregator _eventAggregator;
+
+        public LoginWindowViewModel(IUserService userService, IEventAggregator eventAggregator)
         {
             _userService = userService;
+            _eventAggregator = eventAggregator;
+
             LoginCommand = new DelegateCommand(Login, CanLogin);
             ExitCommand = new DelegateCommand(Close);
         }
@@ -66,8 +71,7 @@ namespace Fenit.HelpTool.Login.ViewModels
         {
             if (_userService.Login(UserName, Password).Value)
             {
-                Message = "ok";
-
+                _eventAggregator.GetEvent<LoginSentEvent>().Publish(true);
             }
             else
             {
@@ -77,7 +81,7 @@ namespace Fenit.HelpTool.Login.ViewModels
 
         private void Close()
         {
-            Application.Current.Shutdown();
+            _eventAggregator.GetEvent<LoginSentEvent>().Publish(false);
         }
 
         private bool CanLogin()

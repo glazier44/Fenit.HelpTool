@@ -62,6 +62,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="LoginSentEvent.cs" />
     <Compile Include="PasswordBoxAssistant.cs" />
     <Compile Include="ModuleLogin.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
