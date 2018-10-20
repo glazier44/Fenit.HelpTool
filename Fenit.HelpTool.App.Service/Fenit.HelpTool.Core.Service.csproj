@@ -7,8 +7,8 @@
     <ProjectGuid>{70BF6F5C-1691-4476-902E-A8620409D0FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fenit.HelpTool.App.Service</RootNamespace>
-    <AssemblyName>Fenit.HelpTool.App.Service</AssemblyName>
+    <RootNamespace>Fenit.HelpTool.Core.Service</RootNamespace>
+    <AssemblyName>Fenit.HelpTool.Core.Service</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

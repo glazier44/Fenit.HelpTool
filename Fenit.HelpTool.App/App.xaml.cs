@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using CommonServiceLocator;
-using Fenit.HelpTool.Login;
-using Fenit.HelpTool.SqlLog;
+using Fenit.HelpTool.Module.Login;
+using Fenit.HelpTool.Module.SqlLog;
 using Prism.Ioc;
 using Prism.Modularity;
 

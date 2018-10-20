@@ -1,9 +1,9 @@
-﻿using Fenit.HelpTool.SqlLog.Views;
+﻿using Fenit.HelpTool.Module.SqlLog.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
-namespace Fenit.HelpTool.SqlLog
+namespace Fenit.HelpTool.Module.SqlLog
 {
     public class ModuleSqlLog : IModule
     {

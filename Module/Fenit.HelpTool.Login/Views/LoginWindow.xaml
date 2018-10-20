@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Fenit.HelpTool.Login.Views.LoginWindow"
+﻿<UserControl x:Class="Fenit.HelpTool.Module.Login.Views.LoginWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"     
-             xmlns:ui="clr-namespace:Fenit.HelpTool.Login"
-        prism:ViewModelLocator.AutoWireViewModel="True">
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:login="clr-namespace:Fenit.HelpTool.Module.Login"
+             prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -11,69 +11,61 @@
 </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!-- Replace with your UserControl -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Replace with your UserControl -->
 
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Grid x:Name="LayoutRoot" Background="White">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <!--<Label Content="Login:" Style="{StaticResource GridLabelBoxStyle}"  />
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UserName}" Style="{StaticResource GridTextBoxStyle}"  ></TextBox>
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Password:" Style="{StaticResource GridLabelBoxStyle}"  />
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Password}"  Style="{StaticResource GridTextBoxStyle}" ></TextBox>
-
-                <Label Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Content="{Binding Message}" Style="{StaticResource GridLabelBoxStyle}" />-->
-                <Label Content="Login:"  Style="{StaticResource LabelStyle}"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UserName}"   Style="{StaticResource TextBoxStyle}" ></TextBox>
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Password:" Style="{StaticResource LabelStyle}"/>
-                <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1"  Style="{StaticResource PasswordBoxStyle}"
-                             ui:PasswordBoxAssistant.BindPassword="true"  
-                             ui:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                </PasswordBox >
-
-                    <Label Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Content="{Binding Message}" Style="{StaticResource LabelStyle}"/>
-                <Grid Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0">
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid x:Name="LayoutRoot" Background="White">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <DockPanel Grid.Column="1" Grid.Row="1" >
-                        <Button Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Login</Button>
-                        <Button Command="{Binding ExitCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Exit</Button>
-                    </DockPanel>
+                    <Label Content="Login:"  Style="{StaticResource LabelStyle}"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UserName}"   Style="{StaticResource TextBoxStyle}" ></TextBox>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Password:" Style="{StaticResource LabelStyle}"/>
+                    <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1"  Style="{StaticResource PasswordBoxStyle}"
+                                 login:PasswordBoxAssistant.BindPassword="true"  
+                                 login:PasswordBoxAssistant.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </PasswordBox >
+
+                        <Label Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Content="{Binding Message}" Style="{StaticResource LabelStyle}"/>
+                    <Grid Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Column="1" Grid.Row="1" >
+                            <Button Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Login</Button>
+                            <Button Command="{Binding ExitCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Exit</Button>
+                        </DockPanel>
+                    </Grid>
+                    
+
                 </Grid>
-                
 
             </Grid>
-
         </Grid>
-    </Grid>
 </UserControl>

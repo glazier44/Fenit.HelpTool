@@ -1,7 +1,7 @@
-﻿using Fenit.HelpTool.App.Service;
+﻿using Fenit.HelpTool.Core.Service;
 using Fenit.Toolbox.Core.Response;
 
-namespace Fenit.HelpTool.App.UserService
+namespace Fenit.HelpTool.Core.UserService
 {
     public class UserService : IUserService
     {

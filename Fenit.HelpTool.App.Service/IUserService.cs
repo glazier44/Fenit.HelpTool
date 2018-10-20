@@ -1,6 +1,6 @@
 ﻿using Fenit.Toolbox.Core.Response;
 
-namespace Fenit.HelpTool.App.Service
+namespace Fenit.HelpTool.Core.Service
 {
     public interface IUserService
     {

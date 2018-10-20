@@ -3,7 +3,7 @@ using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace Fenit.HelpTool.SqlLog.ViewModels
+namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
     public class MainWindowViewModel : BindableBase, INavigationAware
     {

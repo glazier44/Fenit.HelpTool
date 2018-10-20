@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Fenit.HelpTool.App.Service;
-using Fenit.HelpTool.App.UserService;
-using Fenit.HelpTool.Login.Views;
+﻿using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.UserService;
+using Fenit.HelpTool.Module.Login.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
-namespace Fenit.HelpTool.Login
+namespace Fenit.HelpTool.Module.Login
 {
     public class ModuleLogin : IModule
     {

@@ -77,6 +77,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Login\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,13 +126,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fenit.HelpTool.SqlLog\Fenit.HelpTool.SqlLog.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj">
       <Project>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</Project>
-      <Name>Fenit.HelpTool.SqlLog</Name>
+      <Name>Fenit.HelpTool.Module.SqlLog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module\Fenit.HelpTool.Login\Fenit.HelpTool.Login.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
+      <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
+      <Name>Fenit.HelpTool.UI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module\Fenit.HelpTool.Login\Fenit.HelpTool.Module.Login.csproj">
       <Project>{b747a702-135a-4765-bc11-ef2fcb2f86d2}</Project>
-      <Name>Fenit.HelpTool.Login</Name>
+      <Name>Fenit.HelpTool.Module.Login</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

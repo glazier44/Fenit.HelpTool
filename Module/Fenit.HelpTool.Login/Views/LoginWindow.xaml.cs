@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Fenit.HelpTool.Login.Views
+namespace Fenit.HelpTool.Module.Login.Views
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

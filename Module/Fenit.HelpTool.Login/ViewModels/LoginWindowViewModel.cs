@@ -1,11 +1,10 @@
-﻿using System.Windows;
-using Fenit.HelpTool.App.Service;
+﻿using Fenit.HelpTool.Core.Service;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace Fenit.HelpTool.Login.ViewModels
+namespace Fenit.HelpTool.Module.Login.ViewModels
 {
     public class LoginWindowViewModel : BindableBase, INavigationAware
     {

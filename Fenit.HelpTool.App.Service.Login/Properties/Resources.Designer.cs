@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fenit.HelpTool.App.UserService.Properties {
+namespace Fenit.HelpTool.Core.UserService.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fenit.HelpTool.App.UserService.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fenit.HelpTool.App.UserService.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fenit.HelpTool.Core.UserService.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

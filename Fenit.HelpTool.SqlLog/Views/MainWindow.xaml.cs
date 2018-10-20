@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Fenit.HelpTool.SqlLog.Views
+namespace Fenit.HelpTool.Module.SqlLog.Views
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

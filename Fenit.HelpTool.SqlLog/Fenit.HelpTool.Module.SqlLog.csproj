@@ -7,8 +7,8 @@
     <ProjectGuid>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fenit.HelpTool.SqlLog</RootNamespace>
-    <AssemblyName>Fenit.HelpTool.SqlLog</AssemblyName>
+    <RootNamespace>Fenit.HelpTool.Module.SqlLog</RootNamespace>
+    <AssemblyName>Fenit.HelpTool.Module.SqlLog</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
