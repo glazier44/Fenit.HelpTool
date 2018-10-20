@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=7.1.0.431, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.1.0.431\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,12 +57,17 @@
     <Compile Include="Converters\EventStatusVisiblityConverter.cs" />
     <Compile Include="Converters\EventToColor.cs" />
     <Compile Include="Converters\EventTypeToColor.cs" />
+    <Compile Include="Events\CloseEvent.cs" />
+    <Compile Include="Events\LoginSentEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\NotEmptyValidationRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Dialogs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

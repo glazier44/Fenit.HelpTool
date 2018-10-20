@@ -3,10 +3,11 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows;
+using Prism.Mvvm;
 
 namespace Fenit.HelpTool.UI.Core.Base
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : BindableBase, INotifyPropertyChanged
     {
         public string Title { get; protected set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -19,8 +20,7 @@ namespace Fenit.HelpTool.UI.Core.Base
 
         protected virtual void OnPropertyChanged<T>(Expression<Func<T>> expr)
         {
-            var body = expr.Body as MemberExpression;
-            if (body != null)
+            if (expr.Body is MemberExpression body)
             {
                 OnPropertyChanged(body.Member.Name);
             }

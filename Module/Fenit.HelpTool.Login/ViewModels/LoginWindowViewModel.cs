@@ -1,4 +1,5 @@
 ﻿using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.UI.Core.Events;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -70,7 +71,7 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
         {
             if (_userService.Login(UserName, Password).Value)
             {
-                _eventAggregator.GetEvent<LoginSentEvent>().Publish(true);
+                _eventAggregator.GetEvent<LoggedInEvent>().Publish(true);
             }
             else
             {
@@ -80,7 +81,7 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
 
         private void Close()
         {
-            _eventAggregator.GetEvent<LoginSentEvent>().Publish(false);
+            _eventAggregator.GetEvent<CloseEvent>().Publish();
         }
 
         private bool CanLogin()

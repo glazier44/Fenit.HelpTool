@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using Fenit.HelpTool.Module.Login;
+using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
@@ -7,12 +7,12 @@ using Prism.Regions;
 namespace Fenit.HelpTool.App
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly IModuleManager _moduleManager;
-        readonly IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IModuleManager _moduleManager;
         private IRegionManager _regionManager;
 
         public MainWindow(IModuleManager moduleManager, IEventAggregator eventAggregator, IRegionManager regionManager)
@@ -22,19 +22,27 @@ namespace Fenit.HelpTool.App
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
 
-            _eventAggregator.GetEvent<LoginSentEvent>().Subscribe(LoginReceived, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoginReceived, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
 
-            _moduleManager.LoadModule("ModuleLogin");
+
+            //ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<CloseEvent>()
+            //    .Subscribe(Close, ThreadOption.UIThread, false);
+            // _moduleManager.LoadModule("ModuleLogin");
         }
 
         private void LoginReceived(bool login)
         {
             if (login)
-            {
-                _regionManager.Regions["ContentRegion"].RemoveAll();
                 _moduleManager.LoadModule("ModuleSqlLog");
-            }
-            else Application.Current.Shutdown();
+
+           // else CloseApp();
+        }
+
+        private void CloseApp()
+        {
+            base.Close();
+           // Application.Current.Shutdown();
         }
     }
 }

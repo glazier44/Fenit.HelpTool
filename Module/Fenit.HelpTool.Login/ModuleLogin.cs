@@ -19,7 +19,7 @@ namespace Fenit.HelpTool.Module.Login
         {
             containerRegistry.RegisterForNavigation<LoginWindow>();
 
-            containerRegistry.RegisterSingleton<IUserService, UserService>();
+           // containerRegistry.RegisterSingleton<IUserService, UserService>();
         }
     }
 }

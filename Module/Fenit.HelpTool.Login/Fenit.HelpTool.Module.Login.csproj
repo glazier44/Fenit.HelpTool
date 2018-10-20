@@ -62,7 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="LoginSentEvent.cs" />
     <Compile Include="PasswordBoxAssistant.cs" />
     <Compile Include="ModuleLogin.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
@@ -107,6 +106,10 @@
     <ProjectReference Include="..\..\Fenit.HelpTool.App.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
+      <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
+      <Name>Fenit.HelpTool.UI.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
