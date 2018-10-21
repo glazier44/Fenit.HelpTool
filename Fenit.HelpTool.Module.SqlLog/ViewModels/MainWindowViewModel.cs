@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Fenit.HelpTool.Core.Service;
+using Fenit.Toolbox.Core.Response;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -7,45 +9,37 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
     public class MainWindowViewModel : BindableBase, INavigationAware
     {
-        private string _userName, _password, _message;
-        readonly IEventAggregator _eventAggregator;
-
-        public MainWindowViewModel(IEventAggregator eventAggregator)
+        //private readonly IEventAggregator _eventAggregator;
+        private string _resultText, _sourceText;
+        private ISqlFileService _sqlFileService;
+        public MainWindowViewModel(ISqlFileService sqlFileService)
         {
-            _eventAggregator = eventAggregator;
-
-            //LoginCommand = new DelegateCommand(Login, CanLogin);
-            //ExitCommand = new DelegateCommand(Close);
+            //IEventAggregator eventAggregator _eventAggregator = eventAggregator;
+            _sqlFileService = sqlFileService;
+            ConvertCommand = new DelegateCommand(Convert, CanConvert);
+            LoadFileCommand = new DelegateCommand(LoadFile);
         }
 
-        public string UserName
+        public string ResultText
         {
-            get => _userName;
+            get => _resultText;
+            set => SetProperty(ref _resultText, value);
+        }
+
+        public string SourceText
+        {
+            get => _sourceText;
             set
             {
-                SetProperty(ref _userName, value);
-                LoginCommand.RaiseCanExecuteChanged();
+                SetProperty(ref _sourceText, value);
+                ConvertCommand.RaiseCanExecuteChanged();
             }
         }
 
-        public string Password
-        {
-            get => _password;
-            set
-            {
-                SetProperty(ref _password, value);
-                LoginCommand.RaiseCanExecuteChanged();
-            }
-        }
 
-        public string Message
-        {
-            get => _message;
-            set => SetProperty(ref _message, value);
-        }
 
-        public DelegateCommand LoginCommand { get; set; }
-        public DelegateCommand ExitCommand { get; set; }
+        public DelegateCommand ConvertCommand { get; set; }
+        public DelegateCommand LoadFileCommand { get; set; }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -63,26 +57,19 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             //throw new NotImplementedException();
         }
 
-        //private void Login()
-        //{
-        //    if (_userService.Login(UserName, Password).Value)
-        //    {
-        //        _eventAggregator.GetEvent<LoginSentEvent>().Publish(true);
-        //    }
-        //    else
-        //    {
-        //        Message = "asdasdasdasd";
-        //    }
-        //}
+        private void Convert()
+        {
+            var res = _sqlFileService.Read(SourceText);
+            ResultText = res.Value;
+        }
 
-        //private void Close()
-        //{
-        //    _eventAggregator.GetEvent<LoginSentEvent>().Publish(false);
-        //}
+        private bool CanConvert()
+        {
+            return !string.IsNullOrEmpty(_sourceText);
+        }
 
-        //private bool CanLogin()
-        //{
-        //    return !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password);
-        //}
+        private void LoadFile()
+        {
+        }
     }
 }

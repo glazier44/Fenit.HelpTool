@@ -25,7 +25,8 @@ namespace Fenit.HelpTool.Core.SqlFileService
 
         public Sql Read()
         {
-            var file = _type == SqlType.Procedure ? "procedure.txt" : "select.txt";
+
+                var file = _type == SqlType.Procedure ? "procedure.txt" : "select.txt";
             var path = Path.Combine(_path, file);
             return ReadFile(path);
         }
@@ -104,10 +105,12 @@ namespace Fenit.HelpTool.Core.SqlFileService
 
         private Sql Deserialize(string @string)
         {
-            var serializer = new XmlSerializer(typeof(Sql), new XmlRootAttribute("Sql"));
-            var stringReader = new StringReader(@string);
-            var sql = (Sql) serializer.Deserialize(stringReader);
-            return sql;
+
+                var serializer = new XmlSerializer(typeof(Sql), new XmlRootAttribute("Sql"));
+                var stringReader = new StringReader(@string);
+                var sql = (Sql) serializer.Deserialize(stringReader);
+                return sql;
+
         }
 
         private string ReduceComment(string sql)

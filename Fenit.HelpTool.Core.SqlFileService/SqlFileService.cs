@@ -20,10 +20,19 @@ namespace Fenit.HelpTool.Core.SqlFileService
         public Response<string> Read(string sqlString)
         {
             var result = new Response<string>();
-            var readSqlFile = new ReadSqlFile(SqlType.Select);
-            var sql = readSqlFile.Read(sqlString);
-            var selectConverter = new SelectConverter(sql);
-            result.AddValue(selectConverter.GetSql());
+
+            try
+            {
+                var readSqlFile = new ReadSqlFile(SqlType.Select);
+                var sql = readSqlFile.Read(sqlString);
+                var selectConverter = new SelectConverter(sql);
+                result.AddValue(selectConverter.GetSql());
+            }
+            catch (Exception e)
+            {
+                //log
+                result.AddError(e.Message);
+            }
             return result;
         }
     }

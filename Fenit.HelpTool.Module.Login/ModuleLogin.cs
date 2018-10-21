@@ -1,6 +1,4 @@
-﻿using Fenit.HelpTool.Core.Service;
-using Fenit.HelpTool.Core.UserService;
-using Fenit.HelpTool.Module.Login.Views;
+﻿using Fenit.HelpTool.Module.Login.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -19,7 +17,7 @@ namespace Fenit.HelpTool.Module.Login
         {
             containerRegistry.RegisterForNavigation<LoginWindow>();
 
-           // containerRegistry.RegisterSingleton<IUserService, UserService>();
+            // containerRegistry.RegisterSingleton<IUserService, UserService>();
         }
     }
 }

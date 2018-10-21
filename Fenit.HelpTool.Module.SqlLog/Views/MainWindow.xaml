@@ -3,6 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Setter Property="Background" Value="#7BB0DF" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Width" Value="150px" />
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Style.Resources>
+        </Style>
+    </UserControl.Resources>
 
+    <Grid x:Name="LayoutRoot" Background="White" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,0,10,0">
+            <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonStyle}">Wczytaj plik</Button>
+            <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
+        </DockPanel>
+
+        <Grid Grid.Column="0" Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label >Źródło</Label>
+            <TextBox Grid.Row="1"  
+                     HorizontalContentAlignment="Stretch" 
+                     VerticalContentAlignment="Stretch"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding SourceText}"/>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label >Wynik</Label>
+            <TextBox Grid.Row="1"  
+                     HorizontalContentAlignment="Stretch" 
+                     VerticalContentAlignment="Stretch"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding ResultText}"/>
+
+        </Grid>
+    </Grid>
 </UserControl>
