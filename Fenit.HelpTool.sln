@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Module.Login
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Module.SqlLog", "Fenit.HelpTool.Module.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj", "{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Core.Logger", "Fenit.HelpTool.Core.UserService.Logger\Fenit.HelpTool.Core.Logger.csproj", "{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{8F6EDC08-F61C-4942-AFD5-F24F8A73B526} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
 		{B747A702-135A-4765-BC11-EF2FCB2F86D2} = {A53D772C-7DE9-4863-9C9D-033671728199}
 		{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58} = {A53D772C-7DE9-4863-9C9D-033671728199}
+		{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}

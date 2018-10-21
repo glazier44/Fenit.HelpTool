@@ -1,22 +1,22 @@
 ﻿using Fenit.HelpTool.Core.Service;
-using Fenit.Toolbox.Core.Response;
+using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
-using Prism.Events;
-using Prism.Mvvm;
 using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
-    public class MainWindowViewModel : BindableBase, INavigationAware
+    public class MainWindowViewModel : BaseViewModel, INavigationAware
     {
+        private readonly ISqlFileService _sqlFileService;
+
         //private readonly IEventAggregator _eventAggregator;
         private string _resultText, _sourceText;
-        private ISqlFileService _sqlFileService;
-        public MainWindowViewModel(ISqlFileService sqlFileService)
+
+        public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
             //IEventAggregator eventAggregator _eventAggregator = eventAggregator;
             _sqlFileService = sqlFileService;
-            ConvertCommand = new DelegateCommand(Convert, CanConvert);
+            ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile);
         }
 
@@ -35,7 +35,6 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
                 ConvertCommand.RaiseCanExecuteChanged();
             }
         }
-
 
 
         public DelegateCommand ConvertCommand { get; set; }
@@ -60,7 +59,10 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
         private void Convert()
         {
             var res = _sqlFileService.Read(SourceText);
-            ResultText = res.Value;
+            if (res.IsError)
+                MessageError(res.Message, "[SqlLoad]");
+            else
+                ResultText = res.Value;
         }
 
         private bool CanConvert()

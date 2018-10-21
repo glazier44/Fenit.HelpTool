@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using CommonServiceLocator;
 using Fenit.HelpTool.App.Login;
+using Fenit.HelpTool.Core.Logger;
 using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.UserService;
 using Fenit.HelpTool.Module.SqlLog;
@@ -28,6 +29,10 @@ namespace Fenit.HelpTool.App
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IUserService, UserService>();
+
+            containerRegistry.RegisterSingleton<ILoggerService, LoggerService>();
+
+            
         }
 
         protected override Window CreateShell()
@@ -57,8 +62,9 @@ namespace Fenit.HelpTool.App
         {
             var eventAggregator = ServiceLocator.Current.GetInstance<IEventAggregator>();
             var userService = ServiceLocator.Current.GetInstance<IUserService>();
+            var logger = ServiceLocator.Current.GetInstance<ILoggerService>();
 
-            var model = new LoginViewModel(eventAggregator, userService);
+            var model = new LoginViewModel(eventAggregator, userService, logger);
             var loginWindow = new LoginView(model) {Width = 300, Height = 300};
             loginWindow.ShowDialog();
         }

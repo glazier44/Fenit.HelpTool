@@ -15,7 +15,7 @@ namespace Fenit.HelpTool.App.Login
         private bool? _dialogResult;
         private string _userName, _password, _message;
 
-        public LoginViewModel(IEventAggregator eventAggregator, IUserService userService)
+        public LoginViewModel(IEventAggregator eventAggregator, IUserService userService, ILoggerService log) : base(log)
         {
             _userService = userService;
             _eventAggregator = eventAggregator;

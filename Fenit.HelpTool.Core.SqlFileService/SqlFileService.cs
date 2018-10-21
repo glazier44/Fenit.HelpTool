@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.SqlFileService.Converter;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
@@ -20,7 +16,6 @@ namespace Fenit.HelpTool.Core.SqlFileService
         public Response<string> Read(string sqlString)
         {
             var result = new Response<string>();
-
             try
             {
                 var readSqlFile = new ReadSqlFile(SqlType.Select);
@@ -33,6 +28,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
                 //log
                 result.AddError(e.Message);
             }
+
             return result;
         }
     }
