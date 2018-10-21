@@ -41,8 +41,8 @@ namespace Fenit.HelpTool.App
 
         private void CloseApp()
         {
-            base.Close();
-           // Application.Current.Shutdown();
+          //  base.Close();
+           Application.Current.Shutdown();
         }
     }
 }

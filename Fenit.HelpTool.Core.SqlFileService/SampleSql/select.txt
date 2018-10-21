@@ -1,0 +1,47 @@
+<Sql executionStart="21.10.2018 09:16:29" executionEnd="21.10.2018 09:16:29" executionTime="00:00:00.0149442" executionTimeMs="14,4013427079732" success="yes" status="Executed" operationName="GetTowarInfo">
+
+SELECT 
+  kk_nrtow, tw_nroddz, tw_numer, tw_nazwa, tw_magdefault, tw_mag_pomoc, tw_komisja_zwol_flg, tw_komisja_zwol_nadz, tw_psych, tw_narkotyk, tw_bez_serii_dw, 
+  tw_poziom_ster_il,
+  coalesce(P2_zgrzewka, 0) P2_zgrzewka_il_sztuk,
+  coalesce(P3_karton, 0) P3_karton_il_sztuk,
+  coalesce(P4_paleta, 0) P4_paleta_il_sztuk,
+  tw_scs, tw_scs_dopuszcz, tw_scs_powinien,
+  miejsce_skladowania, -- TODO damian obsolate
+  twTylkoJednaLokalizacja,
+  twPorzadkowany
+FROM
+(
+  select  
+   kk_nrtow, kk_ilosc, kk_rodz_opak, tw_nroddz, tw_numer, tw_nazwa, tw_magdefault, tw_mag_pomoc, tw_komisja_zwol_flg,
+   decode(bitand(tw_flagi3,:FTW3_JEDNA_LOKALIZACJA),:FTW3_JEDNA_LOKALIZACJA,1,0) twTylkoJednaLokalizacja,
+   decode(bitand(tw_flagi3,:tw_porzadkowany),:tw_porzadkowany,1,0) twPorzadkowany,
+   decode(bitand(tw_flagi2, 8), 8, 1, 0) tw_komisja_zwol_nadz, tw_psych, tw_narkotyk, tw_bez_serii_dw,
+   decode(bitand(tw_flagi2, :flg_tw_scs), :flg_tw_scs, 1, 0) tw_scs,
+   decode(bitand(tw_flagi2, :flg_tw_scs_dopuszcz), :flg_tw_scs_dopuszcz, 1, 0) tw_scs_dopuszcz,
+   decode(bitand(tw_flagi2, :flg_tw_scs_powinien), :flg_tw_scs_powinien, 1, 0) tw_scs_powinien,
+   tw_poziom_ster_il
+    , ' ' miejsce_skladowania 
+  from
+    CR_DANEO27_WIELOLET.TOWAR
+    left join CR_DANEO27_WIELOLET.KODKRESK tkk on tkk.kk_nroddz = tw_nroddz and tkk.kk_nrtow = tw_numer and tkk.kk_domyslny = 1
+    
+    where tw_nroddz = :nroddz
+    and tw_numer = :nrtow      
+)
+PIVOT
+(
+  sum(kk_ilosc)
+  FOR kk_rodz_opak IN (1 P1_sztuka, 2 P2_zgrzewka, 3 P3_karton, 4 P4_paleta)
+)
+
+
+	<Param name="FTW3_JEDNA_LOKALIZACJA" type="Int32" direction="Input">8</Param>
+	<Param name="tw_porzadkowany" type="Int32" direction="Input">16</Param>
+	<Param name="nroddz" type="Int32" direction="Input">27</Param>
+	<Param name="nrtow" type="Int32" direction="Input">107382</Param>
+	<Param name="flg_tw_scs" type="Int32" direction="Input">TW_DOPUSZCZ_SCS, TW_SCS</Param>
+	<Param name="flg_tw_scs_dopuszcz" type="Int32" direction="Input">TW_DOPUSZCZ_SCS</Param>
+	<Param name="flg_tw_scs_powinien" type="Int32" direction="Input">TW_SCS</Param>
+
+</Sql>

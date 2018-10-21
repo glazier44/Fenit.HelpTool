@@ -40,7 +40,7 @@
             <Setter Property="Background" Value="#7BB0DF" />
             <Setter Property="Padding" Value="3" />
             <Setter Property="Margin" Value="2" />
-            <Setter Property="Width" Value="133px" />
+            <Setter Property="Width" Value="270px" />
             <Style.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />
@@ -78,7 +78,9 @@
             </PasswordBox >
 
             <Label Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="0" Content="{Binding Message}" Style="{StaticResource LabelStyle}"/>
-            <Grid Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Login</Button>
+
+            <!--<Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -91,9 +93,9 @@
                 </Grid.RowDefinitions>
                 <DockPanel Grid.Column="1" Grid.Row="1" >
                     <Button Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Login</Button>
-                    <!--<Button Command="{Binding ExitCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Exit</Button>-->
+                    --><!--<Button Command="{Binding ExitCommand}" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Center">Exit</Button>--><!--
                 </DockPanel>
-            </Grid>
+            </Grid>-->
         </Grid>
     </Grid>
 </Window>
