@@ -1,4 +1,6 @@
-﻿using Fenit.HelpTool.Core.SqlFileService.XmlModel;
+﻿using System;
+using Fenit.HelpTool.Core.SqlFileService.Enum;
+using Fenit.HelpTool.Core.SqlFileService.XmlModel;
 
 namespace Fenit.HelpTool.Core.SqlFileService.Converter
 {
@@ -6,12 +8,16 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
     {
         public abstract string GetSql();
 
-        protected string Replace(Param param, string script)
+        protected string ReplaceInput(Param param, string script)
         {
-            if (param.Direction == "Input") script = script.Replace($":{param.Name}", GetValue(param));
+            if (param.ParamType == ParamType.Input) script = script.Replace($":{param.Name}", GetValue(param));
             return script;
         }
 
+        protected string NewLine => Environment.NewLine;
+        protected string Tab => "\t\t";
+
+            
         protected string GetValue(Param param)
         {
             switch (param.Type)
@@ -22,7 +28,17 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                 }
                 case "String":
                 {
-                    return $"'{param.Text}'";
+                    var txt = param.Text;
+                    if (string.IsNullOrEmpty(txt))
+                    {
+                        txt = " ";
+                    }
+
+                    return $"'{txt}'";
+                }
+                case "DateTime":
+                {
+                    return $"TO_DATE('{param.Text}','DD.MM.YYYY')";
                 }
                 default:
                     return param.Text;

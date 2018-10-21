@@ -14,7 +14,7 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
         public override string GetSql()
         {
             var script = _sql.SqlCommand;
-            foreach (var param in _sql.Param) script = Replace(param, script);
+            foreach (var param in _sql.Param) script = ReplaceInput(param, script);
             return script;
         }
     }

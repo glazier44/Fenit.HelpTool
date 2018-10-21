@@ -6,6 +6,9 @@ namespace Fenit.HelpTool.Core.Service
     {
         Response<string> Read();
 
-        Response<string> Read(string sql);
+        Response<string> ReadSelect(string sqlString);
+
+        Response<string> ReadProcedure(string sqlString);
+
     }
 }

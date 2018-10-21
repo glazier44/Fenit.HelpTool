@@ -16,6 +16,7 @@
                 </Style>
             </Style.Resources>
         </Style>
+
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="White" Margin="10">
@@ -32,7 +33,10 @@
             <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonStyle}">Wczytaj plik</Button>
             <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
         </DockPanel>
-
+        <StackPanel Grid.Column="1" Grid.Row="0" >
+            <RadioButton Content="Select" IsChecked="{Binding Select}"></RadioButton>
+            <RadioButton Content="Procedura" IsChecked="{Binding !Select}"></RadioButton>
+        </StackPanel>
         <Grid Grid.Column="0" Grid.Row="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>

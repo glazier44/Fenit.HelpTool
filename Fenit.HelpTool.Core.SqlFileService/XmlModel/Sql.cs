@@ -29,8 +29,6 @@ namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
         [XmlAttribute(AttributeName = "operationName")]
         public string OperationName { get; set; }
 
-        [XmlIgnoreAttribute]
-        public string SqlCommand { get; set; }
-
+        [XmlIgnore] public string SqlCommand { get; set; }
     }
 }

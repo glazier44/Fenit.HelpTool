@@ -1,5 +1,6 @@
 ﻿using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.UI.Core.Base;
+using Fenit.Toolbox.Core.Response;
 using Prism.Commands;
 using Prism.Regions;
 
@@ -11,7 +12,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         //private readonly IEventAggregator _eventAggregator;
         private string _resultText, _sourceText;
-
+        private bool _select;
         public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
             //IEventAggregator eventAggregator _eventAggregator = eventAggregator;
@@ -36,6 +37,13 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             }
         }
 
+        public bool Select
+        {
+            get => _select;
+            set => SetProperty(ref _select, value);
+        }
+
+
 
         public DelegateCommand ConvertCommand { get; set; }
         public DelegateCommand LoadFileCommand { get; set; }
@@ -58,7 +66,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void Convert()
         {
-            var res = _sqlFileService.Read(SourceText);
+            var res = Select ? _sqlFileService.ReadSelect(SourceText) : _sqlFileService.ReadProcedure(SourceText);
             if (res.IsError)
                 MessageError(res.Message, "[SqlLoad]");
             else

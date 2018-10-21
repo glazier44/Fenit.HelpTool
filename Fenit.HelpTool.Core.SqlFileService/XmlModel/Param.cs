@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
+using Fenit.HelpTool.Core.SqlFileService.Enum;
 
 namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
 {
@@ -14,6 +16,32 @@ namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
 
         [XmlText] public string Text { get; set; }
 
+
+        [XmlIgnore]
+        public ParamType ParamType
+        {
+            get
+            {
+                switch (Direction)
+                {
+                    case "Input":
+                    {
+                        return ParamType.Input;
+                    }
+                    case "Output":
+                    {
+                        return ParamType.Output;
+                    }
+                    case "ReturnValue":
+                    {
+                        return ParamType.Result;
+                    }
+                    default:
+                        return ParamType.Non;
+                }
+            }
+        }
+  
 
     }
 }

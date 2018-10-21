@@ -13,7 +13,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
             throw new NotImplementedException();
         }
 
-        public Response<string> Read(string sqlString)
+        public Response<string> ReadSelect(string sqlString)
         {
             var result = new Response<string>();
             try
@@ -25,7 +25,24 @@ namespace Fenit.HelpTool.Core.SqlFileService
             }
             catch (Exception e)
             {
-                //log
+                result.AddError(e.Message);
+            }
+
+            return result;
+        }
+
+        public Response<string> ReadProcedure(string sqlString)
+        {
+            var result = new Response<string>();
+            try
+            {
+                var readSqlFile = new ReadSqlFile(SqlType.Procedure);
+                var sql = readSqlFile.Read(sqlString);
+                var selectConverter = new ProcedureConverter(sql);
+                result.AddValue(selectConverter.GetSql());
+            }
+            catch (Exception e)
+            {
                 result.AddError(e.Message);
             }
 
