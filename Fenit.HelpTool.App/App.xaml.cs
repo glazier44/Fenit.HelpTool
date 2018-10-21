@@ -16,10 +16,13 @@ namespace Fenit.HelpTool.App
     /// </summary>
     public partial class App
     {
-        protected override void InitializeShell(Window shell)
-        {
-            base.InitializeShell(shell);
+        private bool _rootMode;
 
+        private void AppStartup(object sender, StartupEventArgs e)
+        {
+            for (var i = 0; i != e.Args.Length; ++i)
+                if (e.Args[i] == "-r")
+                    _rootMode = true;
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -33,7 +36,7 @@ namespace Fenit.HelpTool.App
                 .Subscribe(AfterLogin, ThreadOption.UIThread, false);
             ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<LoggedOutEvent>()
                 .Subscribe(LogOut, ThreadOption.UIThread, false);
-            Login();
+            if (!_rootMode) Login();
 
             return ServiceLocator.Current.GetInstance<MainWindow>();
         }
@@ -48,7 +51,6 @@ namespace Fenit.HelpTool.App
             Current.MainWindow.Hide();
             Login();
         }
-
 
 
         private void Login()
