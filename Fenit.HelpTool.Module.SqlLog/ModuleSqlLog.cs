@@ -1,4 +1,6 @@
-﻿using Fenit.HelpTool.Module.SqlLog.Views;
+﻿using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.SqlFileService;
+using Fenit.HelpTool.Module.SqlLog.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -17,7 +19,7 @@ namespace Fenit.HelpTool.Module.SqlLog
         {
             containerRegistry.RegisterForNavigation<MainWindow>();
 
-            //containerRegistry.RegisterSingleton<IUserService, UserService>();
+            containerRegistry.RegisterSingleton<ISqlFileService, SqlFileService>();
         }
     }
 }

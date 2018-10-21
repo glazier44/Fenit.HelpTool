@@ -18,6 +18,11 @@ namespace Fenit.HelpTool.Core.SqlFileService
             _type = type;
         }
 
+        public Sql Read(string val)
+        {
+            return ReadString(val);
+        }
+
         public Sql Read()
         {
             var file = _type == SqlType.Procedure ? "procedure.txt" : "select.txt";
@@ -25,12 +30,43 @@ namespace Fenit.HelpTool.Core.SqlFileService
             return ReadFile(path);
         }
 
+
+        private Sql ReadString(string text)
+        {
+            var xml = string.Empty;
+            var sql = string.Empty;
+            using (var stringReader = new StringReader(text))
+            {
+                var s = string.Empty;
+                while ((s = stringReader.ReadLine()) != null)
+                {
+                    var temp = s.Trim();
+                    if (!string.IsNullOrEmpty(temp))
+                    {
+                        if (temp[0] == '<')
+                        {
+                            xml += temp;
+                        }
+                        else
+                        {
+                            var newTemp = ReduceComment(temp);
+                            if (!string.IsNullOrEmpty(newTemp))
+                            {
+                                sql += newTemp;
+                                sql += Environment.NewLine;
+                            }
+                        }
+                    }
+                }
+
+                return CreateSql(xml, sql);
+            }
+        }
+
         private Sql ReadFile(string fileName)
         {
             var xml = string.Empty;
             var sql = string.Empty;
-
-
             using (var sr = File.OpenText(fileName))
             {
                 var s = string.Empty;
@@ -55,10 +91,15 @@ namespace Fenit.HelpTool.Core.SqlFileService
                     }
                 }
 
-                var desSql = Deserialize(xml);
-                desSql.SqlCommand = sql;
-                return desSql;
+                return CreateSql(xml, sql);
             }
+        }
+
+        private Sql CreateSql(string xml, string sql)
+        {
+            var desSql = Deserialize(xml);
+            desSql.SqlCommand = sql;
+            return desSql;
         }
 
         private Sql Deserialize(string @string)
