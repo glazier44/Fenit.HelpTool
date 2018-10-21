@@ -19,13 +19,7 @@ namespace Fenit.HelpTool.App
         protected override void InitializeShell(Window shell)
         {
             base.InitializeShell(shell);
-            ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<LoggedInEvent>()
-                .Subscribe(AfterLogin, ThreadOption.UIThread, false);
-            ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<LoggedOutEvent>()
-                .Subscribe(LogOut, ThreadOption.UIThread, false);
 
-
-            Login();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -35,6 +29,12 @@ namespace Fenit.HelpTool.App
 
         protected override Window CreateShell()
         {
+            ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<LoggedInEvent>()
+                .Subscribe(AfterLogin, ThreadOption.UIThread, false);
+            ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<LoggedOutEvent>()
+                .Subscribe(LogOut, ThreadOption.UIThread, false);
+            Login();
+
             return ServiceLocator.Current.GetInstance<MainWindow>();
         }
 
