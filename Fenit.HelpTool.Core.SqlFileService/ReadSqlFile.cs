@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.Core.SqlFileService.XmlModel;
@@ -39,9 +40,18 @@ namespace Fenit.HelpTool.Core.SqlFileService
                     if (!string.IsNullOrEmpty(temp))
                     {
                         if (temp[0] == '<')
+                        {
                             xml += temp;
+                        }
                         else
-                            sql += temp;
+                        {
+                            var newTemp = ReduceComment(temp);
+                            if (!string.IsNullOrEmpty(newTemp))
+                            {
+                                sql += newTemp;
+                                sql += Environment.NewLine;
+                            }
+                        }
                     }
                 }
 
@@ -57,6 +67,12 @@ namespace Fenit.HelpTool.Core.SqlFileService
             var stringReader = new StringReader(@string);
             var sql = (Sql) serializer.Deserialize(stringReader);
             return sql;
+        }
+
+        private string ReduceComment(string sql)
+        {
+            var splitArray = sql.Split(new[] {"--"}, StringSplitOptions.None);
+            return splitArray[0].Trim();
         }
     }
 }

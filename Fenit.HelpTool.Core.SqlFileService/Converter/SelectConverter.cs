@@ -17,11 +17,38 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
 
         public override string GetSql()
         {
-            var ss = _sql.SqlCommand;
+            var script = _sql.SqlCommand;
+            foreach (var param in _sql.Param)
+            {
+                script = Replace(param, script);
+            }
+            return script;
+        }
 
+        private string Replace(Param param, string script)
+        {
+            if (param.Direction == "Input")
+            {
+                script = script.Replace($":{param.Name}", GetValue(param));
+            }
+            return script;
+        }
 
-
-            return ss;
+        private string GetValue(Param param)
+        {
+            switch (param.Type)
+            {
+                case "Int32":
+                {
+                    return param.Text;
+                }
+                case "String":
+                {
+                    return $"'{param.Text}'";
+                }
+                default:
+                    return param.Text;
+            }
         }
     }
 }

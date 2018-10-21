@@ -1,21 +1,30 @@
-﻿using Fenit.HelpTool.Core.SqlFileService.Converter;
+﻿using Fenit.HelpTool.Core.SqlFileService;
+using Fenit.HelpTool.Core.SqlFileService.Converter;
+using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Fenit.HelpTool.Core.SqlFileServiceTests.Converter
 {
-    [TestClass()]
+    [TestClass]
     public class SelectConverterTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void SelectConverterTest()
         {
-            Assert.Fail();
+            var readSqlFile = new ReadSqlFile(SqlType.Select);
+            var sql = readSqlFile.Read();
+            var selectConverter = new SelectConverter(sql);
+            Assert.IsTrue(selectConverter != null);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetSqlTest()
         {
-            Assert.Fail();
+            var readSqlFile = new ReadSqlFile(SqlType.Select);
+            var sql = readSqlFile.Read();
+            var selectConverter = new SelectConverter(sql);
+            var result = selectConverter.GetSql();
+            Assert.IsNotNull(result);
         }
     }
 }
