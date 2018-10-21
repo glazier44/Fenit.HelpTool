@@ -135,25 +135,21 @@
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fenit.HelpTool.App.Service.Login\Fenit.HelpTool.Core.UserService.csproj">
-      <Project>{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}</Project>
-      <Name>Fenit.HelpTool.Core.UserService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fenit.HelpTool.App.Service\Fenit.HelpTool.Core.Service.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fenit.HelpTool.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.Core.UserService\Fenit.HelpTool.Core.UserService.csproj">
+      <Project>{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}</Project>
+      <Name>Fenit.HelpTool.Core.UserService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj">
       <Project>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</Project>
       <Name>Fenit.HelpTool.Module.SqlLog</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Module\Fenit.HelpTool.Login\Fenit.HelpTool.Module.Login.csproj">
-      <Project>{b747a702-135a-4765-bc11-ef2fcb2f86d2}</Project>
-      <Name>Fenit.HelpTool.Module.Login</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

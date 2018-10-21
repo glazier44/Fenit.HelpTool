@@ -95,19 +95,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
+    <ProjectReference Include="..\..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fenit.HelpTool.App.Service.Login\Fenit.HelpTool.Core.UserService.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.Core.UserService\Fenit.HelpTool.Core.UserService.csproj">
       <Project>{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}</Project>
       <Name>Fenit.HelpTool.Core.UserService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fenit.HelpTool.App.Service\Fenit.HelpTool.Core.Service.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
+    <ProjectReference Include="..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>
     </ProjectReference>

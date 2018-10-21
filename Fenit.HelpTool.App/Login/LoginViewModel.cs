@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Events;
