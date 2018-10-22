@@ -74,6 +74,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
                         }
                     }
                 }
+
                 return CreateSql(xml, sql, error);
             }
         }
@@ -141,14 +142,14 @@ namespace Fenit.HelpTool.Core.SqlFileService
 
             var serializer = new XmlSerializer(typeof(Sql), new XmlRootAttribute("Sql"));
             var stringReader = new StringReader(@string);
-            var sql = (Sql)serializer.Deserialize(stringReader);
+            var sql = (Sql) serializer.Deserialize(stringReader);
             return sql;
 
         }
 
         private string ReduceComment(string sql)
         {
-            var splitArray = sql.Split(new[] { "--" }, StringSplitOptions.None);
+            var splitArray = sql.Split(new[] {"--"}, StringSplitOptions.None);
             return splitArray[0].Trim();
         }
     }

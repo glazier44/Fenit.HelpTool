@@ -39,7 +39,6 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                         dmbs.Append(GetdbmsOutput(el));
                         declare.Append(GetDeclare(el));
                     }
-
                 }
 
                 if (param.Key == ParamType.Result)
@@ -48,8 +47,6 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                     ret.Append(GetResParameters(oneParam));
                     dmbs.Append(GetdbmsOutput(oneParam));
                     declare.Append(GetDeclare(oneParam));
-
-
                 }
             }
 
@@ -76,10 +73,12 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
         {
             return parameters.Select(el => $"{el.Name}=>r_{el.Name}").ToList();
         }
+
         private string GetResParameters(Param param)
         {
             return $"r_{param.Name}:=";
         }
+
         private string GetdbmsOutput(Param param)
         {
             return $" dbms_output.put_line('r_{param.Name}: ' ||r_{param.Name} );{NewLine}";

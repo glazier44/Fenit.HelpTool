@@ -38,7 +38,7 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                     }
                 case "DateTime":
                     {
-                        return $"TO_DATE('{param.Text}','DD.MM.YYYY')";
+                        return $"TO_DATE('{param.Text}','DD.MM.YYYY HH:MI:SS')";
                     }
                 default:
                     return param.Text;
