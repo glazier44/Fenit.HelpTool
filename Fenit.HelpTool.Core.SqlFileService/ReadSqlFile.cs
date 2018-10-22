@@ -26,7 +26,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
         public Sql Read()
         {
 
-                var file = _type == SqlType.Procedure ? "procedure.txt" : "select.txt";
+            var file = _type == SqlType.Procedure ? "procedure.txt" : "select.txt";
             var path = Path.Combine(_path, file);
             return ReadFile(path);
         }
@@ -36,9 +36,12 @@ namespace Fenit.HelpTool.Core.SqlFileService
         {
             var xml = string.Empty;
             var sql = string.Empty;
+            var error = string.Empty;
+
             using (var stringReader = new StringReader(text))
             {
                 var s = string.Empty;
+                var isError = false;
                 while ((s = stringReader.ReadLine()) != null)
                 {
                     var temp = s.Trim();
@@ -47,11 +50,23 @@ namespace Fenit.HelpTool.Core.SqlFileService
                         if (temp[0] == '<')
                         {
                             xml += temp;
+                            if (temp.Contains("<ErrorInfo"))
+                            {
+                                isError = true;
+                            }
+                            else if (temp.Contains("</ErrorInfo"))
+                            {
+                                isError = false;
+                            }
                         }
                         else
                         {
                             var newTemp = ReduceComment(temp);
-                            if (!string.IsNullOrEmpty(newTemp))
+                            if (isError)
+                            {
+                                error += temp;
+                            }
+                            else if (!string.IsNullOrEmpty(newTemp))
                             {
                                 sql += newTemp;
                                 sql += Environment.NewLine;
@@ -59,8 +74,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
                         }
                     }
                 }
-
-                return CreateSql(xml, sql);
+                return CreateSql(xml, sql, error);
             }
         }
 
@@ -68,9 +82,12 @@ namespace Fenit.HelpTool.Core.SqlFileService
         {
             var xml = string.Empty;
             var sql = string.Empty;
+            var error = string.Empty;
+
             using (var sr = File.OpenText(fileName))
             {
                 var s = string.Empty;
+                var isError = false;
                 while ((s = sr.ReadLine()) != null)
                 {
                     var temp = s.Trim();
@@ -79,11 +96,23 @@ namespace Fenit.HelpTool.Core.SqlFileService
                         if (temp[0] == '<')
                         {
                             xml += temp;
+                            if (temp.Contains("<ErrorInfo"))
+                            {
+                                isError = true;
+                            }
+                            else if (temp.Contains("</ErrorInfo"))
+                            {
+                                isError = false;
+                            }
                         }
                         else
                         {
                             var newTemp = ReduceComment(temp);
-                            if (!string.IsNullOrEmpty(newTemp))
+                            if (isError)
+                            {
+                                error += temp;
+                            }
+                            else if (!string.IsNullOrEmpty(newTemp))
                             {
                                 sql += newTemp;
                                 sql += Environment.NewLine;
@@ -92,30 +121,34 @@ namespace Fenit.HelpTool.Core.SqlFileService
                     }
                 }
 
-                return CreateSql(xml, sql);
+                return CreateSql(xml, sql, error);
             }
         }
 
-        private Sql CreateSql(string xml, string sql)
+        private Sql CreateSql(string xml, string sql, string error)
         {
             var desSql = Deserialize(xml);
             desSql.SqlCommand = sql;
+            desSql.ErrorInfo = new ErrorInfo()
+            {
+                Text = error,
+            };
             return desSql;
         }
 
         private Sql Deserialize(string @string)
         {
 
-                var serializer = new XmlSerializer(typeof(Sql), new XmlRootAttribute("Sql"));
-                var stringReader = new StringReader(@string);
-                var sql = (Sql) serializer.Deserialize(stringReader);
-                return sql;
+            var serializer = new XmlSerializer(typeof(Sql), new XmlRootAttribute("Sql"));
+            var stringReader = new StringReader(@string);
+            var sql = (Sql)serializer.Deserialize(stringReader);
+            return sql;
 
         }
 
         private string ReduceComment(string sql)
         {
-            var splitArray = sql.Split(new[] {"--"}, StringSplitOptions.None);
+            var splitArray = sql.Split(new[] { "--" }, StringSplitOptions.None);
             return splitArray[0].Trim();
         }
     }

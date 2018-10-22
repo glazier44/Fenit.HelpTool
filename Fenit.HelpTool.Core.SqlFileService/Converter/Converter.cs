@@ -17,31 +17,49 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
         protected string NewLine => Environment.NewLine;
         protected string Tab => "\t\t";
 
-            
+
         protected string GetValue(Param param)
         {
             switch (param.Type)
             {
                 case "Int32":
-                {
-                    return param.Text;
-                }
-                case "String":
-                {
-                    var txt = param.Text;
-                    if (string.IsNullOrEmpty(txt))
                     {
-                        txt = " ";
+                        return param.Text;
                     }
+                case "String":
+                    {
+                        var txt = param.Text;
+                        if (string.IsNullOrEmpty(txt))
+                        {
+                            txt = " ";
+                        }
 
-                    return $"'{txt}'";
-                }
+                        return $"'{txt}'";
+                    }
                 case "DateTime":
-                {
-                    return $"TO_DATE('{param.Text}','DD.MM.YYYY')";
-                }
+                    {
+                        return $"TO_DATE('{param.Text}','DD.MM.YYYY')";
+                    }
                 default:
                     return param.Text;
+            }
+        }
+
+        protected string GetDeclare(Param param)
+        {
+            switch (param.Type)
+            {
+                case "Int32":
+                    {
+                        return $"r_{param.Name} number;{NewLine}";
+                    }
+                case "String":
+                    {
+                        return $"r_{param.Name} varchar2(1000);{NewLine}";
+                    }
+
+                default:
+                    return $"r_{param.Name} varchar2(1000);{NewLine}";
             }
         }
     }

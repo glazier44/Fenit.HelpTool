@@ -1,6 +1,5 @@
 ﻿using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.UI.Core.Base;
-using Fenit.Toolbox.Core.Response;
 using Prism.Commands;
 using Prism.Regions;
 
@@ -13,18 +12,30 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
         //private readonly IEventAggregator _eventAggregator;
         private string _resultText, _sourceText;
         private bool _select;
+
         public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
             //IEventAggregator eventAggregator _eventAggregator = eventAggregator;
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile);
+            _select = true;
         }
+
+
+        public DelegateCommand ConvertCommand { get; set; }
+        public DelegateCommand LoadFileCommand { get; set; }
 
         public string ResultText
         {
             get => _resultText;
             set => SetProperty(ref _resultText, value);
+        }
+
+        public bool Select
+        {
+            get => _select;
+            set => SetProperty(ref _select, value);
         }
 
         public string SourceText
@@ -36,17 +47,6 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
                 ConvertCommand.RaiseCanExecuteChanged();
             }
         }
-
-        public bool Select
-        {
-            get => _select;
-            set => SetProperty(ref _select, value);
-        }
-
-
-
-        public DelegateCommand ConvertCommand { get; set; }
-        public DelegateCommand LoadFileCommand { get; set; }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -64,6 +64,11 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             //throw new NotImplementedException();
         }
 
+        private bool CanConvert()
+        {
+            return !string.IsNullOrEmpty(_sourceText);
+        }
+
         private void Convert()
         {
             var res = Select ? _sqlFileService.ReadSelect(SourceText) : _sqlFileService.ReadProcedure(SourceText);
@@ -71,11 +76,6 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
                 MessageError(res.Message, "[SqlLoad]");
             else
                 ResultText = res.Value;
-        }
-
-        private bool CanConvert()
-        {
-            return !string.IsNullOrEmpty(_sourceText);
         }
 
         private void LoadFile()

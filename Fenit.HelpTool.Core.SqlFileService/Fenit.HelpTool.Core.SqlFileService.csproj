@@ -49,6 +49,7 @@
     <Compile Include="Enum\SqlType.cs" />
     <Compile Include="ReadSqlFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlModel\ErrorInfo.cs" />
     <Compile Include="XmlModel\Param.cs" />
     <Compile Include="XmlModel\Sql.cs" />
   </ItemGroup>

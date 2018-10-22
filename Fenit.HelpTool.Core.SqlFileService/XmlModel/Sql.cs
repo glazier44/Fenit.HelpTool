@@ -6,6 +6,8 @@ namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
     [XmlRoot(ElementName = "Sql")]
     public class Sql
     {
+        [XmlElement(ElementName = "ErrorInfo")]
+        public ErrorInfo ErrorInfo { get; set; }
         [XmlElement(ElementName = "Param")] public List<Param> Param { get; set; }
 
         [XmlAttribute(AttributeName = "executionStart")]
