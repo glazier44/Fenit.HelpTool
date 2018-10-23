@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.Core.SqlFileService.XmlModel;
 
@@ -10,7 +11,9 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
 
         protected string ReplaceInput(Param param, string script)
         {
-            if (param.ParamType == ParamType.Input) script = script.Replace($":{param.Name}", GetValue(param));
+            if (param.ParamType == ParamType.Input)
+                Regex.Replace(script, $":{param.Name}", GetValue(param), RegexOptions.IgnoreCase);
+
             return script;
         }
 
