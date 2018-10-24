@@ -1,4 +1,5 @@
 ﻿using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
 using Prism.Regions;
@@ -11,7 +12,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         //private readonly IEventAggregator _eventAggregator;
         private string _resultText, _sourceText;
-        private bool _select;
+        private SqlType SqlType;
 
         public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
@@ -19,9 +20,10 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile, False);
+            RadioButonCommand = new DelegateCommand<object>(RadioButonClick);
         }
 
-
+        public DelegateCommand<object> RadioButonCommand { get; set; }
         public DelegateCommand ConvertCommand { get; set; }
         public DelegateCommand LoadFileCommand { get; set; }
 
@@ -31,11 +33,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             set => SetProperty(ref _resultText, value);
         }
 
-        public bool Select
-        {
-            get => _select;
-            set => SetProperty(ref _select, value);
-        }
+
 
         public string SourceText
         {
@@ -64,6 +62,11 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
         }
 
 
+        private void RadioButonClick(object parameter)
+        {
+            SqlType = SqlType.Non;
+        }
+
 
         private bool False()
         {
@@ -77,7 +80,9 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void Convert()
         {
-            var res = Select ? _sqlFileService.ReadSelect(SourceText) : _sqlFileService.ReadProcedure(SourceText);
+            var res = SqlType == SqlType.Select
+                ? _sqlFileService.ReadSelect(SourceText)
+                : _sqlFileService.ReadProcedure(SourceText);
             if (res.IsError)
                 MessageError(res.Message, "[SqlLoad]");
             else

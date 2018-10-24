@@ -34,9 +34,20 @@
             <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
         </DockPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" >
-            <RadioButton Content="Select" IsChecked="{Binding Select}"></RadioButton>
-            <RadioButton Content="Procedura" IsChecked="{Binding !Select}"></RadioButton>
-        </StackPanel>
+
+            <RadioButton   
+                Content="Select"   
+                Command="{Binding Path=RadioButonCommand}"   
+                Name="Select"   
+                CommandParameter="{Binding ElementName=Select, Path=Content}">
+
+            </RadioButton>
+
+            <!--<RadioButton Content="Select" IsChecked="{Binding Select}"></RadioButton>
+            <RadioButton Content="Procedura" IsChecked="{Binding !Select}"></RadioButton>-->
+
+
+</StackPanel>
         <Grid Grid.Column="0" Grid.Row="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
