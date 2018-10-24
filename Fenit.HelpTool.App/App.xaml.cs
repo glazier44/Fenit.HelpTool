@@ -4,6 +4,7 @@ using Fenit.HelpTool.App.Login;
 using Fenit.HelpTool.Core.Logger;
 using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.UserService;
+using Fenit.HelpTool.Module.Footer;
 using Fenit.HelpTool.Module.SqlLog;
 using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;
@@ -73,6 +74,8 @@ namespace Fenit.HelpTool.App
         {
             //  moduleCatalog.AddModule<ModuleLogin>();
             moduleCatalog.AddModule<ModuleSqlLog>();
+            moduleCatalog.AddModule<ModuleFooter>();
+            
         }
     }
 }

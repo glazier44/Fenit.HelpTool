@@ -20,6 +20,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile);
             _select = true;
+            Title = "User Control 1";
         }
 
 

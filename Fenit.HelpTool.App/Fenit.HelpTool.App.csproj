@@ -160,6 +160,10 @@
       <Project>{8F6EDC08-F61C-4942-AFD5-F24F8A73B526}</Project>
       <Name>Fenit.HelpTool.Core.UserService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Footer\Fenit.HelpTool.Module.Footer.csproj">
+      <Project>{F76A2BAC-0719-4F03-93CB-40F58D0E9D7C}</Project>
+      <Name>Fenit.HelpTool.Module.Footer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj">
       <Project>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</Project>
       <Name>Fenit.HelpTool.Module.SqlLog</Name>

@@ -33,16 +33,17 @@ namespace Fenit.HelpTool.App
 
         private void LoginReceived(bool login)
         {
-         //   if (login)
-                _moduleManager.LoadModule("ModuleSqlLog");
+            //   if (login)
+            _moduleManager.LoadModule("ModuleSqlLog");
+            _moduleManager.LoadModule("ModuleFooter");
 
-           // else CloseApp();
+            // else CloseApp();
         }
 
         private void CloseApp()
         {
-          //  base.Close();
-           Application.Current.Shutdown();
+            //  base.Close();
+            Application.Current.Shutdown();
         }
     }
 }
