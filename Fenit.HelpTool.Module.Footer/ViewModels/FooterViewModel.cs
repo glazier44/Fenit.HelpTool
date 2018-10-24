@@ -13,8 +13,6 @@ namespace Fenit.HelpTool.Module.Footer.ViewModels
 
         public FooterViewModel(ILoggerService log) : base(log)
         {
-            Title = "User Control 1";
-
             var versionInfo = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             var version = versionInfo.ProductVersion;
             var user = "testowy";

@@ -50,12 +50,16 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                 }
             }
 
+            var dat = !string.IsNullOrEmpty(parameters.ToString()) && !string.IsNullOrEmpty(outPut.ToString())
+                ? ","
+                : string.Empty;
 
             var script = $"DECLARE{NewLine}" +
                          $"{declare}" +
                          $"BEGIN{NewLine}" +
                          $"{ret}{_sql.SqlCommand}({NewLine}" +
                          $"{Tab}{parameters}{NewLine}" +
+                         $"{dat}" +
                          $"{Tab}{outPut}" +
                          $");{NewLine}" +
                          $"{dmbs}{NewLine}" +

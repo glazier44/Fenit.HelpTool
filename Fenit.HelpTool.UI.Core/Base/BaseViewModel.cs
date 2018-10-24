@@ -1,14 +1,11 @@
 using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Windows;
 using Fenit.HelpTool.Core.Service;
 using Prism.Mvvm;
 
 namespace Fenit.HelpTool.UI.Core.Base
 {
-    public abstract class BaseViewModel : BindableBase//, INotifyPropertyChanged
+    public abstract class BaseViewModel : BindableBase //, INotifyPropertyChanged
     {
         protected readonly ILoggerService Log;
 
@@ -17,7 +14,7 @@ namespace Fenit.HelpTool.UI.Core.Base
             Log = log;
         }
 
-        public string Title { get; protected set; }
+        //public string Title { get; protected set; }
 
         //public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,8 +31,6 @@ namespace Fenit.HelpTool.UI.Core.Base
         //        OnPropertyChanged(body.Member.Name);
         //    }
         //}
-
-
 
         protected void MessageError(string message, string name)
         {

@@ -18,9 +18,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             //IEventAggregator eventAggregator _eventAggregator = eventAggregator;
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
-            LoadFileCommand = new DelegateCommand(LoadFile);
-            _select = true;
-            Title = "User Control 1";
+            LoadFileCommand = new DelegateCommand(LoadFile, False);
         }
 
 
@@ -63,6 +61,13 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
             //throw new NotImplementedException();
+        }
+
+
+
+        private bool False()
+        {
+            return false;
         }
 
         private bool CanConvert()
