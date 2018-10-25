@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;
 using Prism.Modularity;
@@ -28,31 +29,17 @@ namespace Fenit.HelpTool.App
             eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
 
             if (UserService.IsRootMode)
-            {
                 LoginReceived();
-            }
             else
-            {
                 _moduleManager.LoadModule("ModuleLogin");
-            }
         }
 
         private void LoginReceived()
         {
+            var mainRegion = _regionManager.Regions["ContentRegion"];
+            mainRegion.ClearRegion();
             _moduleManager.LoadModule("ModuleSqlLog");
             _moduleManager.LoadModule("ModuleFooter");
-
-            //_moduleManager.LoadModule("ModuleSqlLog");
-            //var mainRegion = _regionManager.Regions["ContentRegion"];
-            ////mainRegion.RequestNavigate("ModuleSqlLog");
-            //var mainRegion = m_ViewModel.RegionManager.Regions["MainRegion"];
-            //ModuleServices.ClearRegion(mainRegion);
-
-            //_regionManager.RequestNavigate("ViewMainFrame", ModuleSqlLog);
-
-            //_moduleManager.LoadModule("ModuleFooter");
-            //var footerRegion = _regionManager.Regions["FooterRegion"];
-            //footerRegion.RequestNavigate("ModuleSqlLog");
         }
 
         private void CloseApp()

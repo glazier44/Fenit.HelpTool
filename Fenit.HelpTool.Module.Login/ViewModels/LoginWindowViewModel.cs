@@ -9,9 +9,9 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
 {
     public class LoginWindowViewModel : BindableBase, INavigationAware
     {
-        private string _userName, _password, _message;
+        private readonly IEventAggregator _eventAggregator;
         private readonly IUserService _userService;
-        readonly IEventAggregator _eventAggregator;
+        private string _userName, _password, _message;
 
         public LoginWindowViewModel(IUserService userService, IEventAggregator eventAggregator)
         {
@@ -70,13 +70,9 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
         private void Login()
         {
             if (_userService.Login(UserName, Password).Value)
-            {
                 _eventAggregator.GetEvent<LoggedInEvent>().Publish();
-            }
             else
-            {
                 Message = "asdasdasdasd";
-            }
         }
 
         private void Close()

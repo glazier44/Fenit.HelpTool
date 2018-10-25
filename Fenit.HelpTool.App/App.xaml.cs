@@ -42,10 +42,6 @@ namespace Fenit.HelpTool.App
         {
             var userService = ServiceLocator.Current.GetInstance<IUserService>();
             userService.IsRootMode = _isRootMode;
-            //moduleCatalog.AddModule<ModuleLogin>();
-            //moduleCatalog.AddModule<ModuleSqlLog>();
-            //moduleCatalog.AddModule<ModuleFooter>();
-
 
             var moduleLogin = typeof(ModuleLogin);
             moduleCatalog.AddModule(new ModuleInfo
