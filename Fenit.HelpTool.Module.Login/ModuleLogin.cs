@@ -16,8 +16,6 @@ namespace Fenit.HelpTool.Module.Login
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<LoginWindow>();
-
-            // containerRegistry.RegisterSingleton<IUserService, UserService>();
         }
     }
 }

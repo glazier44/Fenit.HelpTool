@@ -71,7 +71,7 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
         {
             if (_userService.Login(UserName, Password).Value)
             {
-                _eventAggregator.GetEvent<LoggedInEvent>().Publish(true);
+                _eventAggregator.GetEvent<LoggedInEvent>().Publish();
             }
             else
             {
