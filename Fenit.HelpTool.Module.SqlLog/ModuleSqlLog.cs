@@ -18,7 +18,6 @@ namespace Fenit.HelpTool.Module.SqlLog
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainWindow>();
-
             containerRegistry.RegisterSingleton<ISqlFileService, SqlFileService>();
         }
     }

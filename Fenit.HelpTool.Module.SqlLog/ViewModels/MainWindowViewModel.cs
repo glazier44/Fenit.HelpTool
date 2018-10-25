@@ -6,17 +6,15 @@ using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel, INavigationAware
+    public class MainWindowViewModel : BaseViewModel//, INavigationAware
     {
         private readonly ISqlFileService _sqlFileService;
 
-        //private readonly IEventAggregator _eventAggregator;
         private string _resultText, _sourceText;
         private SqlType SqlType;
 
         public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
-            //IEventAggregator eventAggregator _eventAggregator = eventAggregator;
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile, False);
@@ -45,22 +43,21 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             }
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            // throw new NotImplementedException();
-        }
+        //public void OnNavigatedTo(NavigationContext navigationContext)
+        //{
+        //    // throw new NotImplementedException();
+        //}
 
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            // throw new NotImplementedException();
-            return true;
-        }
+        //public bool IsNavigationTarget(NavigationContext navigationContext)
+        //{
+        //    // throw new NotImplementedException();
+        //    return true;
+        //}
 
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-            //throw new NotImplementedException();
-        }
-
+        //public void OnNavigatedFrom(NavigationContext navigationContext)
+        //{
+        //    //throw new NotImplementedException();
+        //}
 
         private void RadioButonClick(object parameter)
         {

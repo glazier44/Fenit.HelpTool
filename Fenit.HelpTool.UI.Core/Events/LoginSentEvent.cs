@@ -2,11 +2,7 @@
 
 namespace Fenit.HelpTool.UI.Core.Events
 {
-    public class LoggedInEvent : PubSubEvent<bool>
-    {
-    }
-
-    public class LoggedOutEvent : PubSubEvent<bool>
+    public class LoggedInEvent : PubSubEvent
     {
     }
 }

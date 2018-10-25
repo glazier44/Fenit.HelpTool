@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;
 using Prism.Modularity;
@@ -11,38 +13,37 @@ namespace Fenit.HelpTool.App
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IEventAggregator _eventAggregator;
         private readonly IModuleManager _moduleManager;
-        private IRegionManager _regionManager;
+        private readonly IRegionManager _regionManager;
+        protected IUserService UserService;
 
-        public MainWindow(IModuleManager moduleManager, IEventAggregator eventAggregator, IRegionManager regionManager)
+        public MainWindow(IModuleManager moduleManager, IEventAggregator eventAggregator, IRegionManager regionManager,
+            IUserService userService)
         {
             InitializeComponent();
             _moduleManager = moduleManager;
-            _eventAggregator = eventAggregator;
             _regionManager = regionManager;
+            UserService = userService;
 
-            _eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoginReceived, ThreadOption.UIThread);
-            _eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
+            eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoginReceived, ThreadOption.UIThread);
+            eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
 
-
-            //ServiceLocator.Current.GetInstance<IEventAggregator>().GetEvent<CloseEvent>()
-            //    .Subscribe(Close, ThreadOption.UIThread, false);
-            // _moduleManager.LoadModule("ModuleLogin");
+            if (UserService.IsRootMode)
+                LoginReceived();
+            else
+                _moduleManager.LoadModule("ModuleLogin");
         }
 
-        private void LoginReceived(bool login)
+        private void LoginReceived()
         {
-            //   if (login)
+            var mainRegion = _regionManager.Regions["ContentRegion"];
+            mainRegion.ClearRegion();
             _moduleManager.LoadModule("ModuleSqlLog");
             _moduleManager.LoadModule("ModuleFooter");
-
-            // else CloseApp();
         }
 
         private void CloseApp()
         {
-            //  base.Close();
             Application.Current.Shutdown();
         }
     }
