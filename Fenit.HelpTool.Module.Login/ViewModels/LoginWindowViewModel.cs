@@ -3,11 +3,10 @@ using Fenit.HelpTool.UI.Core.Events;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.Login.ViewModels
 {
-    public class LoginWindowViewModel : BindableBase, INavigationAware
+    public class LoginWindowViewModel : BindableBase
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IUserService _userService;
@@ -51,21 +50,6 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
         public DelegateCommand LoginCommand { get; set; }
         public DelegateCommand ExitCommand { get; set; }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            // throw new NotImplementedException();
-        }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            // throw new NotImplementedException();
-            return true;
-        }
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-            //throw new NotImplementedException();
-        }
 
         private void Login()
         {

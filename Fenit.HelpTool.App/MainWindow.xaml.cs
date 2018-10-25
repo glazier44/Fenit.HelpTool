@@ -36,8 +36,7 @@ namespace Fenit.HelpTool.App
 
         private void LoginReceived()
         {
-            var mainRegion = _regionManager.Regions["ContentRegion"];
-            mainRegion.ClearRegion();
+            _regionManager.ClearRegion("ContentRegion");
             _moduleManager.LoadModule("ModuleSqlLog");
             _moduleManager.LoadModule("ModuleFooter");
         }

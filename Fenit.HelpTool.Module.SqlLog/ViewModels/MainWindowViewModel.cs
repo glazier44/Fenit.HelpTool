@@ -1,38 +1,38 @@
 ﻿using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
-using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel//, INavigationAware
+    public class MainWindowViewModel : BaseViewModel
     {
         private readonly ISqlFileService _sqlFileService;
 
         private string _resultText, _sourceText;
-        private bool _select;
+        private SqlType _sqlType;
 
         public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile, False);
+            SqlType = SqlType.Select;
         }
-
 
         public DelegateCommand ConvertCommand { get; set; }
         public DelegateCommand LoadFileCommand { get; set; }
+
+        public SqlType SqlType
+        {
+            get => _sqlType;
+            set => SetProperty(ref _sqlType, value);
+        }
 
         public string ResultText
         {
             get => _resultText;
             set => SetProperty(ref _resultText, value);
-        }
-
-        public bool Select
-        {
-            get => _select;
-            set => SetProperty(ref _select, value);
         }
 
         public string SourceText
@@ -45,21 +45,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             }
         }
 
-        //public void OnNavigatedTo(NavigationContext navigationContext)
-        //{
-        //    // throw new NotImplementedException();
-        //}
 
-        //public bool IsNavigationTarget(NavigationContext navigationContext)
-        //{
-        //    // throw new NotImplementedException();
-        //    return true;
-        //}
-
-        //public void OnNavigatedFrom(NavigationContext navigationContext)
-        //{
-        //    //throw new NotImplementedException();
-        //}
 
 
         private bool False()
@@ -74,7 +60,9 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void Convert()
         {
-            var res = Select ? _sqlFileService.ReadSelect(SourceText) : _sqlFileService.ReadProcedure(SourceText);
+            var res = _sqlType == SqlType.Select
+                ? _sqlFileService.ReadSelect(SourceText)
+                : _sqlFileService.ReadProcedure(SourceText);
             if (res.IsError)
                 MessageError(res.Message, "[SqlLoad]");
             else
