@@ -2,11 +2,10 @@
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
-using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
-    public class MainWindowViewModel : BaseViewModel//, INavigationAware
+    public class MainWindowViewModel : BaseViewModel
     {
         private readonly ISqlFileService _sqlFileService;
 
@@ -32,7 +31,6 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
         }
 
 
-
         public string SourceText
         {
             get => _sourceText;
@@ -42,22 +40,6 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
                 ConvertCommand.RaiseCanExecuteChanged();
             }
         }
-
-        //public void OnNavigatedTo(NavigationContext navigationContext)
-        //{
-        //    // throw new NotImplementedException();
-        //}
-
-        //public bool IsNavigationTarget(NavigationContext navigationContext)
-        //{
-        //    // throw new NotImplementedException();
-        //    return true;
-        //}
-
-        //public void OnNavigatedFrom(NavigationContext navigationContext)
-        //{
-        //    //throw new NotImplementedException();
-        //}
 
         private void RadioButonClick(object parameter)
         {

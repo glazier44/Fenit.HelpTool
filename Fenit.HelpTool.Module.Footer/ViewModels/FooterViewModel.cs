@@ -4,11 +4,10 @@ using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;
-using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.Footer.ViewModels
 {
-    public class FooterViewModel : BaseViewModel //, INavigationAware
+    public class FooterViewModel : BaseViewModel
     {
         private readonly IUserService _userService;
         private bool _footerVisibility;
@@ -49,27 +48,7 @@ namespace Fenit.HelpTool.Module.Footer.ViewModels
 
         private void LoginReceived()
         {
-            if (_userService.IsLogged)
-            {
-                FooterVisibility = true;
-            }
-        }
-
-
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            // throw new NotImplementedException();
-        }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            // throw new NotImplementedException();
-            return true;
-        }
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-            // throw new System.NotImplementedException();
+            if (_userService.IsLogged) FooterVisibility = true;
         }
     }
 }
