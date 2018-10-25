@@ -24,7 +24,7 @@ namespace Fenit.HelpTool.Module.Footer.ViewModels
             var user = "testowy";
             _version = $"Wersja: {version}";
             _userName = $"Użytkownik: {user}";
-            ;
+            LoginReceived();
         }
 
         public bool FooterVisibility

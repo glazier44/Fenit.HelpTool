@@ -13,7 +13,8 @@ namespace Fenit.HelpTool.Core.UserService
 
             return res;
         }
-        public  bool IsRootMode { get; set; }
+
+        public bool IsRootMode { get; set; }
         public bool IsLogged => true;
     }
 }

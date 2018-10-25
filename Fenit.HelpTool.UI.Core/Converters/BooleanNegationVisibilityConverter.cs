@@ -5,6 +5,8 @@ using System.Windows.Data;
 
 namespace Fenit.HelpTool.UI.Core.Converters
 {
+
+
     public class BooleanNegationVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -26,7 +28,7 @@ namespace Fenit.HelpTool.UI.Core.Converters
                 return ((bool)value) ? Visibility.Collapsed : Visibility.Visible;
             }
             catch (Exception)
-            {                
+            {
                 throw;
             }
         }

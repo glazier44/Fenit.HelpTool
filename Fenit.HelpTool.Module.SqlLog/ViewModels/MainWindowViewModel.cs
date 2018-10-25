@@ -10,26 +10,30 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
         private readonly ISqlFileService _sqlFileService;
 
         private string _resultText, _sourceText;
-        private SqlType SqlType;
+        private SqlType _sqlType;
 
         public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
         {
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile, False);
-            RadioButonCommand = new DelegateCommand<object>(RadioButonClick);
+            SqlType = SqlType.Select;
         }
 
-        public DelegateCommand<object> RadioButonCommand { get; set; }
         public DelegateCommand ConvertCommand { get; set; }
         public DelegateCommand LoadFileCommand { get; set; }
+
+        public SqlType SqlType
+        {
+            get => _sqlType;
+            set => SetProperty(ref _sqlType, value);
+        }
 
         public string ResultText
         {
             get => _resultText;
             set => SetProperty(ref _resultText, value);
         }
-
 
         public string SourceText
         {
@@ -41,10 +45,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             }
         }
 
-        private void RadioButonClick(object parameter)
-        {
-            SqlType = SqlType.Non;
-        }
+
 
 
         private bool False()
@@ -59,7 +60,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void Convert()
         {
-            var res = SqlType == SqlType.Select
+            var res = _sqlType == SqlType.Select
                 ? _sqlFileService.ReadSelect(SourceText)
                 : _sqlFileService.ReadProcedure(SourceText);
             if (res.IsError)
