@@ -38,24 +38,8 @@
         </DockPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" >
 
-            <!--<RadioButton   
-                Content="Select"   
-                Command="{Binding Path=RadioButonCommand}"   
-                Name="Select"   
-                CommandParameter="{Binding ElementName=Select, Path=Content}">
-
-            </RadioButton>
-
-            <RadioButton   
-                Content="Procedura"   
-                Command="{Binding Path=RadioButonCommand}"   
-                Name="Procedura"   
-                CommandParameter="{Binding ElementName=Select, Path=Content}">
-
-            </RadioButton>-->
-
-            <RadioButton IsChecked="{Binding Path=SqlType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Procedure}}" Content="Procedura"  />
-            <RadioButton IsChecked="{Binding Path=SqlType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Select}}"  Content="Select"  />
+            <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Procedure}}" Content="Procedura"  />
+            <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Select}}"  Content="Select"  />
 
 
 

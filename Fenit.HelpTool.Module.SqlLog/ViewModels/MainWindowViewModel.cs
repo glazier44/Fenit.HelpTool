@@ -17,13 +17,13 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
             _sqlFileService = sqlFileService;
             ConvertCommand = new DelegateCommand(Convert);
             LoadFileCommand = new DelegateCommand(LoadFile, False);
-            SqlType = SqlType.Select;
+            Type = SqlType.Select;
         }
 
         public DelegateCommand ConvertCommand { get; set; }
         public DelegateCommand LoadFileCommand { get; set; }
 
-        public SqlType SqlType
+        public SqlType Type
         {
             get => _sqlType;
             set => SetProperty(ref _sqlType, value);
