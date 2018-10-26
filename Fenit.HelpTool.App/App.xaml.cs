@@ -41,7 +41,7 @@ namespace Fenit.HelpTool.App
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             var userService = ServiceLocator.Current.GetInstance<IUserService>();
-            userService.IsRootMode = _isRootMode;
+            userService.IsRootMode = true;
 
             var moduleLogin = typeof(ModuleLogin);
             moduleCatalog.AddModule(new ModuleInfo

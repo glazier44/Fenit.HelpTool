@@ -12,7 +12,7 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
         protected string ReplaceInput(Param param, string script)
         {
             if (param.ParamType == ParamType.Input)
-                Regex.Replace(script, $":{param.Name}", GetValue(param), RegexOptions.IgnoreCase);
+                script= Regex.Replace(script, $":{param.Name}", GetValue(param), RegexOptions.IgnoreCase);
 
             return script;
         }
