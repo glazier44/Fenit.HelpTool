@@ -23,7 +23,7 @@ namespace Fenit.HelpTool.UI.Core
         {
             if (regionManager.Regions.Any())
             {
-                var region = regionManager.Regions["name"];
+                var region = regionManager.Regions[name];
                 ClearRegion(region);
             }
         }
