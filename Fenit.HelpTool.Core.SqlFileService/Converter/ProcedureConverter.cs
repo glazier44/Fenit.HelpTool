@@ -58,8 +58,7 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                          $"{declare}" +
                          $"BEGIN{NewLine}" +
                          $"{ret}{_sql.SqlCommand}({NewLine}" +
-                         $"{Tab}{parameters}{NewLine}" +
-                         $"{dat}" +
+                         $"{Tab}{parameters}{NewLine}{dat}" +
                          $"{Tab}{outPut}" +
                          $");{NewLine}" +
                          $"{dmbs}{NewLine}" +

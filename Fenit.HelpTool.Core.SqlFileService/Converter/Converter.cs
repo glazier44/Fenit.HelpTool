@@ -12,7 +12,7 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
         protected string ReplaceInput(Param param, string script)
         {
             if (param.ParamType == ParamType.Input)
-                script= Regex.Replace(script, $":{param.Name}", GetValue(param), RegexOptions.IgnoreCase);
+                script = Regex.Replace(script, $":{param.Name}", GetValue(param), RegexOptions.IgnoreCase);
 
             return script;
         }
@@ -41,7 +41,7 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
                     }
                 case "DateTime":
                     {
-                        return $"TO_DATE('{param.Text}','DD.MM.YYYY HH:MI:SS')";
+                        return $"TO_DATE('{param.Text}','DD.MM.YYYY HH24:MI:SS')";
                     }
                 default:
                     return param.Text;
