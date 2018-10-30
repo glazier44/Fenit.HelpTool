@@ -1,23 +1,26 @@
 ﻿using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;
-using Fenit.Toolbox.Core;
+using Fenit.Toolbox.Core.Model;
 using Prism.Commands;
 
 namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly IFileService _fileService;
         private readonly ISqlFileService _sqlFileService;
 
         private string _resultText, _sourceText;
         private SqlType _sqlType;
 
-        public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log) : base(log)
+        public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log, IFileService fileService) :
+            base(log)
         {
             _sqlFileService = sqlFileService;
+            _fileService = fileService;
             ConvertCommand = new DelegateCommand(Convert);
-            LoadFileCommand = new DelegateCommand(LoadFile, False);
+            LoadFileCommand = new DelegateCommand(LoadFile);
             Type = SqlType.Select;
         }
 
@@ -45,8 +48,6 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
                 ConvertCommand.RaiseCanExecuteChanged();
             }
         }
-
-
 
 
         private bool False()

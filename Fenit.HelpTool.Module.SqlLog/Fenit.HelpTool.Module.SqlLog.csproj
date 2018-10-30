@@ -72,6 +72,10 @@
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Core.FileService\Fenit.HelpTool.Core.FileService.csproj">
+      <Project>{AAC3386C-3432-4AAC-A216-C07E01B840A0}</Project>
+      <Name>Fenit.HelpTool.Core.FileService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
