@@ -34,7 +34,7 @@ namespace Fenit.HelpTool.Core.FileService
             var dialog = new OpenFileDialog
             {
                 DefaultExt = "xml",
-                Filter = "xml files (*.xml)"
+                Filter = "XML-File | *.xml",
             };
 
             var result = dialog.ShowDialog();
@@ -48,7 +48,7 @@ namespace Fenit.HelpTool.Core.FileService
             var dialog =
                 new SaveFileDialog
                 {
-                    Filter = "xml files (*.xml)",
+                    Filter = "XML-File | *.xml",
                     FilterIndex = 2,
                     RestoreDirectory = true
                 };
