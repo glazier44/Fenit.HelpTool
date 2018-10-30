@@ -30,128 +30,67 @@ namespace Fenit.HelpTool.Core.SqlFileService
             return ReadFile(path);
         }
 
-        //private (string xml, string sql, string error) ReadData(string text)
-        //{
-        //    var xml = string.Empty;
-        //    var sql = string.Empty;
-        //    var error = string.Empty;
-
-        //    using (var stringReader = new StringReader(text))
-        //    {
-        //        var s = string.Empty;
-        //        var isError = false;
-        //        while ((s = stringReader.ReadLine()) != null)
-        //        {
-        //            var temp = s.Trim();
-        //            if (!string.IsNullOrEmpty(temp))
-        //            {
-        //                if (temp[0] == '<')
-        //                {
-        //                    xml += temp;
-        //                    if (temp.Contains("<ErrorInfo"))
-        //                        isError = true;
-        //                    else if (temp.Contains("</ErrorInfo")) isError = false;
-        //                }
-        //                else
-        //                {
-        //                    var newTemp = ReduceComment(temp);
-        //                    if (isError)
-        //                    {
-        //                        error += temp;
-        //                    }
-        //                    else if (!string.IsNullOrEmpty(newTemp))
-        //                    {
-        //                        sql += newTemp;
-        //                        sql += Environment.NewLine;
-        //                    }
-        //                }
-        //            }
-        //        }
-
-        //        return (xml, sql, error);
-        //    }
-        //}
-
-        private Sql ReadString(string text)
+        private (string xml, string sql, string error) ReadData(TextReader textReader)
         {
             var xml = string.Empty;
             var sql = string.Empty;
             var error = string.Empty;
 
-            using (var stringReader = new StringReader(text))
+
+            var s = string.Empty;
+            var isError = false;
+            while ((s = textReader.ReadLine()) != null)
             {
-                var s = string.Empty;
-                var isError = false;
-                while ((s = stringReader.ReadLine()) != null)
+                var temp = s.Trim();
+                if (!string.IsNullOrEmpty(temp))
                 {
-                    var temp = s.Trim();
-                    if (!string.IsNullOrEmpty(temp))
+                    if (temp[0] == '<')
                     {
-                        if (temp[0] == '<')
+                        xml += temp;
+                        if (temp.Contains("<ErrorInfo"))
+                            isError = true;
+                        else if (temp.Contains("</ErrorInfo")) isError = false;
+                    }
+                    else
+                    {
+                        var newTemp = ReduceComment(temp);
+                        if (isError)
                         {
-                            xml += temp;
-                            if (temp.Contains("<ErrorInfo"))
-                                isError = true;
-                            else if (temp.Contains("</ErrorInfo")) isError = false;
+                            error += temp;
                         }
-                        else
+                        else if (!string.IsNullOrEmpty(newTemp))
                         {
-                            var newTemp = ReduceComment(temp);
-                            if (isError)
-                            {
-                                error += temp;
-                            }
-                            else if (!string.IsNullOrEmpty(newTemp))
-                            {
-                                sql += newTemp;
-                                sql += Environment.NewLine;
-                            }
+                            sql += newTemp;
+                            sql += Environment.NewLine;
                         }
                     }
                 }
+            }
 
+            return (xml, sql, error);
+        }
+
+        private Sql ReadString(string text)
+        {
+            using (var stringReader = new StringReader(text))
+            {
+                string xml;
+                string sql;
+                string error;
+                (xml, sql, error) = ReadData(stringReader);
                 return CreateSql(xml, sql, error);
             }
         }
 
+
         private Sql ReadFile(string fileName)
         {
-            var xml = string.Empty;
-            var sql = string.Empty;
-            var error = string.Empty;
-
-            using (var sr = File.OpenText(fileName))
+            using (var stringReader = File.OpenText(fileName))
             {
-                var s = string.Empty;
-                var isError = false;
-                while ((s = sr.ReadLine()) != null)
-                {
-                    var temp = s.Trim();
-                    if (!string.IsNullOrEmpty(temp))
-                    {
-                        if (temp[0] == '<')
-                        {
-                            xml += temp;
-                            if (temp.Contains("<ErrorInfo"))
-                                isError = true;
-                            else if (temp.Contains("</ErrorInfo")) isError = false;
-                        }
-                        else
-                        {
-                            var newTemp = ReduceComment(temp);
-                            if (isError)
-                            {
-                                error += temp;
-                            }
-                            else if (!string.IsNullOrEmpty(newTemp))
-                            {
-                                sql += newTemp;
-                                sql += Environment.NewLine;
-                            }
-                        }
-                    }
-                }
-
+                string xml;
+                string sql;
+                string error;
+                (xml, sql, error) = ReadData(stringReader);
                 return CreateSql(xml, sql, error);
             }
         }
@@ -169,10 +108,6 @@ namespace Fenit.HelpTool.Core.SqlFileService
 
         private Sql Deserialize(string @string)
         {
-            //var serializer = new XmlSerializer(typeof(Sql), new XmlRootAttribute("Sql"));
-            //var stringReader = new StringReader(@string);
-            //var sql = (Sql)serializer.Deserialize(stringReader);
-            //return sql;
             var res = @string.DeserializeFromString<Sql>();
             return res.Value;
         }
