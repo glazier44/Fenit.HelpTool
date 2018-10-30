@@ -13,9 +13,9 @@ namespace Fenit.HelpTool.Core.FileService
             return OpenDialog().DeserializeFromFile<T>();
         }
 
-        public Response<T> Load<T>() where T : class, new()
+        public string Load()
         {
-            return OpenDialog().DeserializeFromString<T>();
+            return OpenDialog().LoadFile();
         }
 
         public Response SaveXml<T>(T obj) where T : class, new()
@@ -23,9 +23,9 @@ namespace Fenit.HelpTool.Core.FileService
             return obj.XmlSerialize(OpenSaveDialog());
         }
 
-        public Response Save<T>(string text) where T : class, new()
+        public Response Save(string text)
         {
-            return text.StringSerialize(OpenSaveDialog());
+            return text.SaveFile(OpenSaveDialog());
         }
 
 
@@ -34,7 +34,7 @@ namespace Fenit.HelpTool.Core.FileService
             var dialog = new OpenFileDialog
             {
                 DefaultExt = "xml",
-                Filter = "XML-File | *.xml",
+                Filter = "XML-File | *.xml"
             };
 
             var result = dialog.ShowDialog();
