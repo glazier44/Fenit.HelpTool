@@ -13,7 +13,7 @@ namespace Fenit.HelpTool.Core.FileService
             return OpenDialog().DeserializeFromFile<T>();
         }
 
-        public string Load()
+        public Response<string> Load()
         {
             return OpenDialog().LoadFile();
         }

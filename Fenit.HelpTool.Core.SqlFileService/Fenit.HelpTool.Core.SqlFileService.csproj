@@ -55,14 +55,6 @@
     <Compile Include="XmlModel\Sql.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SampleSql\procedure.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SampleSql\select.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>
@@ -71,6 +63,10 @@
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SampleSql\procedure.xml" />
+    <Content Include="SampleSql\select.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

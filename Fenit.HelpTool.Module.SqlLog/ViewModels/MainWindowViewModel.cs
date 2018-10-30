@@ -72,7 +72,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void LoadFile()
         {
-            SourceText = _fileService.Load();
+            SourceText = _fileService.Load().Value;
         }
     }
 }
