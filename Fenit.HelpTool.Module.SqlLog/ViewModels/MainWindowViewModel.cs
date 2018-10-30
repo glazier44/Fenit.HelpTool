@@ -1,7 +1,6 @@
 ﻿using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;
-using Fenit.Toolbox.Core.Model;
 using Prism.Commands;
 
 namespace Fenit.HelpTool.Module.SqlLog.ViewModels
@@ -73,6 +72,7 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void LoadFile()
         {
+            SourceText = _fileService.Load();
         }
     }
 }
