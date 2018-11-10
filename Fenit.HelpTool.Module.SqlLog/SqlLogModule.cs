@@ -8,7 +8,7 @@ using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.SqlLog
 {
-    public class ModuleSqlLog : IModule
+    public class SqlLogModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {

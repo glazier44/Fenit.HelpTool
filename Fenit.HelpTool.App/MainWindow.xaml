@@ -20,8 +20,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="35" />
         </Grid.RowDefinitions>
-        <ContentControl VerticalAlignment="Top" Grid.Row="0" regions:RegionManager.RegionName="MenuRegion" Style="{StaticResource MenuTheme}" />
+        <ContentControl VerticalAlignment="Top" Grid.Row="0" regions:RegionManager.RegionName="MenuRegion"/>
         <ContentControl Grid.Row="1" regions:RegionManager.RegionName="ContentRegion" />
-        <ContentControl Grid.Row="2" regions:RegionManager.RegionName="FooterRegion"  Style="{StaticResource FooterTheme}" />
+        <ContentControl VerticalAlignment="Bottom" Grid.Row="2" regions:RegionManager.RegionName="FooterRegion"/>
     </Grid>
 </Window>

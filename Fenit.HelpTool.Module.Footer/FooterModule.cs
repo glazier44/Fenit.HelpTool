@@ -1,21 +1,21 @@
-﻿using Fenit.HelpTool.Module.Login.Views;
+﻿using Fenit.HelpTool.Module.Footer.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
-namespace Fenit.HelpTool.Module.Login
+namespace Fenit.HelpTool.Module.Footer
 {
-    public class ModuleLogin : IModule
+    public class FooterModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(LoginWindow));
+            regionManager.RegisterViewWithRegion("FooterRegion", typeof(FooterView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<LoginWindow>();
+            containerRegistry.RegisterForNavigation<FooterView>();
         }
     }
 }

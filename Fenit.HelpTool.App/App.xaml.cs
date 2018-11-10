@@ -42,27 +42,20 @@ namespace Fenit.HelpTool.App
         {
             var userService = ServiceLocator.Current.GetInstance<IUserService>();
             userService.IsRootMode = true;
+            AddModule<LoginModule>(moduleCatalog);
+            AddModule<SqlLogModule>(moduleCatalog);
+            AddModule<FooterModule>(moduleCatalog);
+        }
 
-            var moduleLogin = typeof(ModuleLogin);
+        private void AddModule<T>(IModuleCatalog moduleCatalog)
+            where T : IModule
+        {
+            var module = typeof(T);
             moduleCatalog.AddModule(new ModuleInfo
             {
-                ModuleName = moduleLogin.Name,
-                ModuleType = moduleLogin.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
-            });
-            var moduleSqlLog = typeof(ModuleSqlLog);
-            moduleCatalog.AddModule(new ModuleInfo
-            {
-                ModuleName = moduleSqlLog.Name,
-                ModuleType = moduleSqlLog.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
-            });
-            var moduleFooter = typeof(ModuleFooter);
-            moduleCatalog.AddModule(new ModuleInfo
-            {
-                ModuleName = moduleFooter.Name,
-                ModuleType = moduleFooter.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                ModuleName = module.Name,
+                ModuleType = module.AssemblyQualifiedName,
+                InitializationMode = InitializationMode.WhenAvailable
             });
         }
     }
