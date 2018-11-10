@@ -3,11 +3,11 @@
 namespace Fenit.HelpTool.Module.Menu.Views
 {
     /// <summary>
-    ///     Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MenuWindow.xaml
     /// </summary>
-    public partial class MainWindow : UserControl
+    public partial class MenuWindow : UserControl
     {
-        public MainWindow()
+        public MenuWindow()
         {
             InitializeComponent();
         }

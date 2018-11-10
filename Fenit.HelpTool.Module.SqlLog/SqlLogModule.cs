@@ -2,6 +2,7 @@
 using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.SqlFileService;
 using Fenit.HelpTool.Module.SqlLog.Views;
+using Fenit.HelpTool.UI.Core;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -13,7 +14,7 @@ namespace Fenit.HelpTool.Module.SqlLog
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(MainWindow));
+            regionManager.Initialize(containerProvider.Resolve<MainWindow>(), ViewReservoir.SqlLogModule.Main);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
@@ -21,7 +22,6 @@ namespace Fenit.HelpTool.Module.SqlLog
             containerRegistry.RegisterForNavigation<MainWindow>();
             containerRegistry.RegisterSingleton<ISqlFileService, SqlFileService>();
             containerRegistry.RegisterSingleton<IFileService, FileService>();
-
         }
     }
 }

@@ -20,8 +20,7 @@ namespace Fenit.HelpTool.Module.Menu.ViewModels
 
         private void RegisterCommand(IRegionManager regionManager)
         {
-            TestShowCommand =
-                new DelegateCommand(() => regionManager.Activate(ViewReservoir.ConfigModule.AppConfigWindow));
+            TestShowCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
         }
     }
 }

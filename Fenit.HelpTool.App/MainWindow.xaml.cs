@@ -25,16 +25,13 @@ namespace Fenit.HelpTool.App
             _regionManager = regionManager;
             UserService = userService;
 
-            eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoginReceived, ThreadOption.UIThread);
+            eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoadApp, ThreadOption.UIThread);
             eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
 
-            if (UserService.IsRootMode)
-                LoginReceived();
-            else
-                _moduleManager.LoadModule("ModuleLogin");
+
         }
 
-        private void LoginReceived()
+        private void LoadApp()
         {
             _regionManager.ClearRegion("ContentRegion");
 
@@ -44,11 +41,21 @@ namespace Fenit.HelpTool.App
             _moduleManager.LoadModule("SqlLogModule");
 
 
+            _regionManager.Activate(ViewReservoir.SqlLogModule.Main);
+
         }
 
         private void CloseApp()
         {
             Application.Current.Shutdown();
+        }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (UserService.IsRootMode)
+                LoadApp();
+            else
+                _moduleManager.LoadModule("ModuleLogin");
         }
     }
 }

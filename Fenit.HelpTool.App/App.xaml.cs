@@ -5,7 +5,9 @@ using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.UserService;
 using Fenit.HelpTool.Module.Footer;
 using Fenit.HelpTool.Module.Login;
+using Fenit.HelpTool.Module.Menu;
 using Fenit.HelpTool.Module.SqlLog;
+using Fenit.HelpTool.UI.Core;
 using Prism.Ioc;
 using Prism.Modularity;
 
@@ -45,6 +47,8 @@ namespace Fenit.HelpTool.App
             AddModule<LoginModule>(moduleCatalog);
             AddModule<SqlLogModule>(moduleCatalog);
             AddModule<FooterModule>(moduleCatalog);
+            AddModule<MenuModule>(moduleCatalog);
+
         }
 
         private void AddModule<T>(IModuleCatalog moduleCatalog)

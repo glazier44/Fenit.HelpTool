@@ -10,17 +10,20 @@ namespace Fenit.HelpTool.UI.Core
     {
         public static class FooterModule
         {
-            public static string Footer = "ModuleFooter.Footer";
+            public static string Footer = "FooterModule.Footer";
         }
-
-        public static class HostModule
+        public static class MenuModule
         {
-            public static string MainWindow = "HostModule.MainWindow";
+            public static string Menu = "MenuModule.Menu";
         }
-
-        public static class ConfigModule
+        public static class SqlLogModule
         {
-            public static string AppConfigWindow = "ConfigModule.AppConfigWindow";
+            public static string Main = "SqlLogModule.Main";
         }
+        public static class LoginModule
+        {
+            public static string Login = "LoginModule.Login";
+        }
+        
     }
 }

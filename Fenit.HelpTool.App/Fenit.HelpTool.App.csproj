@@ -156,6 +156,10 @@
       <Project>{B747A702-135A-4765-BC11-EF2FCB2F86D2}</Project>
       <Name>Fenit.HelpTool.Module.Login</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Menu\Fenit.HelpTool.Module.Menu.csproj">
+      <Project>{CB0035DD-5E5F-4A8F-AE55-DA1DD0455479}</Project>
+      <Name>Fenit.HelpTool.Module.Menu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj">
       <Project>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</Project>
       <Name>Fenit.HelpTool.Module.SqlLog</Name>
