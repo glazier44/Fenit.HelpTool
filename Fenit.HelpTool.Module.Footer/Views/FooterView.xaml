@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="Fenit.HelpTool.Module.Footer.Views.FooterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:converters="clr-namespace:Fenit.HelpTool.UI.Core.Converters;assembly=Fenit.HelpTool.UI.Core"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <converters:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+
+        <Style x:Key="FooterTheme" TargetType="Grid">
+                <Setter Property="Background" Value="Gold" />
+                <Setter Property="Width" Value="Auto" />
+            </Style>
+        <Style x:Key="FooterItem" TargetType="Label">
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Padding" Value="8" />
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Visibility="{Binding FooterVisibility, Converter={StaticResource ResourceKey=BooleanVisibilityConverter}, ConverterParameter={x:Static Visibility.Collapsed}}"
+          Style="{StaticResource FooterTheme}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="140"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Grid.Column="0">
+            <Label Content="{Binding Version}" Style="{StaticResource FooterItem}"></Label>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <Label Content="{Binding UserName}" Style="{StaticResource FooterItem}"></Label>
+        </StackPanel>
+    </Grid>
+</UserControl>

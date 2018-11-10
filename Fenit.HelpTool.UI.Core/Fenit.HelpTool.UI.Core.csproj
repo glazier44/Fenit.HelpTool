@@ -61,6 +61,7 @@
     <Compile Include="Base\BaseView.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
     <Compile Include="Base\IView.cs" />
+    <Compile Include="ViewReservoir.cs" />
     <Compile Include="Converters\ComparisonConverter.cs" />
     <Compile Include="Converters\BooleanNegationVisibilityConverter.cs" />
     <Compile Include="Converters\BooleanVisibilityConverter.cs" />

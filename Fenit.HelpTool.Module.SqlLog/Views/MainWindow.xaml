@@ -7,8 +7,8 @@
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="BorderBrush" Value="DarkGray" />
-            <Setter Property="Background" Value="#7BB0DF" />
+            <Setter Property="BorderBrush" Value="LightGoldenrodYellow" />
+            <Setter Property="Background" Value="Gold" />
             <Setter Property="Padding" Value="3" />
             <Setter Property="Margin" Value="2" />
             <Setter Property="Width" Value="150px" />
@@ -22,34 +22,39 @@
 
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="White" Margin="10">
+    <Grid x:Name="LayoutRoot" Background="White" Margin="10,2,10,2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel Grid.Column="0" Grid.Row="0" Margin="10,0,10,0">
-            <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonStyle}">Wczytaj plik</Button>
-            <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
-        </DockPanel>
-        <StackPanel Grid.Column="1" Grid.Row="0" >
+        <Border Grid.Column="0" Grid.Row="0" Margin="5,0,5,0" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="LeftToRight">
+                <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonStyle}">Wczytaj plik</Button>
+                <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
+            </StackPanel>
+        </Border>
 
-            <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Procedure}}" Content="Procedura"  />
-            <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Select}}"  Content="Select"  />
-
-
-
-        </StackPanel>
-        <Grid Grid.Column="0" Grid.Row="1" Margin="10">
+        <Border Padding="5" Grid.Column="1" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="LeftToRight">
+                <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Procedure}}" Content="Procedura"  Margin="5,5,5,5"  />
+                <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Select}}"  Content="Select"  Margin="5,5,5,5"  />
+            </StackPanel>
+        </Border>
+        <Grid Grid.Column="0" Grid.Row="1" Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label >Źródło</Label>
+            <Border Grid.Row="0" Background="PaleGoldenrod">
+                <Label HorizontalContentAlignment="Center" FontWeight="Bold">
+                    Źródło
+                </Label>
+            </Border>
             <TextBox Grid.Row="1"  
                      HorizontalContentAlignment="Stretch" 
                      VerticalContentAlignment="Stretch"
@@ -57,21 +62,25 @@
                      AcceptsReturn="True"
                      VerticalScrollBarVisibility="Auto"
                      Text="{Binding SourceText}"/>
+
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="1" Margin="10">
+        <Grid Grid.Column="1" Grid.Row="1" Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label >Wynik</Label>
-            <TextBox Grid.Row="1"  
-                     HorizontalContentAlignment="Stretch" 
-                     VerticalContentAlignment="Stretch"
-                     TextWrapping="Wrap"
-                     AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Auto"
-                     Text="{Binding ResultText}"/>
-
+            <Border Grid.Row="0" Background="PaleGoldenrod">
+                <Label HorizontalContentAlignment="Center" FontWeight="Bold">
+                    Wynik
+                </Label>
+            </Border>
+            <TextBox  HorizontalContentAlignment="Stretch"  Grid.Row="1" 
+                         VerticalContentAlignment="Stretch"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"
+                         Text="{Binding ResultText}"/>
+        
         </Grid>
     </Grid>
 </UserControl>

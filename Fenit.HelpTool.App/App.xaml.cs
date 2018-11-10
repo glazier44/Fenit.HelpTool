@@ -5,6 +5,7 @@ using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.UserService;
 using Fenit.HelpTool.Module.Footer;
 using Fenit.HelpTool.Module.Login;
+using Fenit.HelpTool.Module.Menu;
 using Fenit.HelpTool.Module.SqlLog;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -42,27 +43,21 @@ namespace Fenit.HelpTool.App
         {
             var userService = ServiceLocator.Current.GetInstance<IUserService>();
             userService.IsRootMode = true;
+            AddModule<LoginModule>(moduleCatalog);
+            AddModule<SqlLogModule>(moduleCatalog);
+            AddModule<FooterModule>(moduleCatalog);
+            AddModule<MenuModule>(moduleCatalog);
+        }
 
-            var moduleLogin = typeof(ModuleLogin);
+        private void AddModule<T>(IModuleCatalog moduleCatalog)
+            where T : IModule
+        {
+            var module = typeof(T);
             moduleCatalog.AddModule(new ModuleInfo
             {
-                ModuleName = moduleLogin.Name,
-                ModuleType = moduleLogin.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
-            });
-            var moduleSqlLog = typeof(ModuleSqlLog);
-            moduleCatalog.AddModule(new ModuleInfo
-            {
-                ModuleName = moduleSqlLog.Name,
-                ModuleType = moduleSqlLog.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
-            });
-            var moduleFooter = typeof(ModuleFooter);
-            moduleCatalog.AddModule(new ModuleInfo
-            {
-                ModuleName = moduleFooter.Name,
-                ModuleType = moduleFooter.AssemblyQualifiedName,
-                InitializationMode = InitializationMode.OnDemand
+                ModuleName = module.Name,
+                ModuleType = module.AssemblyQualifiedName,
+                InitializationMode = InitializationMode.WhenAvailable
             });
         }
     }
