@@ -8,6 +8,15 @@ namespace Fenit.HelpTool.UI.Core
 {
     public static class ViewReservoir
     {
+        
+        public static class Regions
+        {
+            public static string MenuRegion = "MenuRegion";
+            public static string ContentRegion = "ContentRegion";
+            public static string FooterRegion = "FooterRegion";
+
+        }
+
         public static class FooterModule
         {
             public static string Footer = "FooterModule.Footer";

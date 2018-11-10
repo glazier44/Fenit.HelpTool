@@ -32,17 +32,27 @@ namespace Fenit.HelpTool.UI.Core
             }
         }
 
+        public static void Initialize(this IRegionManager regionManager, object newView, string name, string region)
+        {
+            var mainRegion = regionManager.Regions[region];
+            mainRegion.Add(newView, name);
+        }
+
         public static void Initialize(this IRegionManager regionManager, object newView, string name)
         {
-            var mainRegion = regionManager.Regions["ContentRegion"];
-            mainRegion.Add(newView, name);
+            regionManager.Initialize(newView, name, "ContentRegion");
+        }
+
+        public static void Activate(this IRegionManager regionManager, string name, string region)
+        {
+            var mainRegion = regionManager.Regions[region];
+            var moduleAView = mainRegion.GetView(name);
+            mainRegion.Activate(moduleAView);
         }
 
         public static void Activate(this IRegionManager regionManager, string name)
         {
-            var mainRegion = regionManager.Regions["ContentRegion"];
-            var moduleAView = mainRegion.GetView(name);
-            mainRegion.Activate(moduleAView);
+            regionManager.Activate(name, "ContentRegion");
         }
     }
 }

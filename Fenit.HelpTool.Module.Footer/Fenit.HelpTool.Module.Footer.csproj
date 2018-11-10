@@ -35,12 +35,12 @@
     <Compile Include="FooterModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FooterViewModel.cs" />
-    <Compile Include="Views\Footer.xaml.cs">
-      <DependentUpon>Footer.xaml</DependentUpon>
+    <Compile Include="Views\FooterView.xaml.cs">
+      <DependentUpon>FooterView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Footer.xaml">
+    <Page Include="Views\FooterView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -27,8 +27,6 @@ namespace Fenit.HelpTool.App
 
             eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoadApp, ThreadOption.UIThread);
             eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
-
-
         }
 
         private void LoadApp()
@@ -41,7 +39,11 @@ namespace Fenit.HelpTool.App
             _moduleManager.LoadModule("SqlLogModule");
 
 
+            _regionManager.Activate(ViewReservoir.MenuModule.Menu, ViewReservoir.Regions.MenuRegion);
+            _regionManager.Activate(ViewReservoir.FooterModule.Footer, ViewReservoir.Regions.FooterRegion);
+
             _regionManager.Activate(ViewReservoir.SqlLogModule.Main);
+
 
         }
 

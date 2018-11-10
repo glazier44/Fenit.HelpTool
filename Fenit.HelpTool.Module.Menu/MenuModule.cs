@@ -11,12 +11,13 @@ namespace Fenit.HelpTool.Module.Menu
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.Initialize(containerProvider.Resolve<MenuWindow>(), ViewReservoir.MenuModule.Menu);
+            regionManager.Initialize(containerProvider.Resolve<MenuView>(), ViewReservoir.MenuModule.Menu,
+                ViewReservoir.Regions.MenuRegion);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<MenuWindow>();
+            containerRegistry.RegisterForNavigation<MenuView>();
         }
     }
 }
