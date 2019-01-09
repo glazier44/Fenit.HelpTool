@@ -26,7 +26,6 @@ namespace Fenit.HelpTool.App
                     _isRootMode = true;
         }
 
-
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<IUserService, UserService>();

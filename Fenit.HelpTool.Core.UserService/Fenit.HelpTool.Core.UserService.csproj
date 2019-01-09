@@ -80,13 +80,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
-      <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
-      <Name>Fenit.Toolbox.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
+      <Project>{69AF2D23-E9B7-4BBD-9CD9-2C56FD2EECE4}</Project>
+      <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

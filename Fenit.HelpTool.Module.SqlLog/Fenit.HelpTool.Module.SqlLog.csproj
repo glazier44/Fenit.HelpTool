@@ -75,10 +75,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
-      <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
-      <Name>Fenit.Toolbox.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.FileService\Fenit.HelpTool.Core.FileService.csproj">
       <Project>{AAC3386C-3432-4AAC-A216-C07E01B840A0}</Project>
       <Name>Fenit.HelpTool.Core.FileService</Name>
@@ -94,6 +90,10 @@
     <ProjectReference Include="..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
+      <Project>{69AF2D23-E9B7-4BBD-9CD9-2C56FD2EECE4}</Project>
+      <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 using Fenit.HelpTool.Core.Service;
-using Fenit.Toolbox.Core;
+
 using Prism.Mvvm;
 
 namespace Fenit.HelpTool.UI.Core.Base
