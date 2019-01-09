@@ -72,12 +72,8 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
 
         private void LoadFile()
         {
-            _fileService.SaveXml(new ItemModel
-            {
-                Value = "asas",
-                Key = "asa"
-            });
-            //  SourceText = _fileService.Load();
+            SourceText = _fileService.Load().Value;
+           
         }
     }
 }

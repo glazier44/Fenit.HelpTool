@@ -60,7 +60,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="PasswordBoxAssistant.cs" />
-    <Compile Include="ModuleLogin.cs" />
+    <Compile Include="LoginModule.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>

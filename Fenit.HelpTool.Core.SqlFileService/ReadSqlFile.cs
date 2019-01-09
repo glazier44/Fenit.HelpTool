@@ -44,6 +44,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
                 var temp = s.Trim();
                 if (!string.IsNullOrEmpty(temp))
                 {
+                    temp = temp.Replace("&", "");
                     if (temp[0] == '<')
                     {
                         xml += temp;
