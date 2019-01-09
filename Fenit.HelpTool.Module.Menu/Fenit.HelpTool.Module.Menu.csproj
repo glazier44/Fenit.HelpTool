@@ -80,11 +80,11 @@
     </ProjectReference>
     <ProjectReference Include="..\..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
-      <Name>NMVS.Common.Utils</Name>
+      <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
-      <Name>NMVS.Service</Name>
+      <Name>Fenit.HelpTool.Core.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
