@@ -44,8 +44,6 @@ namespace Fenit.HelpTool.App
             _regionManager.Activate(ViewReservoir.FooterModule.Footer, ViewReservoir.Regions.FooterRegion);
 
             _regionManager.Activate(ViewReservoir.SqlLogModule.Main);
-
-
         }
 
         private void CloseApp()
@@ -61,9 +59,7 @@ namespace Fenit.HelpTool.App
                 _moduleManager.LoadModule("ModuleLogin");
 
 
-           var  db = new SQLiteDatabase();
-            db.Test();
-
+            test.Test();
         }
     }
 }
