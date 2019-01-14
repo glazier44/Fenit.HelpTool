@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.SqlLite;
 using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;
@@ -58,6 +59,11 @@ namespace Fenit.HelpTool.App
                 LoadApp();
             else
                 _moduleManager.LoadModule("ModuleLogin");
+
+
+           var  db = new SQLiteDatabase();
+            db.Test();
+
         }
     }
 }

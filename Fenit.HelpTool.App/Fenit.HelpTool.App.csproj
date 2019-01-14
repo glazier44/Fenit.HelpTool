@@ -28,6 +28,7 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,6 +65,9 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -73,6 +77,12 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.3.3.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.13.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.8.13\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -126,9 +136,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fenit.HelpTool.Core.FileService\Fenit.HelpTool.Core.FileService.csproj">
+      <Project>{aac3386c-3432-4aac-a216-c07e01b840a0}</Project>
+      <Name>Fenit.HelpTool.Core.FileService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Core.SqlFileService\Fenit.HelpTool.Core.SqlFileService.csproj">
+      <Project>{ece2b626-5200-4b45-a259-44fdadc76434}</Project>
+      <Name>Fenit.HelpTool.Core.SqlFileService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Core.SqlLite\Fenit.HelpTool.Core.SqlLite.csproj">
+      <Project>{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5}</Project>
+      <Name>Fenit.HelpTool.Core.SqlLite</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.UserService.Logger\Fenit.HelpTool.Core.Logger.csproj">
       <Project>{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}</Project>
@@ -158,6 +180,10 @@
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
+      <Project>{d469322b-1a48-434d-ba78-49d668822efe}</Project>
+      <Name>Fenit.Toolbox.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -173,5 +199,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.3.3.5\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.3.3.5\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.3.2.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.3.2.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets'))" />
   </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
 </Project>
