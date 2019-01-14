@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Core.FileSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Module.Menu", "Fenit.HelpTool.Module.Menu\Fenit.HelpTool.Module.Menu.csproj", "{CB0035DD-5E5F-4A8F-AE55-DA1DD0455479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Core", "Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj", "{D469322B-1A48-434D-BA78-49D668822EFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Core", "Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj", "{D469322B-1A48-434D-BA78-49D668822EFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

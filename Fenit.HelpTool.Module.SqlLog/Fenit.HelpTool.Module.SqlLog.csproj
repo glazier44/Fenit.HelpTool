@@ -89,8 +89,8 @@
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Toolbox\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
-      <Project>{d469322b-1a48-434d-ba78-49d668822efe}</Project>
+    <ProjectReference Include="..\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
+      <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>
     </ProjectReference>
   </ItemGroup>
