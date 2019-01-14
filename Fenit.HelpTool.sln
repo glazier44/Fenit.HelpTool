@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Module.Menu"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Core", "Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj", "{D469322B-1A48-434D-BA78-49D668822EFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Core.SqlLite", "Fenit.HelpTool.Core.SqlLite\Fenit.HelpTool.Core.SqlLite.csproj", "{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{D469322B-1A48-434D-BA78-49D668822EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D469322B-1A48-434D-BA78-49D668822EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D469322B-1A48-434D-BA78-49D668822EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{AAC3386C-3432-4AAC-A216-C07E01B840A0} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
 		{CB0035DD-5E5F-4A8F-AE55-DA1DD0455479} = {A53D772C-7DE9-4863-9C9D-033671728199}
 		{D469322B-1A48-434D-BA78-49D668822EFE} = {96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}
+		{AA77A4BC-2E32-4A91-BE83-FE01233D1BA5} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}
