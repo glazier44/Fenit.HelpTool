@@ -48,7 +48,6 @@
     <Compile Include="IFileService.cs" />
     <Compile Include="ILoggerService.cs" />
     <Compile Include="IUserService.cs" />
-    <Compile Include="ISqlFileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

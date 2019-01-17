@@ -1,7 +1,7 @@
 ﻿using System;
-using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.SqlFileService.Converter;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
+using Fenit.HelpTool.Core.SqlFileService.Model;
 using Fenit.Toolbox.Core.Answers;
 
 namespace Fenit.HelpTool.Core.SqlFileService
@@ -13,33 +13,34 @@ namespace Fenit.HelpTool.Core.SqlFileService
             throw new NotImplementedException();
         }
 
-        public Response<string> ReadSelect(string sqlString)
+        public Response<SqlModel> ReadSelect(string sqlString)
         {
-            var result = new Response<string>();
+            var result = new Response<SqlModel>();
             try
             {
                 var readSqlFile = new ReadSqlFile(SqlType.Select);
                 var sql = readSqlFile.Read(sqlString);
                 var selectConverter = new SelectConverter(sql);
-                result.AddValue(selectConverter.GetSql());
+                var model = new SqlModel {Text = selectConverter.GetSql()};
+                result.AddValue(model);
             }
             catch (Exception e)
             {
                 result.AddError(e.Message);
             }
-
             return result;
         }
 
-        public Response<string> ReadProcedure(string sqlString)
+        public Response<SqlModel> ReadProcedure(string sqlString)
         {
-            var result = new Response<string>();
+            var result = new Response<SqlModel>();
             try
             {
                 var readSqlFile = new ReadSqlFile(SqlType.Procedure);
                 var sql = readSqlFile.Read(sqlString);
                 var selectConverter = new ProcedureConverter(sql);
-                result.AddValue(selectConverter.GetSql());
+                var model = new SqlModel {Text = selectConverter.GetSql()};
+                result.AddValue(model);
             }
             catch (Exception e)
             {
