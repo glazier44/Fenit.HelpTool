@@ -1,4 +1,7 @@
-﻿using Fenit.HelpTool.Core.Service;
+﻿using System;
+using System.Windows;
+using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.SqlFileService;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
@@ -65,9 +68,22 @@ namespace Fenit.HelpTool.Module.SqlLog.ViewModels
                 ? _sqlFileService.ReadSelect(SourceText)
                 : _sqlFileService.ReadProcedure(SourceText);
             if (res.IsError)
+            {
                 MessageError(res.Message, "[SqlLoad]");
+            }
             else
-                ResultText = res.Value;
+            {
+                var val = res.Value;
+                var parEl = val.GetEmptyParameters();
+                if (parEl.Count > 0)
+                    MessageBox.Show(
+                        $"Parametry:{Environment.NewLine} {string.Join(Environment.NewLine, parEl)}{Environment.NewLine} nie zostały zamienione",
+                        "Konwersja",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+
+                ResultText = val.Text;
+            }
         }
 
         private void LoadFile()
