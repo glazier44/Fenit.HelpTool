@@ -13,11 +13,13 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private readonly List<ShifterConfig> _shifterConfigsList;
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
+        private readonly ISerializationService _serializationService;
 
-        public MainWindowViewModel(ILoggerService log) :
+        public MainWindowViewModel(ILoggerService log, ISerializationService serializationService) :
             base(log)
         {
-            _shifterConfigsList = new List<ShifterConfig>();
+            _serializationService = serializationService;
+            _shifterConfigsList = _serializationService.LoadConfig();
             ShifterConfigClear();
             RefreshList();
 
@@ -93,6 +95,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void SaveToFile()
         {
+            _serializationService.SaveShifterConfig(_shifterConfigsList);
         }
     }
 }
