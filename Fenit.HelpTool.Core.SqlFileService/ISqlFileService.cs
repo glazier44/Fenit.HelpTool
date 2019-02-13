@@ -10,6 +10,5 @@ namespace Fenit.HelpTool.Core.SqlFileService
         Response<SqlModel> ReadSelect(string sqlString);
 
         Response<SqlModel> ReadProcedure(string sqlString);
-
     }
 }

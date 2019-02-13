@@ -75,7 +75,5 @@ namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
         public string OperationName { get; set; }
 
         [XmlIgnore] public string SqlCommand { get; set; }
-
     }
-
 }

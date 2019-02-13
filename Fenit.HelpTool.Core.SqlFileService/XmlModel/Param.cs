@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 
 namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
@@ -41,7 +40,5 @@ namespace Fenit.HelpTool.Core.SqlFileService.XmlModel
                 }
             }
         }
-  
-
     }
 }

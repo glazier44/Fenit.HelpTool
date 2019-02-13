@@ -7,6 +7,8 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
 {
     public abstract class Converter
     {
+        protected string NewLine => Environment.NewLine;
+        protected string Tab => "\t\t";
         public abstract string GetSql();
 
         protected string ReplaceInput(Param param, string script)
@@ -17,32 +19,26 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
             return script;
         }
 
-        protected string NewLine => Environment.NewLine;
-        protected string Tab => "\t\t";
-
 
         protected string GetValue(Param param)
         {
             switch (param.Type)
             {
                 case "Int32":
-                    {
-                        return param.Text;
-                    }
+                {
+                    return param.Text;
+                }
                 case "String":
-                    {
-                        var txt = param.Text;
-                        if (string.IsNullOrEmpty(txt))
-                        {
-                            txt = " ";
-                        }
+                {
+                    var txt = param.Text;
+                    if (string.IsNullOrEmpty(txt)) txt = " ";
 
-                        return $"'{txt}'";
-                    }
+                    return $"'{txt}'";
+                }
                 case "DateTime":
-                    {
-                        return $"TO_DATE('{param.Text}','DD.MM.YYYY HH24:MI:SS')";
-                    }
+                {
+                    return $"TO_DATE('{param.Text}','DD.MM.YYYY HH24:MI:SS')";
+                }
                 default:
                     return param.Text;
             }
@@ -53,13 +49,13 @@ namespace Fenit.HelpTool.Core.SqlFileService.Converter
             switch (param.Type)
             {
                 case "Int32":
-                    {
-                        return $"r_{param.Name} number;{NewLine}";
-                    }
+                {
+                    return $"r_{param.Name} number;{NewLine}";
+                }
                 case "String":
-                    {
-                        return $"r_{param.Name} varchar2(1000);{NewLine}";
-                    }
+                {
+                    return $"r_{param.Name} varchar2(1000);{NewLine}";
+                }
 
                 default:
                     return $"r_{param.Name} varchar2(1000);{NewLine}";

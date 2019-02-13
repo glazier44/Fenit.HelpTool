@@ -1,5 +1,6 @@
 ﻿using Fenit.HelpTool.Core.FileService;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.SqlFileService;
 using Fenit.HelpTool.Module.SqlLog.Views;
 using Fenit.HelpTool.UI.Core;

@@ -1,6 +1,6 @@
 ﻿using Fenit.Toolbox.Core.Answers;
 
-namespace Fenit.HelpTool.Core.Service
+namespace Fenit.HelpTool.Core.Service.Abstract
 {
     public interface IFileService
     {

@@ -132,9 +132,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Fenit.HelpTool.Core.SerializationService\Fenit.HelpTool.Core.SerializationService.csproj">
+      <Project>{B560BC5B-59D5-4C8F-A87C-94194A58E6AE}</Project>
+      <Name>Fenit.HelpTool.Core.SerializationService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Core.ShifterService\Fenit.HelpTool.Core.ShifterService.csproj">
+      <Project>{66801C82-C604-4ECA-AD6B-FA0BFB0241A6}</Project>
+      <Name>Fenit.HelpTool.Core.ShifterService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.UserService.Logger\Fenit.HelpTool.Core.Logger.csproj">
       <Project>{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}</Project>

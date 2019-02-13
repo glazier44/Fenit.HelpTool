@@ -45,7 +45,20 @@
                 <Setter Property="Cursor" Value="Hand" />
 
             </Style>
-
+            <Style x:Key="GridLabelBoxStyle" TargetType="Label">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="2" />
+            </Style>
+            <Style x:Key="GridTextBoxStyle" TargetType="TextBox">
+                <Setter Property="BorderBrush" Value="DarkGray" />
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Margin" Value="2" />
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
+            </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

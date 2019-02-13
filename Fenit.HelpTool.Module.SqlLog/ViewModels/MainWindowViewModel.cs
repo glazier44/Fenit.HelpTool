@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.SqlFileService;
 using Fenit.HelpTool.Core.SqlFileService.Enum;
 using Fenit.HelpTool.UI.Core.Base;

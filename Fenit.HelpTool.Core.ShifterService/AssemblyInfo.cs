@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Fenit.HelpTool.App.Service")]
+[assembly: AssemblyTitle("Fenit.HelpTool.Core.UserService.Logger")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Fenit.HelpTool.App.Service")]
+[assembly: AssemblyProduct("Fenit.HelpTool.Core.UserService.Logger")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("70bf6f5c-1691-4476-902e-a8620409d0ff")]
+[assembly: Guid("c8063b39-f26e-4a26-9f3c-c4ff0fe6e26f")]
 
 // Version information for an assembly consists of the following four values:
 //

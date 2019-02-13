@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fenit.HelpTool.Core.Service
+namespace Fenit.HelpTool.Core.Service.Abstract
 {
     public interface ILoggerService
     {

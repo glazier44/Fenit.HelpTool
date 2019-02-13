@@ -1,7 +1,10 @@
 ﻿using System.Windows;
 using CommonServiceLocator;
 using Fenit.HelpTool.Core.Logger;
+using Fenit.HelpTool.Core.SerializationService.Implement;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
+using Fenit.HelpTool.Core.ShifterService.Implement;
 using Fenit.HelpTool.Core.UserService;
 using Fenit.HelpTool.Module.Footer;
 using Fenit.HelpTool.Module.Login;
@@ -33,6 +36,9 @@ namespace Fenit.HelpTool.App
         {
             containerRegistry.RegisterSingleton<IUserService, UserService>();
             containerRegistry.RegisterSingleton<ILoggerService, LoggerService>();
+            containerRegistry.RegisterSingleton<ISerializationService, SerializationService>();
+            containerRegistry.RegisterSingleton<IShifterService, ShifterService>();
+
         }
 
         protected override Window CreateShell()

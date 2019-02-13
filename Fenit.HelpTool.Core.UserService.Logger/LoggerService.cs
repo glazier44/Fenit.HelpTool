@@ -1,5 +1,6 @@
 ﻿using System;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
 using NLog;
 using Prism.Logging;
 
@@ -8,11 +9,6 @@ namespace Fenit.HelpTool.Core.Logger
     public class LoggerService : ILoggerService
     {
         private static readonly NLog.Logger Logger = LogManager.GetCurrentClassLogger();
-
-        public void Log(string message, Category category, Priority priority)
-        {
-            //throw new NotImplementedException();
-        }
 
         public void Error(string message)
         {
@@ -37,6 +33,11 @@ namespace Fenit.HelpTool.Core.Logger
         public void Trace(string message)
         {
             Logger.Trace(message);
+        }
+
+        public void Log(string message, Category category, Priority priority)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

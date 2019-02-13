@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows;
-using Fenit.HelpTool.Core.Service;
-using Fenit.HelpTool.Core.SqlFileService;
-using Fenit.HelpTool.Core.SqlFileService.Enum;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Fenit.HelpTool.Core.Service.Abstract;
+using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
 
@@ -10,85 +10,89 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private readonly IFileService _fileService;
-        private readonly ISqlFileService _sqlFileService;
+        private readonly List<ShifterConfig> _shifterConfigsList;
+        private ObservableCollection<BaseShifterConfig> _saveList;
+        private ShifterConfig _shifterConfig;
 
-        private string _resultText, _sourceText;
-        private SqlType _sqlType;
-
-        public MainWindowViewModel(ISqlFileService sqlFileService, ILoggerService log, IFileService fileService) :
+        public MainWindowViewModel(ILoggerService log) :
             base(log)
         {
-            _sqlFileService = sqlFileService;
-            _fileService = fileService;
-            ConvertCommand = new DelegateCommand(Convert);
-            LoadFileCommand = new DelegateCommand(LoadFile);
-            Type = SqlType.Select;
+            _shifterConfigsList = new List<ShifterConfig>();
+            ShifterConfigClear();
+            RefreshList();
+
+            DeleteCommand = new DelegateCommand<int?>(Delete);
+            SelectCommand = new DelegateCommand<int?>(Select);
+            SaveCommand = new DelegateCommand(Save);
+            ClearCommand = new DelegateCommand(ShifterConfigClear);
         }
 
-        public DelegateCommand ConvertCommand { get; set; }
-        public DelegateCommand LoadFileCommand { get; set; }
-
-        public SqlType Type
+        public ObservableCollection<BaseShifterConfig> SaveList
         {
-            get => _sqlType;
-            set => SetProperty(ref _sqlType, value);
+            get => _saveList;
+            set => SetProperty(ref _saveList, value);
         }
 
-        public string ResultText
+        public ShifterConfig ShifterConfig
         {
-            get => _resultText;
-            set => SetProperty(ref _resultText, value);
+            get => _shifterConfig;
+            set => SetProperty(ref _shifterConfig, value);
         }
 
-        public string SourceText
+        public DelegateCommand<int?> SelectCommand { get; set; }
+        public DelegateCommand SaveCommand { get; set; }
+        public DelegateCommand ClearCommand { get; set; }
+
+
+        public DelegateCommand<int?> DeleteCommand { get; set; }
+
+        private void ShifterConfigClear()
         {
-            get => _sourceText;
-            set
+            ShifterConfig = new ShifterConfig();
+        }
+
+        private void RefreshList()
+        {
+            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList);
+        }
+
+        private void Save()
+        {
+            if (ShifterConfig.Id.HasValue)
             {
-                SetProperty(ref _sourceText, value);
-                ConvertCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-
-        private bool False()
-        {
-            return false;
-        }
-
-        private bool CanConvert()
-        {
-            return !string.IsNullOrEmpty(_sourceText);
-        }
-
-        private void Convert()
-        {
-            var res = _sqlType == SqlType.Select
-                ? _sqlFileService.ReadSelect(SourceText)
-                : _sqlFileService.ReadProcedure(SourceText);
-            if (res.IsError)
-            {
-                MessageError(res.Message, "[SqlLoad]");
+                var el = SelectShifter(ShifterConfig.Id);
+                el.Title = ShifterConfig.Title;
             }
             else
             {
-                var val = res.Value;
-                var parEl = val.GetEmptyParameters();
-                if (parEl.Count > 0)
-                    MessageBox.Show(
-                        $"Parametry:{Environment.NewLine} {string.Join(Environment.NewLine, parEl)}{Environment.NewLine} nie zostały zamienione",
-                        "Konwersja",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Warning);
-
-                ResultText = val.Text;
+                ShifterConfig.Id = (_shifterConfigsList.Any()? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) + 1;
+                _shifterConfigsList.Add(ShifterConfig);
             }
+
+            SaveToFile();
+            RefreshList();
+            ShifterConfigClear();
         }
 
-        private void LoadFile()
+        private void Select(int? id)
         {
-            SourceText = _fileService.Load().Value;
+            ShifterConfig = SelectShifter(id);
+        }
+
+        private ShifterConfig SelectShifter(int? id)
+        {
+            return _shifterConfigsList.FirstOrDefault(w => w.Id == id);
+        }
+
+        private void Delete(int? id)
+        {
+            _shifterConfigsList.Remove(SelectShifter(id));
+            SaveToFile();
+            RefreshList();
+        }
+
+        private void SaveToFile()
+        {
         }
     }
 }
