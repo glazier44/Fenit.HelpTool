@@ -21,66 +21,41 @@
         <converters:ComparisonConverter x:Key="ComparisonConverter" />
 
     </UserControl.Resources>
-
     <Grid x:Name="LayoutRoot" Background="White" Margin="10,2,10,2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="33" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />  <!--10-->
+            <RowDefinition Height="30" />
+
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0" Grid.Row="0" Margin="5,0,5,0" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="LeftToRight">
-                <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonStyle}">Wczytaj plik</Button>
-                <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
-            </StackPanel>
-        </Border>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource HeaderLabelBoxStyle}">Kopiowanie</Label>
 
-        <Border Padding="5" Grid.Column="1" Grid.Row="0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="LeftToRight">
-                <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Procedure}}" Content="Procedura"  Margin="5,5,5,5"  />
-                <RadioButton IsChecked="{Binding Path=Type, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enum:SqlType.Select}}"  Content="Select"  Margin="5,5,5,5"  />
-            </StackPanel>
-        </Border>
-        <Grid Grid.Column="0" Grid.Row="1" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="26"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Border Grid.Row="0" Background="PaleGoldenrod">
-                <Label HorizontalContentAlignment="Center" FontWeight="Bold">
-                    Źródło
-                </Label>
-            </Border>
-            <TextBox Grid.Row="1"  
-                     HorizontalContentAlignment="Stretch" 
-                     VerticalContentAlignment="Stretch"
-                     TextWrapping="Wrap"
-                     AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Auto"
-                     Text="{Binding SourceText}"/>
-
-        </Grid>
-        <Grid Grid.Column="1" Grid.Row="1" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="26"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Border Grid.Row="0" Background="PaleGoldenrod">
-                <Label HorizontalContentAlignment="Center" FontWeight="Bold">
-                    Wynik
-                </Label>
-            </Border>
-            <TextBox  HorizontalContentAlignment="Stretch"  Grid.Row="1" 
-                         VerticalContentAlignment="Stretch"
-                         TextWrapping="Wrap"
-                         AcceptsReturn="True"
-                         VerticalScrollBarVisibility="Auto"
-                         Text="{Binding ResultText}"/>
+        <Separator Grid.Row="1" Grid.ColumnSpan="2" />
         
-        </Grid>
+        
+
+
+        <StackPanel Grid.Row="11" Orientation="Horizontal">
+            <Button Content="Wyczyść logi" Style="{StaticResource ButtonStyle}"
+                    Command="{Binding ClearLogsCommand}"
+            />
+            <Button Content="Dev" Style="{StaticResource ButtonStyle}"
+                    Command="{Binding DevCommand}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

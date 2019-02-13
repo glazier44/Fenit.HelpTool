@@ -9,19 +9,19 @@ using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.Shifter
 {
-    public class SqlLogModule : IModule
+    public class ShifterModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
-            regionManager.Initialize(containerProvider.Resolve<MainWindow>(), ViewReservoir.SqlLogModule.Main);
+            regionManager.Initialize(containerProvider.Resolve<MainWindow>(), ViewReservoir.ShifterModule.Main);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainWindow>();
-            containerRegistry.RegisterSingleton<ISqlFileService, SqlFileService>();
-            containerRegistry.RegisterSingleton<IFileService, FileService>();
+            //containerRegistry.RegisterSingleton<ISqlFileService, SqlFileService>();
+            //containerRegistry.RegisterSingleton<IFileService, FileService>();
         }
     }
 }

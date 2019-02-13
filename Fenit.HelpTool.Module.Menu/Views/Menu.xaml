@@ -1,21 +1,22 @@
-﻿<UserControl x:Class="Fenit.HelpTool.Module.Menu.Views.MenuView"
+﻿<UserControl x:Class="Fenit.HelpTool.Module.Menu.Views.Menu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
-        <Style x:Key="MenuTheme" TargetType="Control">
-            <Setter Property="Background" Value="Gold" />
-            <Setter Property="Padding" Value="3" />
-            <Setter Property="Width" Value="Auto" />
-        </Style>
-        <Style x:Key="MenuItemheme" TargetType="MenuItem">
-            <Setter Property="FontSize" Value="10" />
-        </Style>
+
     </UserControl.Resources>
+
     <StackPanel VerticalAlignment="Top">
         <Menu Style="{StaticResource MenuTheme}" DockPanel.Dock="Top">
-             <MenuItem Header="O programie">
+
+            <MenuItem Header="SQL" Command="{Binding SQLCommand}" Style="{StaticResource MenuItemheme}">
+            </MenuItem>
+            <MenuItem Header="Kopista" Command="{Binding ShifterCommand}"  Style="{StaticResource MenuItemheme}"> 
+            </MenuItem>
+            <MenuItem Header="Zasobnik" Command="{Binding TrayCommand}"  Style="{StaticResource MenuItemheme}">
+            </MenuItem>
+            <MenuItem Header="O programie"  Style="{StaticResource MenuItemheme}">
             </MenuItem>
             <!--  <MenuItem Header="Menu">
                 <MenuItem Header="Pingowanie"/>

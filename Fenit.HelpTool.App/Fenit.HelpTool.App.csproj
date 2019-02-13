@@ -156,6 +156,10 @@
       <Project>{CB0035DD-5E5F-4A8F-AE55-DA1DD0455479}</Project>
       <Name>Fenit.HelpTool.Module.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Shifter\Fenit.HelpTool.Module.Shifter.csproj">
+      <Project>{19ADCEDD-7633-40B2-B577-3970843C896F}</Project>
+      <Name>Fenit.HelpTool.Module.Shifter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.SqlLog\Fenit.HelpTool.Module.SqlLog.csproj">
       <Project>{60DE42C5-3FCF-4BF0-B5A8-6904C4F55E58}</Project>
       <Name>Fenit.HelpTool.Module.SqlLog</Name>

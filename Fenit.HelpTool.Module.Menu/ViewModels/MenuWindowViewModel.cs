@@ -5,22 +5,26 @@ using Prism.Regions;
 
 namespace Fenit.HelpTool.Module.Menu.ViewModels
 {
-    public class MenuWindowViewModel
+    public class MenuViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 
-        public MenuWindowViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+        public MenuViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             RegisterCommand(regionManager);
         }
 
-        public DelegateCommand TestShowCommand { get; set; }
+        public DelegateCommand SQLCommand { get; set; }
+        public DelegateCommand ShifterCommand { get; set; }
+        public DelegateCommand TrayCommand { get; set; }
 
 
         private void RegisterCommand(IRegionManager regionManager)
         {
-            TestShowCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
+            SQLCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
+            ShifterCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.ShifterModule.Main));
+            //TrayCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
         }
     }
 }
