@@ -10,15 +10,18 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly ISerializationService _serializationService;
         private readonly List<ShifterConfig> _shifterConfigsList;
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
-        private readonly ISerializationService _serializationService;
+        private readonly IShifterService _shifterService;
 
-        public MainWindowViewModel(ILoggerService log, ISerializationService serializationService) :
+        public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
+            IShifterService shifterService) :
             base(log)
         {
             _serializationService = serializationService;
+            _shifterService = shifterService;
             _shifterConfigsList = _serializationService.LoadConfig();
             ShifterConfigClear();
             RefreshList();
@@ -27,6 +30,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             SelectCommand = new DelegateCommand<int?>(Select);
             SaveCommand = new DelegateCommand(Save);
             ClearCommand = new DelegateCommand(ShifterConfigClear);
+            RunThisCommand = new DelegateCommand<int?>(RunThis);
+            RunCommand = new DelegateCommand(Run);
         }
 
         public ObservableCollection<BaseShifterConfig> SaveList
@@ -41,12 +46,30 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             set => SetProperty(ref _shifterConfig, value);
         }
 
+        public DelegateCommand<int?> RunThisCommand { get; set; }
+        public DelegateCommand RunCommand { get; set; }
+
         public DelegateCommand<int?> SelectCommand { get; set; }
         public DelegateCommand SaveCommand { get; set; }
         public DelegateCommand ClearCommand { get; set; }
 
 
         public DelegateCommand<int?> DeleteCommand { get; set; }
+
+        private void Run()
+        {
+            Run(ShifterConfig);
+        }
+
+        private void Run(ShifterConfig config)
+        {
+            if (config != null) _shifterService.Move(config);
+        }
+
+        private void RunThis(int? id)
+        {
+            Run(SelectShifter(id));
+        }
 
         private void ShifterConfigClear()
         {
@@ -67,7 +90,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             }
             else
             {
-                ShifterConfig.Id = (_shifterConfigsList.Any()? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) + 1;
+                ShifterConfig.Id = (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) +
+                                   1;
                 _shifterConfigsList.Add(ShifterConfig);
             }
 
