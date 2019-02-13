@@ -28,6 +28,7 @@ namespace Fenit.HelpTool.Core.SqlFileService
             {
                 result.AddError(e.Message);
             }
+
             return result;
         }
 

@@ -21,13 +21,11 @@ namespace Fenit.HelpTool.Core.SqlFileService.Model
                     text = text.Substring(i);
                     var name = text.Substring(0, text.FirstString(new[]
                     {
-                        " ", ",", ")", ";", "", Environment.NewLine, "\n",
+                        " ", ",", ")", ";", "", Environment.NewLine, "\n"
                     }));
                     res.Add(name);
                     text = text.Substring(name.Length);
                 }
-
-
             } while (text.Contains(":"));
 
             return res.GroupBy(w => w).Select(w => w.Key).ToList();

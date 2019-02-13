@@ -1,4 +1,5 @@
 ﻿using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.Toolbox.Core.Answers;
 
 namespace Fenit.HelpTool.Core.UserService

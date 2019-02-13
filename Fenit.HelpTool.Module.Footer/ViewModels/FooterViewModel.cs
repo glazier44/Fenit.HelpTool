@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Events;
 using Prism.Events;

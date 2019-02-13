@@ -1,19 +1,20 @@
-<Sql executionStart="21.10.2018 09:16:29" executionEnd="21.10.2018 09:16:30" executionTime="00:00:00.9072188" executionTimeMs="906,811356258908" success="yes" status="Executed" operationName="OkreslBufor">
-PS2000_INWENTARYZACJA.OkreslBufor
-	<Param name="p_nrOddzial" type="Int32" direction="Input">27</Param>
-	<Param name="p_rok" type="Int32" direction="Input">2018</Param>
-	<Param name="p_nrMagazyn" type="Int32" direction="Input">42</Param>
-	<Param name="p_nrInwent" type="Int32" direction="Input">1</Param>
-	<Param name="p_nrArkusz" type="Int32" direction="Input">3</Param>
-	<Param name="p_rodzajPoz" type="Int32" direction="Input">2</Param>
-	<Param name="p_idLokNrTow" type="Int32" direction="Input">44141</Param>
-	<Param name="p_nrTowar" type="Int32" direction="Input">107382</Param>
-	<Param name="p_sprawdzSerie" type="Int32" direction="Input">0</Param>
-	<Param name="p_nrSerii" type="String" direction="Input"></Param>
-	<Param name="p_DataWaznosci" type="DateTime" direction="Input">01.01.0001 00:00:00</Param>
-	<Param name="retValue" type="Int32" direction="ReturnValue"></Param>
-	<Param name="p_bufor" type="Int32" direction="Output"></Param>
-	<Param name="p_blad" type="String" direction="Output"></Param>
-	<Param name="p_outNrTowar" type="String" direction="Output"></Param>
-	<Param name="p_status" type="Int32" direction="Output"></Param>
+<Sql executionStart="21.10.2018 09:16:29" executionEnd="21.10.2018 09:16:30" executionTime="00:00:00.9072188"
+     executionTimeMs="906,811356258908" success="yes" status="Executed" operationName="OkreslBufor">
+  PS2000_INWENTARYZACJA.OkreslBufor
+  <Param name="p_nrOddzial" type="Int32" direction="Input">27</Param>
+  <Param name="p_rok" type="Int32" direction="Input">2018</Param>
+  <Param name="p_nrMagazyn" type="Int32" direction="Input">42</Param>
+  <Param name="p_nrInwent" type="Int32" direction="Input">1</Param>
+  <Param name="p_nrArkusz" type="Int32" direction="Input">3</Param>
+  <Param name="p_rodzajPoz" type="Int32" direction="Input">2</Param>
+  <Param name="p_idLokNrTow" type="Int32" direction="Input">44141</Param>
+  <Param name="p_nrTowar" type="Int32" direction="Input">107382</Param>
+  <Param name="p_sprawdzSerie" type="Int32" direction="Input">0</Param>
+  <Param name="p_nrSerii" type="String" direction="Input"></Param>
+  <Param name="p_DataWaznosci" type="DateTime" direction="Input">01.01.0001 00:00:00</Param>
+  <Param name="retValue" type="Int32" direction="ReturnValue"></Param>
+  <Param name="p_bufor" type="Int32" direction="Output"></Param>
+  <Param name="p_blad" type="String" direction="Output"></Param>
+  <Param name="p_outNrTowar" type="String" direction="Output"></Param>
+  <Param name="p_status" type="Int32" direction="Output"></Param>
 </Sql>

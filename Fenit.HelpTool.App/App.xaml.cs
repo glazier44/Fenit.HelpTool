@@ -1,12 +1,17 @@
 ﻿using System.Windows;
 using CommonServiceLocator;
 using Fenit.HelpTool.Core.Logger;
+using Fenit.HelpTool.Core.SerializationService.Implement;
 using Fenit.HelpTool.Core.Service;
+using Fenit.HelpTool.Core.Service.Abstract;
+using Fenit.HelpTool.Core.ShifterService.Implement;
 using Fenit.HelpTool.Core.UserService;
 using Fenit.HelpTool.Module.Footer;
 using Fenit.HelpTool.Module.Login;
 using Fenit.HelpTool.Module.Menu;
+using Fenit.HelpTool.Module.Shifter;
 using Fenit.HelpTool.Module.SqlLog;
+using Fenit.HelpTool.UI.Core;
 using Prism.Ioc;
 using Prism.Modularity;
 
@@ -31,6 +36,9 @@ namespace Fenit.HelpTool.App
         {
             containerRegistry.RegisterSingleton<IUserService, UserService>();
             containerRegistry.RegisterSingleton<ILoggerService, LoggerService>();
+            containerRegistry.RegisterSingleton<ISerializationService, SerializationService>();
+            containerRegistry.RegisterSingleton<IShifterService, ShifterService>();
+
         }
 
         protected override Window CreateShell()
@@ -47,6 +55,9 @@ namespace Fenit.HelpTool.App
             AddModule<SqlLogModule>(moduleCatalog);
             AddModule<FooterModule>(moduleCatalog);
             AddModule<MenuModule>(moduleCatalog);
+            AddModule<ShifterModule>(moduleCatalog);
+
+
         }
 
         private void AddModule<T>(IModuleCatalog moduleCatalog)
