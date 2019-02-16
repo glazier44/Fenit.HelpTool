@@ -5,19 +5,8 @@
              xmlns:converters="clr-namespace:Fenit.HelpTool.UI.Core.Converters;assembly=Fenit.HelpTool.UI.Core"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="BorderBrush" Value="LightGoldenrodYellow" />
-            <Setter Property="Background" Value="Gold" />
-            <Setter Property="Padding" Value="3" />
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="Width" Value="150px" />
-            <Style.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                </Style>
-            </Style.Resources>
-        </Style>
-        <converters:ComparisonConverter x:Key="ComparisonConverter" />
+
+        <converters:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
 
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="White" Margin="10,2,10,2">
@@ -45,7 +34,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />  <!--10-->
             <RowDefinition Height="30" />
-
+            <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HeaderLabelBoxStyle}">Kopiowanie</Label>
@@ -91,8 +80,12 @@
                     Command="{Binding RunCommand}"/>
         </StackPanel>
 
+        <ProgressBar Grid.Row="12" 
+                     Grid.ColumnSpan="3"
+                     Value="{Binding ProgressValue}" 
+                     Visibility="{Binding IsProgressBarVisible,Converter={StaticResource BooleanVisibilityConverter}}"/>
 
-        <Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="8" Margin="20,0,0,0">
+<Grid Grid.Column="2" Grid.Row="2" Grid.RowSpan="8" Margin="20,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
@@ -108,28 +101,37 @@
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
+                                              Command="{Binding DataContext.RunThisCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                              CommandParameter="{Binding Id}" />
+                                <MouseBinding MouseAction="LeftClick"
                                               Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
                                               CommandParameter="{Binding Id}" />
                             </Grid.InputBindings>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
 
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="{Binding Id}"/>
                             <Label Grid.Column="1" Content="{Binding Title}"/>
                             <Button Grid.Column="2"
-                                    Content="R" 
                                     Style="{StaticResource ListBoxButtonStyle}"
                                     Command="{Binding Path=DataContext.RunThisCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" 
-                                    CommandParameter="{Binding Id}"/>
+                                    CommandParameter="{Binding Id}">
+                                <StackPanel>
+                                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/copy.png" Style="{StaticResource StatusIco}"/>
+                                </StackPanel>
+                            </Button>
                             <Button Grid.Column="3" 
-                                    Content="X" 
                                     Style="{StaticResource ListBoxButtonStyle}"
                                     Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" 
-                                    CommandParameter="{Binding Id}"/>
+                                    CommandParameter="{Binding Id}">
+                                <StackPanel>
+                                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/delete.png" Style="{StaticResource StatusIco}"/>
+                                </StackPanel>
+                            </Button>
 
                         </Grid>
                     </DataTemplate>

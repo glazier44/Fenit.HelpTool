@@ -15,6 +15,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
         private readonly IShifterService _shifterService;
+        private bool _isProgressBarVisible;
+        private double _progressValue;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
             IShifterService shifterService) :
@@ -39,13 +41,23 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             get => _saveList;
             set => SetProperty(ref _saveList, value);
         }
-
+         
+         
         public ShifterConfig ShifterConfig
         {
             get => _shifterConfig;
             set => SetProperty(ref _shifterConfig, value);
         }
-
+        public bool IsProgressBarVisible
+        {
+            get => _isProgressBarVisible;
+            set => SetProperty(ref _isProgressBarVisible, value);
+        }
+        public double ProgressValue
+        {
+            get => _progressValue;
+            set => SetProperty(ref _progressValue, value);
+        }
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
 
@@ -55,6 +67,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
 
         public DelegateCommand<int?> DeleteCommand { get; set; }
+
+
 
         private void Run()
         {
