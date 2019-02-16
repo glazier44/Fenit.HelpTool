@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Fenit.HelpTool.Core.Service.Abstract;
+using Fenit.HelpTool.Core.Service.Model.Event;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
+using Prism.Events;
 
 namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
@@ -12,14 +15,14 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
     {
         private readonly ISerializationService _serializationService;
         private readonly List<ShifterConfig> _shifterConfigsList;
-        private ObservableCollection<BaseShifterConfig> _saveList;
-        private ShifterConfig _shifterConfig;
         private readonly IShifterService _shifterService;
         private bool _isProgressBarVisible;
         private double _progressValue;
+        private ObservableCollection<BaseShifterConfig> _saveList;
+        private ShifterConfig _shifterConfig;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
-            IShifterService shifterService) :
+            IShifterService shifterService, IEventAggregator eventAggregator) :
             base(log)
         {
             _serializationService = serializationService;
@@ -34,30 +37,36 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             ClearCommand = new DelegateCommand(ShifterConfigClear);
             RunThisCommand = new DelegateCommand<int?>(RunThis);
             RunCommand = new DelegateCommand(Run);
+
+            eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
         }
+
 
         public ObservableCollection<BaseShifterConfig> SaveList
         {
             get => _saveList;
             set => SetProperty(ref _saveList, value);
         }
-         
-         
+
+
         public ShifterConfig ShifterConfig
         {
             get => _shifterConfig;
             set => SetProperty(ref _shifterConfig, value);
         }
+
         public bool IsProgressBarVisible
         {
             get => _isProgressBarVisible;
             set => SetProperty(ref _isProgressBarVisible, value);
         }
+
         public double ProgressValue
         {
             get => _progressValue;
             set => SetProperty(ref _progressValue, value);
         }
+
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
 
@@ -68,6 +77,10 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         public DelegateCommand<int?> DeleteCommand { get; set; }
 
+        private void Progress(double obj)
+        {
+            ProgressValue = obj;
+        }
 
 
         private void Run()
@@ -75,9 +88,13 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             Run(ShifterConfig);
         }
 
-        private void Run(ShifterConfig config)
+        private async Task Run(ShifterConfig config)
         {
-            if (config != null) _shifterService.Move(config);
+            if (config != null)
+            {
+                IsProgressBarVisible = true;
+                await _shifterService.Move(config);
+            }
         }
 
         private void RunThis(int? id)
