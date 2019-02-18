@@ -25,5 +25,20 @@
             InfoType = "warning";
             IsError = true;
         }
+
+        public static Response CreateError(string message)
+        {
+            return new Response()
+            {
+                IsError = true,
+                Message = message,
+
+            };
+        }
+
+        public static Response CreateSucces()
+        {
+            return new Response();
+        }
     }
 }

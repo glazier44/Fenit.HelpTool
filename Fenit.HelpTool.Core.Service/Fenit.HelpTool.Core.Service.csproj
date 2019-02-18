@@ -50,6 +50,7 @@
     <Compile Include="Abstract\ISerializationService.cs" />
     <Compile Include="Abstract\IShifterService.cs" />
     <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Model\Event\ProgressEvent.cs" />
     <Compile Include="Model\Shifter\ShifterConfig.cs" />
     <Compile Include="Model\Shifter\BaseShifterConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
