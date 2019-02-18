@@ -6,6 +6,7 @@ using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Event;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.HelpTool.Module.Shifter.Model;
+using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
 using Prism.Events;
@@ -116,7 +117,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void ShowDialog(ShifterConfig config)
         {
-            var dialog = _unityContainer.Resolve<IDialogView>("MessageWindow");
+            var dialog = _unityContainer.Resolve<IDialogView>(ViewReservoir.ShifterModule.MessageWindow);
             dialog.ShowDialog(new MessageContext
             {
                 Text = "Proces zakończony pomyślnie.",
