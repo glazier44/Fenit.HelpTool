@@ -38,7 +38,10 @@ namespace Fenit.HelpTool.UI.Core.Base
             Log.Error($"[{name}] {message}");
             MessageBox.Show(message, "B³¹d", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
+        protected void MessageWarning(string message, string name)
+        {
+            MessageBox.Show(message, name, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
         protected void MessageError(Exception e, string name)
         {
             Log.Error(name, e);

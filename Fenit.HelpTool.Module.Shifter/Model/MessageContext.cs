@@ -1,7 +1,7 @@
 ﻿using System;
 using Fenit.HelpTool.UI.Core.Base;
 
-namespace Fenit.HelpTool.Module.Shifter.ViewModels
+namespace Fenit.HelpTool.Module.Shifter.Model
 {
     public class MessageContext : IDialogContext
     {

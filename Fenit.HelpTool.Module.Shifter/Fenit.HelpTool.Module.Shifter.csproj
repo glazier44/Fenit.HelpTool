@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="ShifterModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\MessageContext.cs" />
+    <Compile Include="Model\MessageContext.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

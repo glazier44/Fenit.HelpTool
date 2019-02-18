@@ -39,7 +39,8 @@ namespace Fenit.HelpTool.UI.Core.Base
             if (!_container.IsRegistered<TViewModel>())
                 _container.RegisterType<TViewModel>();
 
-            _container.RegisterType<IDialogView, TView>(dialogName, new InjectionProperty("DataContext", new ResolvedParameter<TViewModel>()));
+            _container.RegisterType<IDialogView, TView>(dialogName,
+                new InjectionProperty("DataContext", new ResolvedParameter<TViewModel>()));
         }
     }
 }

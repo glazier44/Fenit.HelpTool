@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fenit.HelpTool.UI.Core
+﻿namespace Fenit.HelpTool.UI.Core
 {
     public static class ViewReservoir
     {
-
         public static class Regions
         {
             public static string MenuRegion = "MenuRegion";
             public static string ContentRegion = "ContentRegion";
             public static string FooterRegion = "FooterRegion";
-
         }
 
         public static class FooterModule
@@ -36,6 +28,7 @@ namespace Fenit.HelpTool.UI.Core
             public static string Name = "ShifterModule";
 
             public static string Main = "ShifterModule.Main";
+            public static string MessageWindow = "ShifterModule.MessageWindow";
         }
 
         public static class SqlLogModule
@@ -49,6 +42,5 @@ namespace Fenit.HelpTool.UI.Core
             public static string Name = "LoginModule";
             public static string Login = "LoginModule.Login";
         }
-
     }
 }

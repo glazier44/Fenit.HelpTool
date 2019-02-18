@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Event;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
+using Fenit.HelpTool.Module.Shifter.Model;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
 using Prism.Events;
@@ -42,18 +43,26 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
         }
 
-
+        private bool Valid()
+        {
+            var g = ShifterConfig;
+            //TODOTK
+            return true;
+        }
         public ObservableCollection<BaseShifterConfig> SaveList
         {
             get => _saveList;
             set => SetProperty(ref _saveList, value);
         }
 
-
         public ShifterConfig ShifterConfig
         {
             get => _shifterConfig;
-            set => SetProperty(ref _shifterConfig, value);
+            set
+            {
+                SetProperty(ref _shifterConfig, value);
+                RunCommand?.RaiseCanExecuteChanged();
+            }
         }
 
         public bool IsProgressBarVisible
@@ -70,19 +79,15 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
-
         public DelegateCommand<int?> SelectCommand { get; set; }
         public DelegateCommand SaveCommand { get; set; }
         public DelegateCommand ClearCommand { get; set; }
-
-
         public DelegateCommand<int?> DeleteCommand { get; set; }
 
         private void Progress(double obj)
         {
             ProgressValue = obj;
         }
-
 
         private void Run()
         {
@@ -94,8 +99,18 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             if (config != null)
             {
                 IsProgressBarVisible = true;
-                await _shifterService.Move(config);
-                ShowDialog(config);
+                var res = await _shifterService.Move(config);
+                if (res.IsError)
+                {
+                    MessageError(res.Message, "ShifterCopy");
+                }
+                else
+                {
+                    ShowDialog(config);
+                }
+                IsProgressBarVisible = false;
+                ProgressValue = 0;
+                
             }
         }
 
@@ -126,6 +141,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void Save()
         {
+            if (!Valid())
+            {
+                MessageWarning("Prosze uzupełnić wszystkie pola", "Uwaga!");
+                return;
+            }
             if (ShifterConfig.Id.HasValue)
             {
                 var el = SelectShifter(ShifterConfig.Id);

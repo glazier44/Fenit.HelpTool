@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Fenit.HelpTool.Module.Shifter.Model;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
 using Prism.Mvvm;

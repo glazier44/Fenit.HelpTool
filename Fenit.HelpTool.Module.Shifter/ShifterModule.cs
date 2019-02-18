@@ -1,13 +1,10 @@
-﻿using System;
-using Fenit.HelpTool.Module.Shifter.ViewModels;
+﻿using Fenit.HelpTool.Module.Shifter.ViewModels;
 using Fenit.HelpTool.Module.Shifter.Views;
 using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Ioc;
-using Prism.Modularity;
 using Prism.Regions;
 using Unity;
-using Unity.Injection;
 
 namespace Fenit.HelpTool.Module.Shifter
 {
@@ -27,8 +24,7 @@ namespace Fenit.HelpTool.Module.Shifter
         public override void RegisterModuleTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainWindow>();
-            RegisterDialog<MessageWindow, MessageViewModel>("MessageWindow");
+            RegisterDialog<MessageWindow, MessageViewModel>(ViewReservoir.ShifterModule.MessageWindow);
         }
     }
-
 }
