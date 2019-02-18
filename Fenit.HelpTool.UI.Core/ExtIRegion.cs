@@ -4,6 +4,8 @@ using System.Windows;
 using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
+using Unity;
+using Unity.Injection;
 
 namespace Fenit.HelpTool.UI.Core
 {
@@ -109,5 +111,8 @@ namespace Fenit.HelpTool.UI.Core
                     return view.DataContext;
             return null;
         }
+
+
+
     }
 }

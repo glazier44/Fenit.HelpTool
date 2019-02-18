@@ -62,12 +62,20 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.3.3.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseModule.cs" />
     <Compile Include="Base\BaseView.cs" />
     <Compile Include="Base\BaseViewModel.cs" />
+    <Compile Include="Base\BaseDialogView.cs" />
+    <Compile Include="Base\IDialogContext.cs" />
+    <Compile Include="Base\IDialogViewModel.cs" />
     <Compile Include="Base\IView.cs" />
+    <Compile Include="Base\IDialogView.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Dialogs\" />
+    <Folder Include="Dialog\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">

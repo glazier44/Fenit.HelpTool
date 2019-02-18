@@ -8,6 +8,7 @@ using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.HelpTool.UI.Core.Base;
 using Prism.Commands;
 using Prism.Events;
+using Unity;
 
 namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
@@ -16,28 +17,28 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private readonly ISerializationService _serializationService;
         private readonly List<ShifterConfig> _shifterConfigsList;
         private readonly IShifterService _shifterService;
+        private readonly IUnityContainer _unityContainer;
         private bool _isProgressBarVisible;
         private double _progressValue;
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
-            IShifterService shifterService, IEventAggregator eventAggregator) :
+            IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer) :
             base(log)
         {
             _serializationService = serializationService;
             _shifterService = shifterService;
+            _unityContainer = unityContainer;
             _shifterConfigsList = _serializationService.LoadConfig();
             ShifterConfigClear();
             RefreshList();
-
             DeleteCommand = new DelegateCommand<int?>(Delete);
             SelectCommand = new DelegateCommand<int?>(Select);
             SaveCommand = new DelegateCommand(Save);
             ClearCommand = new DelegateCommand(ShifterConfigClear);
             RunThisCommand = new DelegateCommand<int?>(RunThis);
             RunCommand = new DelegateCommand(Run);
-
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
         }
 
@@ -94,7 +95,18 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 IsProgressBarVisible = true;
                 await _shifterService.Move(config);
+                ShowDialog(config);
             }
+        }
+
+        private void ShowDialog(ShifterConfig config)
+        {
+            var dialog = _unityContainer.Resolve<IDialogView>("MessageWindow");
+            dialog.ShowDialog(new MessageContext
+            {
+                Text = "Proces zakończony pomyślnie.",
+                NewPath = config.DestinationPath
+            });
         }
 
         private void RunThis(int? id)
