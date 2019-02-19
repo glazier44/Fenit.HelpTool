@@ -8,14 +8,125 @@
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
 
-            <SolidColorBrush x:Key="ProgressBarBorderBrush" Color="LightGoldenrodYellow" />
-            <SolidColorBrush x:Key="ProgressBarTrackBackgroundBrush" Color="GOLD" />
+            <SolidColorBrush x:Key="BorderBrush" Color="LightGoldenrodYellow" />
+            <SolidColorBrush x:Key="BackgroundBrush" Color="GOLD" />
+            <SolidColorBrush x:Key="ActionBrush" Color="#009788" />
+
+            <!--Button-->
+            <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+                <Style.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+
+                                <Border x:Name="button" Padding="5" Margin="4,0"
+                                        CornerRadius="5" BorderBrush="Black" 
+                                        BorderThickness="1" Background="{StaticResource BorderBrush}">
+                                    <TextBlock  Text="{TemplateBinding Button.Content}" 
+                                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="button" Property="BorderBrush" Value="{StaticResource BackgroundBrush}" />
+                                        <Setter TargetName="button" Property="Background"  Value="{StaticResource ActionBrush}"/>
+                                        <Setter Property="Foreground" Value="Wheat" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter TargetName="button"  Property="Background" Value="Aqua"/>
+                                        <Setter Property="Foreground" Value="Black" />
+
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="button" Property="Opacity" Value="0.7" />
+                                        <Setter Property="Foreground" Value="Gray" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style.Setters>
+            </Style>
+            <Style x:Key="ButtonFormStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="150px" />
+            </Style>
+            <Style x:Key="ButtonDialogStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="100px" />
+            </Style>
+
+            <Style x:Key="StatusIco" TargetType="Image">
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
+                <Setter Property="Stretch" Value="Fill" />
+                <Setter Property="Width" Value="20" />
+                <Setter Property="Height" Value="20" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="ListBoxButtonStyle" TargetType="Button">
+                <Setter Property="BorderBrush" Value="{StaticResource BackgroundBrush}" />
+                <Setter Property="Background" Value="{StaticResource BorderBrush}" />
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+            <Style x:Key="SubHeaderLabelBoxStyle" TargetType="Label">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style x:Key="HeaderLabelBoxStyle" TargetType="Label">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="2,0,2,2" />
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
+            <Style x:Key="MenuTheme" TargetType="Control">
+                <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+                <Setter Property="Width" Value="Auto" />
+            </Style>
+
+            <Style x:Key="MenuItemheme" TargetType="MenuItem">
+
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Padding" Value="8,6" />
+                <Style.Triggers>
+                    <Trigger Property="IsHighlighted" Value="true">
+                        <Setter  Property="Background" Value="Aqua"/>
+                        <Setter Property="Foreground" Value="Black" />
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+            
+            
+
+            <Style x:Key="GridLabelBoxStyle" TargetType="Label">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="2" />
+            </Style>
+            <Style x:Key="GridTextBoxStyle" TargetType="TextBox">
+                <Setter Property="BorderBrush" Value="DarkGray" />
+                <Setter Property="Padding" Value="2" />
+                <Setter Property="Margin" Value="2" />
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
+            </Style>
 
             <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ProgressBar}">
-                            <Border x:Name="BorderBackground" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource ProgressBarBorderBrush}" Background="{StaticResource ProgressBarTrackBackgroundBrush}" >
+                            <Border x:Name="BorderBackground" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource BorderBrush}" Background="{StaticResource BackgroundBrush}" >
                                 <Grid>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
@@ -24,7 +135,7 @@
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
                                     <Border x:Name="PART_Track" Margin="2" BorderThickness="1" CornerRadius="2" />
-                                    <Border x:Name="PART_Indicator" Margin="2" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Left" Background="{StaticResource ProgressBarTrackBackgroundBrush}" ClipToBounds="True">
+                                    <Border x:Name="PART_Indicator" Margin="2" BorderThickness="1" CornerRadius="2" HorizontalAlignment="Left" Background="{StaticResource BackgroundBrush}" ClipToBounds="True">
                                         <Border x:Name="DiagonalDecorator" Width="5000">
                                             <Border.Background>
                                                 <DrawingBrush TileMode="Tile" Stretch="None" Viewbox="0,0,1,1" Viewport="0,0,25,25" ViewportUnits="Absolute">
@@ -32,7 +143,7 @@
                                                         <TranslateTransform X="0" Y="0" />
                                                     </DrawingBrush.RelativeTransform>
                                                     <DrawingBrush.Drawing>
-                                                        <GeometryDrawing Brush="Black" Geometry="M10,0 22,0 12,25 0,22 Z" />
+                                                        <GeometryDrawing Brush="{StaticResource ActionBrush}" Geometry="M10,0 22,0 12,25 0,22 Z" />
                                                     </DrawingBrush.Drawing>
                                                 </DrawingBrush>
                                             </Border.Background>
@@ -55,80 +166,7 @@
             </Style>
 
 
-            <Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="BorderBrush" Value="LightGoldenrodYellow" />
-                <Setter Property="Background" Value="Gold" />
-                <Setter Property="Padding" Value="3" />
-                <Setter Property="Margin" Value="2" />
-                <Setter Property="Width" Value="150px" />
-                <Style.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                </Style.Resources>
-            </Style>
 
-            <Style x:Key="StatusIco" TargetType="Image">
-                <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
-                <Setter Property="Stretch" Value="Fill" />
-                <Setter Property="Width" Value="20" />
-                <Setter Property="Height" Value="20" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-            </Style>
-
-            <Style x:Key="ListBoxButtonStyle" TargetType="Button">
-                <Setter Property="BorderBrush" Value="Gold" />
-                <Setter Property="Background" Value="LightGoldenrodYellow" />
-                <Setter Property="Padding" Value="1" />
-                <Setter Property="Margin" Value="2" />
-                <Setter Property="Cursor" Value="Hand" />
-                <Style.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                </Style.Resources>
-            </Style>
-
-
-            <Style x:Key="SubHeaderLabelBoxStyle" TargetType="Label">
-                <Setter Property="Padding" Value="4" />
-                <Setter Property="Margin" Value="2" />
-                <Setter Property="FontWeight" Value="Bold"/>
-            </Style>
-
-            <Style x:Key="HeaderLabelBoxStyle" TargetType="Label">
-                <Setter Property="Padding" Value="4" />
-                <Setter Property="Margin" Value="2,0,2,2" />
-                <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="FontSize" Value="18"/>
-            </Style>
-
-            <Style x:Key="MenuTheme" TargetType="Control">
-                <Setter Property="Background" Value="Gold" />
-                <Setter Property="Padding" Value="4" />
-                <Setter Property="Width" Value="Auto" />
-            </Style>
-
-            <Style x:Key="MenuItemheme" TargetType="MenuItem">
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="Cursor" Value="Hand" />
-
-            </Style>
-            <Style x:Key="GridLabelBoxStyle" TargetType="Label">
-                <Setter Property="Padding" Value="4" />
-                <Setter Property="Margin" Value="2" />
-            </Style>
-            <Style x:Key="GridTextBoxStyle" TargetType="TextBox">
-                <Setter Property="BorderBrush" Value="DarkGray" />
-                <Setter Property="Padding" Value="2" />
-                <Setter Property="Margin" Value="2" />
-                <Style.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                    </Style>
-                </Style.Resources>
-            </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

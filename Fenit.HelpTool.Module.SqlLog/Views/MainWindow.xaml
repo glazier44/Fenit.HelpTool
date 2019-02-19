@@ -28,8 +28,8 @@
 
         <Border Grid.Column="0" Grid.Row="2" Margin="5,0,5,0" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" FlowDirection="LeftToRight">
-                <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonStyle}">Wczytaj plik</Button>
-                <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonStyle}" >Konwertuj</Button>
+                <Button Command="{Binding LoadFileCommand}" Style="{StaticResource ButtonFormStyle}">Wczytaj plik</Button>
+                <Button Command="{Binding ConvertCommand}" Style="{StaticResource ButtonFormStyle}" >Konwertuj</Button>
             </StackPanel>
         </Border>
 
