@@ -71,5 +71,7 @@ namespace Fenit.HelpTool.App
                 InitializationMode = InitializationMode.WhenAvailable
             });
         }
+
+
     }
 }

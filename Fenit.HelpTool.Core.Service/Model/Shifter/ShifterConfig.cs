@@ -9,6 +9,10 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         public string DestinationPath { get; set; }
         public string Pattern { get; set; }
         public string ExcludeFile { get; set; }
+        public bool RemoveAll { get; set; }
+        public bool CreateCopy { get; set; }
+        public bool Override { get; set; }
+
     }
 
     public static class ShifterConfigExt{
@@ -19,7 +23,7 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
 
             if (shifterConfig != null && !string.IsNullOrEmpty(shifterConfig.Pattern))
             {
-                result.AddRange(shifterConfig.Pattern.Split('|'));
+                result.AddRange(shifterConfig.Pattern.Split(','));
             }
 
             return result.ToArray();
@@ -31,9 +35,8 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
 
             if (shifterConfig != null && !string.IsNullOrEmpty(shifterConfig.ExcludeFile))
             {
-                result.AddRange(shifterConfig.ExcludeFile.Split('|'));
+                result.AddRange(shifterConfig.ExcludeFile.Split(','));
             }
-
             return result.ToArray();
         }
      

@@ -1,27 +1,30 @@
-﻿using Fenit.HelpTool.Core.FileService;
-using Fenit.HelpTool.Core.Service;
-using Fenit.HelpTool.Core.SqlFileService;
+﻿using Fenit.HelpTool.Module.Shifter.ViewModels;
 using Fenit.HelpTool.Module.Shifter.Views;
 using Fenit.HelpTool.UI.Core;
+using Fenit.HelpTool.UI.Core.Base;
 using Prism.Ioc;
-using Prism.Modularity;
 using Prism.Regions;
+using Unity;
 
 namespace Fenit.HelpTool.Module.Shifter
 {
-    public class ShifterModule : IModule
+    public class ShifterModule : BaseModule
     {
-        public void OnInitialized(IContainerProvider containerProvider)
+        public ShifterModule(IUnityContainer container) : base(container)
+        {
+        }
+
+
+        public override void OnInitializedModule(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.Initialize(containerProvider.Resolve<MainWindow>(), ViewReservoir.ShifterModule.Main);
         }
 
-        public void RegisterTypes(IContainerRegistry containerRegistry)
+        public override void RegisterModuleTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<MainWindow>();
-            //containerRegistry.RegisterSingleton<ISqlFileService, SqlFileService>();
-            //containerRegistry.RegisterSingleton<IFileService, FileService>();
+            RegisterDialog<MessageWindow, MessageViewModel>(ViewReservoir.ShifterModule.MessageWindow);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,7 +8,7 @@ namespace Fenit.HelpTool.UI.Core.Base
 {
     public abstract class BaseView : UserControl, IView, INotifyPropertyChanged
     {
-      //  protected static ILog _log = LogManager.GetLogger(MethodInfo.GetCurrentMethod().DeclaringType);
+        //  protected static ILog _log = LogManager.GetLogger(MethodInfo.GetCurrentMethod().DeclaringType);
         protected BaseView()
         {
         }
@@ -18,10 +17,11 @@ namespace Fenit.HelpTool.UI.Core.Base
         {
             Model = baseViewModel;
             DataContext = baseViewModel;
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public BaseViewModel Model { get; set; }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -32,22 +32,19 @@ namespace Fenit.HelpTool.UI.Core.Base
         protected virtual void OnPropertyChanged<T>(Expression<Func<T>> expr)
         {
             var body = expr.Body as MemberExpression;
-            if (body != null)
-            {
-                OnPropertyChanged(body.Member.Name);
-            }
+            if (body != null) OnPropertyChanged(body.Member.Name);
         }
 
-        public BaseViewModel Model { get; set; }
         protected void LogError(string name, Exception e)
         {
-          //  _log.Error(name, e.Message, e);
+            //  _log.Error(name, e.Message, e);
         }
 
         protected void LogInfo(string name, string message)
         {
-           // _log.Info(name, message);
+            // _log.Info(name, message);
         }
+
         protected void MessageError(Exception e, string name)
         {
             LogError(name, e);
@@ -55,4 +52,3 @@ namespace Fenit.HelpTool.UI.Core.Base
         }
     }
 }
-

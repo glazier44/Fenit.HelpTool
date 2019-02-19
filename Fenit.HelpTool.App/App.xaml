@@ -67,6 +67,7 @@
                     </Style>
                 </Style.Resources>
             </Style>
+
             <Style x:Key="StatusIco" TargetType="Image">
                 <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
                 <Setter Property="Stretch" Value="Fill" />
