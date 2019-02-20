@@ -11,7 +11,7 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         public string ExcludeFile { get; set; }
         public bool RemoveAll { get; set; }
         public bool CreateCopy { get; set; }
-        public bool Override { get; set; }
+        public bool Override { get; set; } = true;
 
     }
 

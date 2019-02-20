@@ -14,11 +14,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             CancelCommand = new DelegateCommand(() => DialogContext?.CloseAction?.Invoke());
             CopyCommand = new DelegateCommand(Copy);
+            CopyPathCommand = new DelegateCommand(CopyPath);
+
+        }
+
+        private void CopyPath()
+        {
+            Clipboard.SetText(NewPath.TrimEnd('\\'));
         }
 
 
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand CopyCommand { get; set; }
+        public DelegateCommand CopyPathCommand { get; set; }
 
         public string Message => _messageContext?.Text;
         public string NewPath => _messageContext?.NewPath;
