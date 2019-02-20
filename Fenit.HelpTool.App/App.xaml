@@ -56,8 +56,8 @@
             <Style x:Key="StatusIco" TargetType="Image">
                 <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
                 <Setter Property="Stretch" Value="Fill" />
-                <Setter Property="Width" Value="20" />
-                <Setter Property="Height" Value="20" />
+                <Setter Property="Width" Value="17" />
+                <Setter Property="Height" Value="17" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>

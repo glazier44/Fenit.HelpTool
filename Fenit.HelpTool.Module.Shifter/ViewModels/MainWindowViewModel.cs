@@ -146,6 +146,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void ShifterConfigClear()
         {
+            ShifterConfig = null;
             ShifterConfig = new ShifterConfig();
         }
 
