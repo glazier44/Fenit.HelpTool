@@ -33,7 +33,7 @@ namespace Fenit.HelpTool.Core.ShifterService.Implement
                     }
                     catch (Exception e)
                     {
-                        Clear(shifterConfig.DestinationPath);
+                       // Clear(shifterConfig.DestinationPath);
                         res.AddError("Błąd zapisu plików.");
                         //TODOTK log
                     }

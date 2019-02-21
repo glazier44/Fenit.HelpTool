@@ -31,7 +31,9 @@
 
         <StackPanel  Grid.Row="2" Orientation="Horizontal">
             <Button Command="{Binding CancelCommand}" Style="{StaticResource ButtonDialogStyle}" HorizontalAlignment="Center">Ok</Button>
-            <Button Command="{Binding CopyCommand}" Style="{StaticResource ButtonDialogStyle}" HorizontalAlignment="Center">Skopiuj ściężke</Button>
+            <Button Command="{Binding CopyCommand}" Style="{StaticResource ButtonDialogStyle}" HorizontalAlignment="Center">Skopiuj ścieżke</Button>
+            <Button Command="{Binding CopyPathCommand}" Style="{StaticResource ButtonDialogStyle}" HorizontalAlignment="Center">Skopiuj bez \</Button>
+
         </StackPanel>
     </Grid>
 </base:BaseDialogView>

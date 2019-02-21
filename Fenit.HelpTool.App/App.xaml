@@ -56,8 +56,8 @@
             <Style x:Key="StatusIco" TargetType="Image">
                 <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
                 <Setter Property="Stretch" Value="Fill" />
-                <Setter Property="Width" Value="20" />
-                <Setter Property="Height" Value="20" />
+                <Setter Property="Width" Value="17" />
+                <Setter Property="Height" Value="17" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
             </Style>
@@ -127,7 +127,7 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type ProgressBar}">
                             <Border x:Name="BorderBackground" CornerRadius="3" BorderThickness="1" BorderBrush="{StaticResource BorderBrush}" Background="{StaticResource BackgroundBrush}" >
-                                <Grid>
+                                <Grid >
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Determinate" />
@@ -165,7 +165,10 @@
                 </Setter>
             </Style>
 
-
+            <Style TargetType="CheckBox" x:Key="CustomCheckBox">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
 
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

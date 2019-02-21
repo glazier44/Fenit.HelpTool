@@ -41,7 +41,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             ClearCommand = new DelegateCommand(ShifterConfigClear);
             RunThisCommand = new DelegateCommand<int?>(RunThis);
             RunCommand = new DelegateCommand(Run);
+            CloneCommand=new DelegateCommand<int?>(Clone);
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
+        }
+
+        private void Clone(int? id)
+        {
+            var newConfig = SelectShifter(id);
+            if (newConfig != null)
+            {
+                newConfig.Id = 0;
+                newConfig.Title = $"{newConfig.Title}_kopia";
+                ShifterConfig = newConfig;
+            }
         }
 
         private bool Valid()
@@ -84,7 +96,9 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand SaveCommand { get; set; }
         public DelegateCommand ClearCommand { get; set; }
         public DelegateCommand<int?> DeleteCommand { get; set; }
+        public DelegateCommand<int?> CloneCommand { get; set; }
 
+        
         private void Progress(double obj)
         {
             ProgressValue = obj;
@@ -132,6 +146,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void ShifterConfigClear()
         {
+            ShifterConfig = null;
             ShifterConfig = new ShifterConfig();
         }
 
