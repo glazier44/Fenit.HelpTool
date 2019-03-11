@@ -20,6 +20,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private readonly List<ShifterConfig> _shifterConfigsList;
         private readonly IShifterService _shifterService;
         private readonly IUnityContainer _unityContainer;
+
+        private bool _canCancel;
         private bool _isProgressBarVisible;
         private double _progressValue;
         private ObservableCollection<BaseShifterConfig> _saveList;
@@ -41,27 +43,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             ClearCommand = new DelegateCommand(ShifterConfigClear);
             RunThisCommand = new DelegateCommand<int?>(RunThis);
             RunCommand = new DelegateCommand(Run);
-            CloneCommand=new DelegateCommand<int?>(Clone);
+            CloneCommand = new DelegateCommand<int?>(Clone);
+            CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
         }
 
-        private void Clone(int? id)
-        {
-            var newConfig = SelectShifter(id);
-            if (newConfig != null)
-            {
-                newConfig.Id = 0;
-                newConfig.Title = $"{newConfig.Title}_kopia";
-                ShifterConfig = newConfig;
-            }
-        }
-
-        private bool Valid()
-        {
-            var g = ShifterConfig;
-            //TODOTK
-            return true;
-        }
         public ObservableCollection<BaseShifterConfig> SaveList
         {
             get => _saveList;
@@ -97,8 +83,51 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand ClearCommand { get; set; }
         public DelegateCommand<int?> DeleteCommand { get; set; }
         public DelegateCommand<int?> CloneCommand { get; set; }
+        public DelegateCommand CancelCommand { get; set; }
 
-        
+        private void ChangeCancel()
+        {
+            _canCancel = !_canCancel;
+            CancelCommand.RaiseCanExecuteChanged();
+        }
+
+        private bool CanCancel()
+        {
+            return _canCancel;
+        }
+
+        private void CancelCopy()
+        {
+            _shifterService.Cancel();
+            ClearProgress();
+            ChangeCancel();
+        }
+
+        private void Clone(int? id)
+        {
+            var newConfig = SelectShifter(id);
+            if (newConfig != null)
+            {
+                newConfig.Id = 0;
+                newConfig.Title = $"{newConfig.Title}_kopia";
+                ShifterConfig = newConfig;
+            }
+        }
+
+        private bool Valid()
+        {
+            var g = ShifterConfig;
+            //TODOTK
+            return true;
+        }
+
+
+        private void ClearProgress()
+        {
+            IsProgressBarVisible = false;
+            ProgressValue = 0;
+        }
+
         private void Progress(double obj)
         {
             ProgressValue = obj;
@@ -111,22 +140,20 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private async Task Run(ShifterConfig config)
         {
+            ChangeCancel();
             if (config != null)
             {
                 IsProgressBarVisible = true;
                 var res = await _shifterService.Move(config);
                 if (res.IsError)
-                {
                     MessageError(res.Message, "ShifterCopy");
-                }
                 else
-                {
                     ShowDialog(config);
-                }
-                IsProgressBarVisible = false;
-                ProgressValue = 0;
-                
+
+                ClearProgress();
             }
+
+            ChangeCancel();
         }
 
         private void ShowDialog(ShifterConfig config)
@@ -162,6 +189,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 MessageWarning("Prosze uzupełnić wszystkie pola", "Uwaga!");
                 return;
             }
+
             if (ShifterConfig.Id.HasValue)
             {
                 var el = SelectShifter(ShifterConfig.Id);

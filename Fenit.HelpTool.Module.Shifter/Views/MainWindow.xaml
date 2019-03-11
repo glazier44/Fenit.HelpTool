@@ -90,6 +90,8 @@
                     Command="{Binding ClearCommand}"/>
             <Button Content="Kopiuj" Style="{StaticResource ButtonFormStyle}"
                     Command="{Binding RunCommand}"/>
+            <Button Content="Anuluj" Style="{StaticResource ButtonFormStyle}"
+                    Command="{Binding CancelCommand}"/>
         </StackPanel>
 
         <ProgressBar Grid.Row="15" 
