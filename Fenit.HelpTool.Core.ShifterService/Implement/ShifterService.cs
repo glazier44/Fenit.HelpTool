@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Event;
@@ -13,6 +14,7 @@ namespace Fenit.HelpTool.Core.ShifterService.Implement
     public class ShifterService : IShifterService
     {
         private readonly IEventAggregator _eventAggregator;
+        private CancellationTokenSource _source;
 
         public ShifterService(IEventAggregator eventAggregator)
         {
@@ -24,20 +26,37 @@ namespace Fenit.HelpTool.Core.ShifterService.Implement
             var res = new Response();
 
             if (shifterConfig != null)
-                await Task.Run(() =>
-                {
-                    try
-                    {
-                        var mover = new Mover(shifterConfig, Send, Clear);
-                        mover.Work();
-                    }
-                    catch (Exception e)
-                    {
-                       // Clear(shifterConfig.DestinationPath);
-                        res.AddError("Błąd zapisu plików.");
-                        //TODOTK log
-                    }
-                });
+            {
+                _source = new CancellationTokenSource();
+
+                var compute = await Task.Factory.StartNew(() => Work(shifterConfig), _source.Token);
+            }
+
+            return res;
+        }
+
+        public bool Cancel()
+        {
+            _source.Cancel();
+            return true;
+        }
+
+        private Response Work(ShifterConfig shifterConfig)
+        {
+            var res = new Response();
+
+            try
+            {
+                var mover = new Mover(shifterConfig, Send, Clear);
+                mover.Work();
+            }
+            catch (Exception e)
+            {
+                // Clear(shifterConfig.DestinationPath);
+                res.AddError("Błąd zapisu plików.");
+                //TODOTK log
+            }
+
             return res;
         }
 
