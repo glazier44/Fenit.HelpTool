@@ -50,11 +50,25 @@
         <TextBox Grid.Row="2" Grid.Column="1"  Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.Title}" />
 
         <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Źródło:</Label>
-        <TextBox Grid.Row="3" Grid.Column="1"   Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.SourcePath}" />
+
+        <Grid  Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.SourcePath}" />
+            <Button Grid.Column="1" Margin="2" Content="..." Command="{Binding OpenSourcePathCommand}"></Button>
+        </Grid>
 
         <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Cel:</Label>
-        <TextBox Grid.Row="4" Grid.Column="1"  Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.DestinationPath}" />
-
+        <Grid  Grid.Row="4" Grid.Column="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <TextBox  Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.DestinationPath}" />
+            <Button Grid.Column="1" Margin="2" Content="..." Command="{Binding OpenDestinationPathCommand}"></Button>
+        </Grid>
         <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Rozrzerzenia:</Label>
         <TextBox Grid.Row="5" Grid.Column="1"        
                  HorizontalContentAlignment="Stretch" 

@@ -6,6 +6,8 @@
         public string InfoType { get; protected set; }
         public bool IsError { get; protected set; }
 
+        public bool IsSucces => !IsError;
+
         public void AddSucces(string message)
         {
             Message = message;
