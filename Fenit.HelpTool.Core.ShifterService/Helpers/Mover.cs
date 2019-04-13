@@ -139,7 +139,8 @@ namespace Fenit.HelpTool.Core.ShifterService.Helpers
         private void Rolback()
         {
             _clear(_shifterConfig.DestinationPath);
-            ZipFile.ExtractToDirectory(_zipPath, _shifterConfig.DestinationPath);
+            if (_shifterConfig.CreateCopy)
+                ZipFile.ExtractToDirectory(_zipPath, _shifterConfig.DestinationPath);
         }
     }
 }

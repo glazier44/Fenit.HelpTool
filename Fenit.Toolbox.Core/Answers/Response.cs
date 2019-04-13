@@ -2,39 +2,41 @@
 {
     public class Response
     {
-        public string Message { get; protected set; }
-        public string InfoType { get; protected set; }
-        public bool IsError { get; protected set; }
+        public Response()
+        {
+            ResponseStatus = ResponseStatus.Succes;
+        }
 
-        public bool IsSucces => !IsError;
+        public string Message { get; protected set; }
+        public ResponseStatus ResponseStatus { get; protected set; }
+        public bool IsError => ResponseStatus == ResponseStatus.Error;
+
+        public bool IsSucces => ResponseStatus == ResponseStatus.Succes;
 
         public void AddSucces(string message)
         {
             Message = message;
-            InfoType = "success";
-            IsError = false;
+            ResponseStatus = ResponseStatus.Succes;
         }
 
         public void AddError(string message)
         {
             Message = message;
-            InfoType = "danger";
-            IsError = true;
+            ResponseStatus = ResponseStatus.Error;
         }
+
         public void AddWarning(string message)
         {
             Message = message;
-            InfoType = "warning";
-            IsError = true;
+            ResponseStatus = ResponseStatus.Warning;
         }
 
         public static Response CreateError(string message)
         {
-            return new Response()
+            return new Response
             {
-                IsError = true,
                 Message = message,
-
+                ResponseStatus = ResponseStatus.Error
             };
         }
 

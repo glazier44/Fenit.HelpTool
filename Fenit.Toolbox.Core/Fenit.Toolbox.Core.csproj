@@ -44,6 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answers\ResponseStatus.cs" />
     <Compile Include="Converted\ConvertBool.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\EnumExtension.cs" />
