@@ -3,28 +3,41 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Threading;
+using Fenit.HelpTool.Core.Service.Model.Extension;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
+using Fenit.Toolbox.Core.Answers;
 
 namespace Fenit.HelpTool.Core.ShifterService.Helpers
 {
     internal class Mover
     {
+        private readonly CancellationToken _cancellationToken;
         private readonly Action<string> _clear;
         private readonly int _copyWeight = 4, _removeWeight = 2, _fileWeight = 2;
         private readonly Action<double> _messageAction;
         private readonly ShifterConfig _shifterConfig;
-        private double _actulPercentage;
+        private double _actulPercentage, _tick;
         private List<string> _dirList;
         private List<string> _fileList;
-        private double _tick;
+        private string _zipPath;
+        private readonly string _backUpZipDir;
 
-        public Mover(ShifterConfig shifterConfig, Action<double> messageAction, Action<string> clear)
+        public Mover(ShifterConfig shifterConfig, Action<double> messageAction, Action<string> clear,
+            CancellationTokenSource cancellationTokenSource)
         {
             _shifterConfig = shifterConfig;
             _messageAction = messageAction;
             _clear = clear;
+            _backUpZipDir = "ZipBack";
             PrepareData();
             PreparePercentage();
+            _cancellationToken = cancellationTokenSource.Token;
+        }
+
+        private bool IsCancel()
+        {
+            return _cancellationToken.IsCancellationRequested;
         }
 
         private void PreparePercentage()
@@ -58,38 +71,54 @@ namespace Fenit.HelpTool.Core.ShifterService.Helpers
             _messageAction.Invoke(_actulPercentage);
         }
 
-        public void Work()
+        public Response Work()
         {
-            if (_shifterConfig.CreateCopy)
+            if (_shifterConfig.CreateCopy && !IsCancel())
             {
-                CreateCopy(_shifterConfig.DestinationPath);
+                CreateCopy();
                 Message(_copyWeight * _tick * _fileList.Count);
             }
 
-            if (_shifterConfig.RemoveAll)
+            if (_shifterConfig.RemoveAll && !IsCancel())
             {
                 _clear(_shifterConfig.DestinationPath);
                 Message(_removeWeight * _tick * _fileList.Count);
             }
 
-            Copy();
+            if (IsCancel() || !Copy())
+            {
+                Rolback();
+                return Response.CreateError("Kopiowanie anulowano!");
+            }
+
+            return Response.CreateSucces();
         }
 
-        private void Copy()
+        private void CreateDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+
+        private bool Copy()
         {
             foreach (var dirPath in _dirList)
             {
-                Directory.CreateDirectory(dirPath.Replace(_shifterConfig.SourcePath, _shifterConfig.DestinationPath));
+                if (IsCancel()) return false;
+                CreateDirectory(dirPath.Replace(_shifterConfig.SourcePath, _shifterConfig.DestinationPath));
                 Message(_tick);
             }
 
             foreach (var file in _fileList)
             {
+                if (IsCancel()) return false;
                 File.Copy(file,
                     file.Replace(_shifterConfig.SourcePath, _shifterConfig.DestinationPath),
-                    true);
+                    _shifterConfig.Override);
                 Message(_tick * _fileWeight);
             }
+
+            return true;
         }
 
         private double GetRestPercentage()
@@ -97,13 +126,21 @@ namespace Fenit.HelpTool.Core.ShifterService.Helpers
             return 100 - _actulPercentage;
         }
 
-        private void CreateCopy(string path)
+        private void CreateCopy()
         {
-            var dir = AppDomain.CurrentDomain.BaseDirectory;
+            var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _backUpZipDir);
+            CreateDirectory(dir);
+
             var name = $"back_{DateTime.Now:yyyyMMddhhmmss}.zip";
-            var zipPath = Path.Combine(dir, name);
-            ZipFile.CreateFromDirectory(path, zipPath);
-            File.Copy(zipPath, Path.Combine(path, name), true);
+            _zipPath = Path.Combine(dir, name);
+            ZipFile.CreateFromDirectory(_shifterConfig.DestinationPath, _zipPath);
+        }
+
+        private void Rolback()
+        {
+            _clear(_shifterConfig.DestinationPath);
+            if (_shifterConfig.CreateCopy)
+                ZipFile.ExtractToDirectory(_zipPath, _shifterConfig.DestinationPath);
         }
     }
 }

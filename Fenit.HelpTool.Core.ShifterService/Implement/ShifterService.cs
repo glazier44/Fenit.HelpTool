@@ -26,11 +26,11 @@ namespace Fenit.HelpTool.Core.ShifterService.Implement
             var res = new Response();
 
             if (shifterConfig != null)
-            {
-                _source = new CancellationTokenSource();
-
-                var compute = await Task.Factory.StartNew(() => Work(shifterConfig), _source.Token);
-            }
+                using (_source = new CancellationTokenSource())
+                {
+                    var compute = await Task.Factory.StartNew(
+                        () => res = Work(shifterConfig), _source.Token);
+                }
 
             return res;
         }
@@ -41,14 +41,15 @@ namespace Fenit.HelpTool.Core.ShifterService.Implement
             return true;
         }
 
+
         private Response Work(ShifterConfig shifterConfig)
         {
             var res = new Response();
 
             try
             {
-                var mover = new Mover(shifterConfig, Send, Clear);
-                mover.Work();
+                var mover = new Mover(shifterConfig, Send, Clear, _source);
+                res = mover.Work();
             }
             catch (Exception e)
             {

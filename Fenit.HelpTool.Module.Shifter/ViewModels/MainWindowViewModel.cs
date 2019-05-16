@@ -8,6 +8,7 @@ using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.HelpTool.Module.Shifter.Model;
 using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Base;
+using Fenit.HelpTool.UI.Core.Dialog;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
@@ -16,11 +17,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
         private readonly List<ShifterConfig> _shifterConfigsList;
         private readonly IShifterService _shifterService;
         private readonly IUnityContainer _unityContainer;
-
         private bool _canCancel;
         private bool _isProgressBarVisible;
         private double _progressValue;
@@ -37,15 +38,9 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _shifterConfigsList = _serializationService.LoadConfig();
             ShifterConfigClear();
             RefreshList();
-            DeleteCommand = new DelegateCommand<int?>(Delete);
-            SelectCommand = new DelegateCommand<int?>(Select);
-            SaveCommand = new DelegateCommand(Save);
-            ClearCommand = new DelegateCommand(ShifterConfigClear);
-            RunThisCommand = new DelegateCommand<int?>(RunThis);
-            RunCommand = new DelegateCommand(Run);
-            CloneCommand = new DelegateCommand<int?>(Clone);
-            CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
+            CreateCommand();
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
+            _openDialog = new OpenDialog();
         }
 
         public ObservableCollection<BaseShifterConfig> SaveList
@@ -61,6 +56,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 SetProperty(ref _shifterConfig, value);
                 RunCommand?.RaiseCanExecuteChanged();
+                OpenDestinationPathCommand?.RaiseCanExecuteChanged();
+                OpenSourcePathCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -76,6 +73,9 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             set => SetProperty(ref _progressValue, value);
         }
 
+        public DelegateCommand OpenSourcePathCommand { get; set; }
+        public DelegateCommand OpenDestinationPathCommand { get; set; }
+
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
         public DelegateCommand<int?> SelectCommand { get; set; }
@@ -84,6 +84,45 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand<int?> DeleteCommand { get; set; }
         public DelegateCommand<int?> CloneCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
+
+        private void CreateCommand()
+        {
+            DeleteCommand = new DelegateCommand<int?>(Delete);
+            SelectCommand = new DelegateCommand<int?>(Select);
+            SaveCommand = new DelegateCommand(Save);
+            ClearCommand = new DelegateCommand(ShifterConfigClear);
+            RunThisCommand = new DelegateCommand<int?>(RunThis);
+            RunCommand = new DelegateCommand(Run);
+            CloneCommand = new DelegateCommand<int?>(Clone);
+            CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
+            OpenSourcePathCommand = new DelegateCommand(() =>
+            {
+                ShifterConfig.SourcePath = ExploreOpen(_shifterConfig.SourcePath);
+            });
+            OpenDestinationPathCommand = new DelegateCommand(() =>
+            {
+                ShifterConfig.DestinationPath = ExploreOpen(_shifterConfig.DestinationPath);
+            });
+        }
+
+        private string GetDir()
+        {
+            var res = _openDialog.SelectFolder();
+            if (res.IsSucces) return res.Value;
+            return string.Empty;
+        }
+
+        private string ExploreOpen(string path)
+        {
+            //TODOTK new dialogs
+            //if (!Directory.Exists(path))
+            //{
+            //    path = _tempPath;
+            //}
+            //  return _tempPath;
+            return GetDir();
+        }
+
 
         private void ChangeCancel()
         {
@@ -99,8 +138,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void CancelCopy()
         {
             _shifterService.Cancel();
-            ClearProgress();
-            ChangeCancel();
         }
 
         private void Clone(int? id)
@@ -190,16 +227,24 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 return;
             }
 
-            if (ShifterConfig.Id.HasValue)
+            if (ShifterConfig != null)
             {
-                var el = SelectShifter(ShifterConfig.Id);
-                el.Title = ShifterConfig.Title;
-            }
-            else
-            {
-                ShifterConfig.Id = (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) +
-                                   1;
-                _shifterConfigsList.Add(ShifterConfig);
+                if (ShifterConfig.Order == 0)
+                    ShifterConfig.Order =
+                        (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Order : 0) + 1;
+
+                if (ShifterConfig.Id.HasValue)
+                {
+                    var el = SelectShifter(ShifterConfig.Id);
+                    el.Title = ShifterConfig.Title;
+                }
+                else
+                {
+                    ShifterConfig.Id =
+                        (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) +
+                        1;
+                    _shifterConfigsList.Add(ShifterConfig);
+                }
             }
 
             SaveToFile();
