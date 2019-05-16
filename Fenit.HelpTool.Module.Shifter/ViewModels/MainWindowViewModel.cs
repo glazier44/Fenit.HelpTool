@@ -227,16 +227,24 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 return;
             }
 
-            if (ShifterConfig.Id.HasValue)
+            if (ShifterConfig != null)
             {
-                var el = SelectShifter(ShifterConfig.Id);
-                el.Title = ShifterConfig.Title;
-            }
-            else
-            {
-                ShifterConfig.Id = (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) +
-                                   1;
-                _shifterConfigsList.Add(ShifterConfig);
+                if (ShifterConfig.Order == 0)
+                    ShifterConfig.Order =
+                        (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Order : 0) + 1;
+
+                if (ShifterConfig.Id.HasValue)
+                {
+                    var el = SelectShifter(ShifterConfig.Id);
+                    el.Title = ShifterConfig.Title;
+                }
+                else
+                {
+                    ShifterConfig.Id =
+                        (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) +
+                        1;
+                    _shifterConfigsList.Add(ShifterConfig);
+                }
             }
 
             SaveToFile();
