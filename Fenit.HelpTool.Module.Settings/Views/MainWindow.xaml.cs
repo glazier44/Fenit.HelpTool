@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Fenit.HelpTool.Module.Shifter.Views
+namespace Fenit.HelpTool.Module.Settings.Views
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

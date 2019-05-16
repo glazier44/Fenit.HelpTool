@@ -171,6 +171,10 @@
       <Project>{CB0035DD-5E5F-4A8F-AE55-DA1DD0455479}</Project>
       <Name>Fenit.HelpTool.Module.Menu</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Settings\Fenit.HelpTool.Module.Settings.csproj">
+      <Project>{d057501b-0c38-4e5a-ae3b-68d0fdd7c9ab}</Project>
+      <Name>Fenit.HelpTool.Module.Settings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.Shifter\Fenit.HelpTool.Module.Shifter.csproj">
       <Project>{19ADCEDD-7633-40B2-B577-3970843C896F}</Project>
       <Name>Fenit.HelpTool.Module.Shifter</Name>

@@ -22,6 +22,12 @@
             public static string Menu = "MenuModule.Menu";
         }
 
+        public static class SettingsModule
+        {
+            public static string Name = "SettingsModule";
+
+            public static string Main = "SettingsModule.Main";
+        }
 
         public static class ShifterModule
         {

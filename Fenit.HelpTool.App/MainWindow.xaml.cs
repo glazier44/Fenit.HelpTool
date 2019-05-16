@@ -41,6 +41,8 @@ namespace Fenit.HelpTool.App
             _moduleManager.LoadModuleIfExist(_moduleCatalog, ViewReservoir.MenuModule.Name);
             _moduleManager.LoadModuleIfExist(_moduleCatalog, ViewReservoir.SqlLogModule.Name);
             _moduleManager.LoadModuleIfExist(_moduleCatalog, ViewReservoir.ShifterModule.Name);
+            _moduleManager.LoadModuleIfExist(_moduleCatalog, ViewReservoir.SettingsModule.Name);
+
             _regionManager.Activate(ViewReservoir.MenuModule.Menu, ViewReservoir.Regions.MenuRegion);
             _regionManager.Activate(ViewReservoir.FooterModule.Footer, ViewReservoir.Regions.FooterRegion);
             _regionManager.Activate(ViewReservoir.SqlLogModule.Main);

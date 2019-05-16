@@ -9,6 +9,7 @@ using Fenit.HelpTool.Core.UserService;
 using Fenit.HelpTool.Module.Footer;
 using Fenit.HelpTool.Module.Login;
 using Fenit.HelpTool.Module.Menu;
+using Fenit.HelpTool.Module.Settings;
 using Fenit.HelpTool.Module.Shifter;
 using Fenit.HelpTool.Module.SqlLog;
 using Fenit.HelpTool.UI.Core;
@@ -56,6 +57,7 @@ namespace Fenit.HelpTool.App
             AddModule<FooterModule>(moduleCatalog);
             AddModule<MenuModule>(moduleCatalog);
             AddModule<ShifterModule>(moduleCatalog);
+            AddModule<SettingsModule>(moduleCatalog);
 
 
         }
