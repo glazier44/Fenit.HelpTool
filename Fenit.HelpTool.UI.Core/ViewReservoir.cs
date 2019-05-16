@@ -27,6 +27,8 @@
             public static string Name = "SettingsModule";
 
             public static string Main = "SettingsModule.Main";
+            public static string ShifterConfigSettings = "SettingsModule.ShifterConfigSettings";
+
         }
 
         public static class ShifterModule

@@ -16,7 +16,9 @@
             </MenuItem>
             <MenuItem Header="Zasobnik" Command="{Binding TrayCommand}"  Style="{StaticResource MenuItemheme}">
             </MenuItem>
-            <MenuItem Header="Ustawienia" Command="{Binding SettingsCommand}"  Style="{StaticResource MenuItemheme}">
+            <MenuItem Header="Ustawienia" Style="{StaticResource MenuItemheme}">
+                <MenuItem Header="Kopista" Command="{Binding SettingsCommand}"  Style="{StaticResource MenuItemheme}">
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="O programie"  Style="{StaticResource MenuItemheme}">
             </MenuItem>

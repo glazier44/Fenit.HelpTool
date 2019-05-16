@@ -19,6 +19,7 @@ namespace Fenit.HelpTool.Module.Shifter
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.Initialize(containerProvider.Resolve<MainWindow>(), ViewReservoir.ShifterModule.Main);
+
         }
 
         public override void RegisterModuleTypes(IContainerRegistry containerRegistry)

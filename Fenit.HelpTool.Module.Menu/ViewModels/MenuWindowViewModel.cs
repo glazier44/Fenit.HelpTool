@@ -26,7 +26,7 @@ namespace Fenit.HelpTool.Module.Menu.ViewModels
         {
             SQLCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
             ShifterCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.ShifterModule.Main));
-            SettingsCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.Main));
+            SettingsCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
 
             //TrayCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
         }

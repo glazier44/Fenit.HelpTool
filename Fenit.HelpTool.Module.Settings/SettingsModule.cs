@@ -17,6 +17,7 @@ namespace Fenit.HelpTool.Module.Settings
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.Initialize(containerProvider.Resolve<MainWindow>(), ViewReservoir.SettingsModule.Main);
+            regionManager.Initialize(containerProvider.Resolve<ShifterConfigSettingsWindow>(), ViewReservoir.SettingsModule.ShifterConfigSettings);
         }
 
         public override void RegisterModuleTypes(IContainerRegistry containerRegistry)
