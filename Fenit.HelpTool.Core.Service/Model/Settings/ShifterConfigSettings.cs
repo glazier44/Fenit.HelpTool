@@ -5,17 +5,19 @@ using Prism.Mvvm;
 
 namespace Fenit.HelpTool.Core.Service.Model.Settings
 {
-    public class ShifterConfigSettings: BindableBase
+    public class ShifterConfigSettings : BindableBase
     {
-        private string _configPath;//, _sourcePath, _type, _version;
+        private string _configPath; //, _sourcePath, _type, _version;
 
         public List<string> AppType { get; set; } = new List<string>();
         public List<string> AppVersion { get; set; } = new List<string>();
+
         public string ConfigPath
         {
             get => _configPath;
             set => SetProperty(ref _configPath, value);
         }
+
         public string FileName { get; set; }
 
         public bool ShowArchive { get; set; }
@@ -23,15 +25,15 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
         [JsonIgnore]
         public string AppTypeLabel
         {
-            get => string.Join(",", AppType);
+            get => AppType.JoinText();
             set => AppType = value.SplitText();
         }
 
-        [JsonIgnore] public string AppVersionLabel
+        [JsonIgnore]
+        public string AppVersionLabel
         {
-            get => string.Join(",", AppVersion);
+            get => AppVersion.JoinText();
             set => AppVersion = value.SplitText();
         }
-
     }
 }

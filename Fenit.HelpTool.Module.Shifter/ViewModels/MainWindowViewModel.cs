@@ -21,7 +21,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
     {
         private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
-        private List<ShifterConfig> _shifterConfigsList;
         private readonly IShifterService _shifterService;
         private readonly IUnityContainer _unityContainer;
         private bool _canCancel;
@@ -29,20 +28,20 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private double _progressValue;
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
-        private readonly ShifterConfigSettings _shifterConfigSettings;
+        private ShifterConfigSettings _shifterConfigSettings;
+        private List<ShifterConfig> _shifterConfigsList;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
             IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer) :
             base(log)
         {
-            eventAggregator.GetEvent<ReloadShiferList>().Subscribe(RefreshList, ThreadOption.UIThread);
+            eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
 
             _serializationService = serializationService;
             _shifterService = shifterService;
             _unityContainer = unityContainer;
-            _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             ShifterConfigClear();
-            RefreshList();
+            ReloadData();
             CreateCommand();
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
             _openDialog = new OpenDialog();
@@ -173,11 +172,9 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 @this.Order = @this.Order + 1;
                 down.Order = down.Order - 1;
-                SaveToFile();
-                RefreshList();
+                SaveAndRefreshList();
             }
         }
-
 
         private void Archive(int? id)
         {
@@ -185,8 +182,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             if (config != null)
             {
                 config.Archive = !config.Archive;
-                SaveToFile();
-                RefreshList();
+                SaveAndRefreshList();
             }
         }
 
@@ -197,8 +193,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 up.Order = up.Order + 1;
                 @this.Order = @this.Order - 1;
-                SaveToFile();
-                RefreshList();
+                SaveAndRefreshList();
             }
         }
 
@@ -277,6 +272,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             ShifterConfig = new ShifterConfig();
         }
 
+        private void SaveAndRefreshList()
+        {
+            SaveToFile();
+            RefreshList();
+        }
+
+        private void ReloadData()
+        {
+            _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
+            RefreshList();
+            RaisePropertyChanged(nameof(Types));
+        }
+
         private void RefreshList()
         {
             _shifterConfigsList = _serializationService.LoadConfig();
@@ -311,8 +319,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 }
             }
 
-            SaveToFile();
-            RefreshList();
+            SaveAndRefreshList();
             ShifterConfigClear();
         }
 
@@ -346,8 +353,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void Delete(int? id)
         {
             _shifterConfigsList.Remove(SelectShifter(id));
-            SaveToFile();
-            RefreshList();
+            SaveAndRefreshList();
         }
 
         private void SaveToFile()
