@@ -196,6 +196,27 @@
                                             <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/delete.png" Style="{StaticResource StatusIco}"/>
                                         </MenuItem.Icon>
                                     </MenuItem>
+
+                                    <Separator />
+                                    <MenuItem Header="Up"  CommandParameter="{Binding Id}"
+                                              Command="{Binding PlacementTarget.Tag.UpComand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/up.png" Style="{StaticResource StatusIco}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Down"  CommandParameter="{Binding Id}"
+                                              Command="{Binding PlacementTarget.Tag.DownComand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/down.png" Style="{StaticResource StatusIco}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <Separator />
+                                    <MenuItem Header="Archive"  CommandParameter="{Binding Id}"
+                                              Command="{Binding PlacementTarget.Tag.ArchiveComand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}">
+                                        <MenuItem.Icon>
+                                            <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/delete.png" Style="{StaticResource StatusIco}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
                                 </ContextMenu>
                             </Grid.ContextMenu>
                         </Grid>

@@ -78,7 +78,10 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         public DelegateCommand OpenSourcePathCommand { get; set; }
         public DelegateCommand OpenDestinationPathCommand { get; set; }
+        public DelegateCommand<int?> UpComand { get; set; }
 
+        public DelegateCommand<int?> DownComand { get; set; }
+        
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
         public DelegateCommand<int?> SelectCommand { get; set; }
@@ -106,7 +109,21 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 ShifterConfig.DestinationPath = ExploreOpen(_shifterConfig.DestinationPath);
             });
+            DownComand = new DelegateCommand<int?>(ElementDown, CanDown);
+            UpComand = new DelegateCommand<int?>(ElementUp, CanUp);
+
         }
+        private bool CanUp(int? id)
+        {
+            var (up, @this, down) = SelectShifters(id);
+            return up != null && @this != null;
+        }
+        private bool CanDown(int? id)
+        {
+            var (up, @this, down) = SelectShifters(id);
+            return down != null && @this != null;
+        }
+        
 
         private string GetDir()
         {
@@ -143,6 +160,31 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _shifterService.Cancel();
         }
 
+        private void ElementDown(int? id)
+        {
+            var (up, @this, down) = SelectShifters(id);
+            if (@this != null && down != null)
+            {
+
+                var elThis = SelectShifter(@this.Id);
+                elThis.Order = @this.Order + 1;
+                var elDown = SelectShifter(down.Id);
+                elDown.Order = down.Order - 1;
+                SaveToFile();
+                RefreshList();
+            }
+        }
+        private void ElementUp(int? id)
+        {
+            var (up, @this, down) = SelectShifters(id);
+            if (@this != null && up!=null)
+            {
+                up.Order = up.Order + 1;
+                @this.Order = @this.Order -1;
+                SaveToFile();
+                RefreshList();
+            }
+        }
         private void Clone(int? id)
         {
             var newConfig = SelectShifter(id);
@@ -224,7 +266,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void RefreshList()
         {
-            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList);
+            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList.OrderBy(w => w.Order));
         }
 
         private void Save()
@@ -268,6 +310,29 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private ShifterConfig SelectShifter(int? id)
         {
             return _shifterConfigsList.FirstOrDefault(w => w.Id == id);
+        }
+
+        private (ShifterConfig, ShifterConfig, ShifterConfig) SelectShifters(int? id)
+        {
+            ShifterConfig up = null, @this = null, down = null;
+
+            var @thisIndes = _shifterConfigsList.FindIndex(w => w.Id == id);
+            if (@thisIndes >= 0)
+            {
+                @this = _shifterConfigsList[@thisIndes];
+
+                if (@thisIndes > 0)
+                {
+                    up = _shifterConfigsList[@thisIndes-1];
+                }
+
+                if (@thisIndes < _shifterConfigsList.Count-1)
+                {
+                    down = _shifterConfigsList[@thisIndes+1];
+                }
+            }
+
+            return (up, @this, down);
         }
 
         private void Delete(int? id)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Settings;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
@@ -18,7 +19,13 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
 
         public bool SaveShifterConfig(List<ShifterConfig> shifterConfig)
         {
-            SaveToFile(GetConfigPath(), shifterConfig);
+            var i = 1;
+            foreach (var config in shifterConfig.OrderBy(w=>w.Order))
+            {
+                config.Order = i;
+                i++;
+            }
+            SaveToFile(GetConfigPath(), shifterConfig.OrderBy(w => w.Id));
             return true;
         }
 
@@ -28,7 +35,7 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
             if (File.Exists(GetConfigPath()))
             {
                 var list = LoadFromFile<List<ShifterConfig>>(GetConfigPath());
-                if (list != null) return list;
+                if (list != null) return list.OrderBy(w => w.Order).ToList();
             }
 
             return result;
