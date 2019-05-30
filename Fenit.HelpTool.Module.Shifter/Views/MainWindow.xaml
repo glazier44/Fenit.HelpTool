@@ -33,6 +33,7 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" /> <!--10-->
+            <RowDefinition Height="30" />
 
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
@@ -105,14 +106,14 @@
                   SelectedItem="{Binding ShifterConfig.Version}" />
         
 
-        <WrapPanel Grid.Row="13" Grid.ColumnSpan="3"  Orientation="Horizontal">
+        <WrapPanel Grid.Row="14" Grid.ColumnSpan="3"  Orientation="Horizontal">
             <Button Content="Zapisz" Style="{StaticResource ButtonFormStyle}" Command="{Binding SaveCommand}"/>
             <Button Content="Czyść" Style="{StaticResource ButtonFormStyle}" Command="{Binding ClearCommand}"/>
             <Button Content="Kopiuj" Style="{StaticResource ButtonFormStyle}" Command="{Binding RunCommand}"/>
             <Button Content="Anuluj" Style="{StaticResource ButtonFormStyle}" Command="{Binding CancelCommand}"/>
         </WrapPanel>
 
-        <ProgressBar Grid.Row="15" 
+        <ProgressBar Grid.Row="16" 
                      Grid.ColumnSpan="3"
                      Value="{Binding ProgressValue}" 
                      Visibility="{Binding IsProgressBarVisible,Converter={StaticResource BooleanVisibilityConverter}}"/>
