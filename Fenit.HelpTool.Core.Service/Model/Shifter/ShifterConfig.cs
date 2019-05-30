@@ -2,7 +2,7 @@
 {
     public class ShifterConfig : BaseShifterConfig
     {
-        private string _destinationPath, _sourcePath, _type,_version;
+        private string _destinationPath, _sourcePath, _type, _version;
 
 
         public string SourcePath
@@ -35,6 +35,5 @@
         public bool CreateCopy { get; set; }
         public bool Override { get; set; } = true;
         public bool Archive { get; set; } = false;
-
     }
 }

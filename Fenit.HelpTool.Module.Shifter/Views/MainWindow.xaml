@@ -32,13 +32,12 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="30" /> <!--10-->
 
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="30" />
 
         </Grid.RowDefinitions>
