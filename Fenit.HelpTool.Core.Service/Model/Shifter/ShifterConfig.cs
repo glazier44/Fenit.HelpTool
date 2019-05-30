@@ -2,8 +2,8 @@
 {
     public class ShifterConfig : BaseShifterConfig
     {
-        private string _destinationPath;
-        private string _sourcePath;
+        private string _destinationPath, _sourcePath, _type,_version;
+
 
         public string SourcePath
         {
@@ -15,6 +15,18 @@
         {
             get => _destinationPath;
             set => SetProperty(ref _destinationPath, value);
+        }
+
+        public string Version
+        {
+            get => _version;
+            set => SetProperty(ref _version, value);
+        }
+
+        public string Type
+        {
+            get => _type;
+            set => SetProperty(ref _type, value);
         }
 
         public string Pattern { get; set; }

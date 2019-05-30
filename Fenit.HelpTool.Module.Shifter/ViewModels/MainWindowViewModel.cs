@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Event;
+using Fenit.HelpTool.Core.Service.Model.Settings;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.HelpTool.Module.Shifter.Model;
 using Fenit.HelpTool.UI.Core;
@@ -27,6 +28,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private double _progressValue;
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
+        private ShifterConfigSettings _shifterConfigSettings;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
             IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer) :
@@ -36,6 +38,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _shifterService = shifterService;
             _unityContainer = unityContainer;
             _shifterConfigsList = _serializationService.LoadConfig();
+            _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             ShifterConfigClear();
             RefreshList();
             CreateCommand();
@@ -150,6 +153,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 ShifterConfig = newConfig;
             }
         }
+
+        public List<string> Types => _shifterConfigSettings.AppType;
+        public List<string> Versions => _shifterConfigSettings.AppVersion;
+
+
 
         private bool Valid()
         {
