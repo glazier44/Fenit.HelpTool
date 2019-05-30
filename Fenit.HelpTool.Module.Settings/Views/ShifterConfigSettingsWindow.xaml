@@ -30,43 +30,56 @@
 
         <Separator Grid.Row="1" Grid.ColumnSpan="2" />
 
-        <Grid Grid.Row="2" Grid.Column="0" >
+        <Grid Grid.Row="2" Grid.Column="0" Margin="10,20,10,20">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
-        </Grid>
-        <Grid Grid.Row="2" Grid.Column="1" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Nazwa:</Label>
+            <TextBox Grid.Row="0" Grid.Column="1"  Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfigSettings.FileName}" />
+
+            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Ścieżka:</Label>
+            <Grid  Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfigSettings.ConfigPath}" />
+                <Button Grid.Column="1" Margin="2" Content="..." Command="{Binding OpenSourcePathCommand}"></Button>
+            </Grid>
+
+
+            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Typy aplikacji:</Label>
+            <TextBox Grid.Row="2" Grid.Column="1" 
+                     Style="{StaticResource GridTextBoxStyle}" 
+                     HorizontalContentAlignment="Stretch" 
+                     VerticalContentAlignment="Stretch"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding ShifterConfigSettings.AppTypeLabel}" />
+
+            <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Wersje:</Label>
+            <TextBox Grid.Row="6" Grid.Column="1" 
+                     Style="{StaticResource GridTextBoxStyle}" 
+                     HorizontalContentAlignment="Stretch" 
+                     VerticalContentAlignment="Stretch"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding ShifterConfigSettings.AppVersionLabel}" />
         </Grid>
 
         <WrapPanel Grid.Row="3" Grid.ColumnSpan="2"  Orientation="Horizontal">
             <Button Content="Zapisz" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding SaveCommand}"
-            />
-            <Button Content="Czyść" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding ClearCommand}"/>
-            <Button Content="Kopiuj" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding RunCommand}"/>
-            <Button Content="Anuluj" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding CancelCommand}"/>
+                    Command="{Binding SaveCommand}"/>
         </WrapPanel>
-
-
     </Grid>
 </UserControl>

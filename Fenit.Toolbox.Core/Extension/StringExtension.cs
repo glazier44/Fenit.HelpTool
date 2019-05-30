@@ -242,5 +242,11 @@ namespace Fenit.Toolbox.Core.Extension
 
             return text.Length > res ? res : 0;
         }
+
+
+        public static List<string> SplitText(this string @string)
+        {
+            return @string.Split(';').ToList();
+        }
     }
 }

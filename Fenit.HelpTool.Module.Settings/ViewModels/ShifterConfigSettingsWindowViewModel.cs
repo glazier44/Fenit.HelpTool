@@ -1,14 +1,15 @@
 ﻿using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Settings;
 using Fenit.HelpTool.UI.Core.Base;
+using Fenit.HelpTool.UI.Core.Dialog;
 using Prism.Commands;
 
 namespace Fenit.HelpTool.Module.Settings.ViewModels
 {
     public class ShifterConfigSettingsWindowViewModel : BaseViewModel
     {
-        //private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
+        private readonly OpenDialog _openDialog;
 
         private ShifterConfigSettings _shifterConfig;
 
@@ -17,7 +18,7 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
         {
             _serializationService = serializationService;
             CreateCommand();
-            //_openDialog = new OpenDialog();
+            _openDialog = new OpenDialog();
             LoadData();
         }
 
@@ -27,19 +28,48 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
             set => SetProperty(ref _shifterConfig, value);
         }
 
-
-        public DelegateCommand<int?> CloneCommand { get; set; }
-        public DelegateCommand CancelCommand { get; set; }
+        public DelegateCommand OpenSourcePathCommand { get; set; }
+        public DelegateCommand SaveCommand { get; set; }
 
         private void LoadData()
         {
             ShifterConfigSettings = _serializationService.LoadShifterConfigSettings();
         }
 
+        private string GetDir() //TODOTK FRD
+        {
+            var res = _openDialog.SelectFolder();
+            if (res.IsSucces) return res.Value;
+            return string.Empty;
+        }
+
         private void CreateCommand()
         {
-            //CloneCommand = new DelegateCommand<int?>(Clone);
+            OpenSourcePathCommand = new DelegateCommand(() =>
+            {
+                ShifterConfigSettings.ConfigPath = GetDir();
+            });
+            SaveCommand = new DelegateCommand(Save);
             //CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
         }
+        private bool Valid()
+        {
+            //TODOTK
+            return true;
+        }
+        private void Save()
+        {
+            if (!Valid())
+            {
+                MessageWarning("Prosze uzupełnić wszystkie pola", "Uwaga!");
+                return;
+            }
+
+            if (ShifterConfigSettings != null)
+            {
+                _serializationService.SaveShifterConfigSettings(ShifterConfigSettings);
+            }
+        }
+
     }
 }
