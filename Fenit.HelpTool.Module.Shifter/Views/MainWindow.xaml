@@ -107,15 +107,10 @@
         
 
         <WrapPanel Grid.Row="13" Grid.ColumnSpan="3"  Orientation="Horizontal">
-            <Button Content="Zapisz" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding SaveCommand}"
-            />
-            <Button Content="Czyść" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding ClearCommand}"/>
-            <Button Content="Kopiuj" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding RunCommand}"/>
-            <Button Content="Anuluj" Style="{StaticResource ButtonFormStyle}"
-                    Command="{Binding CancelCommand}"/>
+            <Button Content="Zapisz" Style="{StaticResource ButtonFormStyle}" Command="{Binding SaveCommand}"/>
+            <Button Content="Czyść" Style="{StaticResource ButtonFormStyle}" Command="{Binding ClearCommand}"/>
+            <Button Content="Kopiuj" Style="{StaticResource ButtonFormStyle}" Command="{Binding RunCommand}"/>
+            <Button Content="Anuluj" Style="{StaticResource ButtonFormStyle}" Command="{Binding CancelCommand}"/>
         </WrapPanel>
 
         <ProgressBar Grid.Row="15" 

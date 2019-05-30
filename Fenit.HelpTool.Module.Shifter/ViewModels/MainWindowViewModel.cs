@@ -10,6 +10,7 @@ using Fenit.HelpTool.Module.Shifter.Model;
 using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
+using Fenit.HelpTool.UI.Core.Events;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
@@ -20,7 +21,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
     {
         private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
-        private readonly List<ShifterConfig> _shifterConfigsList;
+        private List<ShifterConfig> _shifterConfigsList;
         private readonly IShifterService _shifterService;
         private readonly IUnityContainer _unityContainer;
         private bool _canCancel;
@@ -28,16 +29,17 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private double _progressValue;
         private ObservableCollection<BaseShifterConfig> _saveList;
         private ShifterConfig _shifterConfig;
-        private ShifterConfigSettings _shifterConfigSettings;
+        private readonly ShifterConfigSettings _shifterConfigSettings;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
             IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer) :
             base(log)
         {
+            eventAggregator.GetEvent<ReloadShiferList>().Subscribe(RefreshList, ThreadOption.UIThread);
+
             _serializationService = serializationService;
             _shifterService = shifterService;
             _unityContainer = unityContainer;
-            _shifterConfigsList = _serializationService.LoadConfig();
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             ShifterConfigClear();
             RefreshList();
@@ -79,9 +81,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand OpenSourcePathCommand { get; set; }
         public DelegateCommand OpenDestinationPathCommand { get; set; }
         public DelegateCommand<int?> UpComand { get; set; }
-
         public DelegateCommand<int?> DownComand { get; set; }
-        
+        public DelegateCommand<int?> ArchiveComand { get; set; }
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
         public DelegateCommand<int?> SelectCommand { get; set; }
@@ -90,6 +91,9 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand<int?> DeleteCommand { get; set; }
         public DelegateCommand<int?> CloneCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
+
+        public List<string> Types => _shifterConfigSettings.AppType;
+        public List<string> Versions => _shifterConfigSettings.AppVersion;
 
         private void CreateCommand()
         {
@@ -111,19 +115,21 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             });
             DownComand = new DelegateCommand<int?>(ElementDown, CanDown);
             UpComand = new DelegateCommand<int?>(ElementUp, CanUp);
-
+            ArchiveComand = new DelegateCommand<int?>(Archive);
         }
+
         private bool CanUp(int? id)
         {
             var (up, @this, down) = SelectShifters(id);
             return up != null && @this != null;
         }
+
         private bool CanDown(int? id)
         {
             var (up, @this, down) = SelectShifters(id);
             return down != null && @this != null;
         }
-        
+
 
         private string GetDir()
         {
@@ -165,26 +171,37 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             var (up, @this, down) = SelectShifters(id);
             if (@this != null && down != null)
             {
-
-                var elThis = SelectShifter(@this.Id);
-                elThis.Order = @this.Order + 1;
-                var elDown = SelectShifter(down.Id);
-                elDown.Order = down.Order - 1;
+                @this.Order = @this.Order + 1;
+                down.Order = down.Order - 1;
                 SaveToFile();
                 RefreshList();
             }
         }
+
+
+        private void Archive(int? id)
+        {
+            var config = SelectShifter(id);
+            if (config != null)
+            {
+                config.Archive = !config.Archive;
+                SaveToFile();
+                RefreshList();
+            }
+        }
+
         private void ElementUp(int? id)
         {
             var (up, @this, down) = SelectShifters(id);
-            if (@this != null && up!=null)
+            if (@this != null && up != null)
             {
                 up.Order = up.Order + 1;
-                @this.Order = @this.Order -1;
+                @this.Order = @this.Order - 1;
                 SaveToFile();
                 RefreshList();
             }
         }
+
         private void Clone(int? id)
         {
             var newConfig = SelectShifter(id);
@@ -195,10 +212,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 ShifterConfig = newConfig;
             }
         }
-
-        public List<string> Types => _shifterConfigSettings.AppType;
-        public List<string> Versions => _shifterConfigSettings.AppVersion;
-
 
 
         private bool Valid()
@@ -266,7 +279,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void RefreshList()
         {
-            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList.OrderBy(w => w.Order));
+            _shifterConfigsList = _serializationService.LoadConfig();
+            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList);
         }
 
         private void Save()
@@ -316,20 +330,14 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             ShifterConfig up = null, @this = null, down = null;
 
-            var @thisIndes = _shifterConfigsList.FindIndex(w => w.Id == id);
-            if (@thisIndes >= 0)
+            var thisIndes = _shifterConfigsList.FindIndex(w => w.Id == id);
+            if (thisIndes >= 0)
             {
-                @this = _shifterConfigsList[@thisIndes];
+                @this = _shifterConfigsList[thisIndes];
 
-                if (@thisIndes > 0)
-                {
-                    up = _shifterConfigsList[@thisIndes-1];
-                }
+                if (thisIndes > 0) up = _shifterConfigsList[thisIndes - 1];
 
-                if (@thisIndes < _shifterConfigsList.Count-1)
-                {
-                    down = _shifterConfigsList[@thisIndes+1];
-                }
+                if (thisIndes < _shifterConfigsList.Count - 1) down = _shifterConfigsList[thisIndes + 1];
             }
 
             return (up, @this, down);

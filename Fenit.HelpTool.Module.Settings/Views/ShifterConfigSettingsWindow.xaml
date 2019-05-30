@@ -40,6 +40,7 @@
                 <RowDefinition Height="30" />
                 <RowDefinition Height="80" />
                 <RowDefinition Height="80" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Nazwa:</Label>
@@ -66,8 +67,8 @@
                      VerticalScrollBarVisibility="Auto"
                      Text="{Binding ShifterConfigSettings.AppTypeLabel}" />
 
-            <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Wersje:</Label>
-            <TextBox Grid.Row="6" Grid.Column="1" 
+            <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource GridLabelBoxStyle}">Wersje:</Label>
+            <TextBox Grid.Row="3" Grid.Column="1" 
                      Style="{StaticResource GridTextBoxStyle}" 
                      HorizontalContentAlignment="Stretch" 
                      VerticalContentAlignment="Stretch"
@@ -75,6 +76,9 @@
                      AcceptsReturn="True"
                      VerticalScrollBarVisibility="Auto"
                      Text="{Binding ShifterConfigSettings.AppVersionLabel}" />
+
+            <CheckBox Grid.Row="4" Grid.Column="1"  Style="{StaticResource CustomCheckBox}"  IsChecked="{Binding ShifterConfigSettings.ShowArchive}" >Pokaż archiwalne</CheckBox>
+
         </Grid>
 
         <WrapPanel Grid.Row="3" Grid.ColumnSpan="2"  Orientation="Horizontal">

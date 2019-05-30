@@ -34,5 +34,7 @@
         public bool RemoveAll { get; set; }
         public bool CreateCopy { get; set; }
         public bool Override { get; set; } = true;
+        public bool Archive { get; set; } = false;
+
     }
 }

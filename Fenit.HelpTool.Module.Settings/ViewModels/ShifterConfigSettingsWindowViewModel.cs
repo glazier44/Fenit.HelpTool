@@ -2,7 +2,9 @@
 using Fenit.HelpTool.Core.Service.Model.Settings;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
+using Fenit.HelpTool.UI.Core.Events;
 using Prism.Commands;
+using Prism.Events;
 
 namespace Fenit.HelpTool.Module.Settings.ViewModels
 {
@@ -10,12 +12,14 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
     {
         private readonly ISerializationService _serializationService;
         private readonly OpenDialog _openDialog;
+        private readonly IEventAggregator _eventAggregator;
 
         private ShifterConfigSettings _shifterConfig;
 
-        public ShifterConfigSettingsWindowViewModel(ILoggerService log, ISerializationService serializationService) :
+        public ShifterConfigSettingsWindowViewModel(ILoggerService log, ISerializationService serializationService, IEventAggregator eventAggregator) :
             base(log)
         {
+            _eventAggregator = eventAggregator;
             _serializationService = serializationService;
             CreateCommand();
             _openDialog = new OpenDialog();
@@ -68,6 +72,7 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
             if (ShifterConfigSettings != null)
             {
                 _serializationService.SaveShifterConfigSettings(ShifterConfigSettings);
+                _eventAggregator.GetEvent<ReloadShiferList>().Publish();
             }
         }
 

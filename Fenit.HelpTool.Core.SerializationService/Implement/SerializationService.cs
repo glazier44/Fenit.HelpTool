@@ -32,10 +32,13 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
         public List<ShifterConfig> LoadConfig()
         {
             var result = new List<ShifterConfig>();
-            if (File.Exists(GetConfigPath()))
+            var config = LoadShifterConfigSettings();
+            var path= GetConfigPath();
+            if (File.Exists(path))
             {
-                var list = LoadFromFile<List<ShifterConfig>>(GetConfigPath());
-                if (list != null) return list.OrderBy(w => w.Order).ToList();
+                var list = LoadFromFile<List<ShifterConfig>>(path);
+                if (list != null)
+                    return list.Where(w => config.ShowArchive || !w.Archive).OrderBy(w => w.Order).ToList();
             }
 
             return result;
@@ -92,15 +95,18 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
             }
         }
 
-        private string GetConfigPath()
+        private string GetConfigPath(ShifterConfigSettings configSettings)
         {
-            var loadShifterConfigSettings = LoadShifterConfigSettings();
-            if (loadShifterConfigSettings != null)
-                return Path.Combine(loadShifterConfigSettings.ConfigPath, loadShifterConfigSettings.FileName);
+            if (configSettings != null)
+                return Path.Combine(configSettings.ConfigPath, configSettings.FileName);
 
             return string.Empty;
         }
 
+        private string GetConfigPath()
+        {
+            return GetConfigPath(LoadShifterConfigSettings());
+        }
 
         private bool SaveSettings(Settings settings)
         {
