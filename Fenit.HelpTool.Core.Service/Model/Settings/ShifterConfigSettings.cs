@@ -7,7 +7,7 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
 {
     public class ShifterConfigSettings : BindableBase
     {
-        private string _configPath; //, _sourcePath, _type, _version;
+        private string _configPath = string.Empty; //, _sourcePath, _type, _version;
 
         public List<string> AppType { get; set; } = new List<string>();
         public List<string> AppVersion { get; set; } = new List<string>();
@@ -18,7 +18,7 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
             set => SetProperty(ref _configPath, value);
         }
 
-        public string FileName { get; set; }
+        public string FileName { get; set; } = string.Empty;
 
         public bool ShowArchive { get; set; }
 

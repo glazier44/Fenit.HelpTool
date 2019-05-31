@@ -20,11 +20,12 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
         public bool SaveShifterConfig(List<ShifterConfig> shifterConfig)
         {
             var i = 1;
-            foreach (var config in shifterConfig.OrderBy(w=>w.Order))
+            foreach (var config in shifterConfig.OrderBy(w => w.Order))
             {
                 config.Order = i;
                 i++;
             }
+
             SaveToFile(GetConfigPath(), shifterConfig.OrderBy(w => w.Id));
             return true;
         }
@@ -33,7 +34,7 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
         {
             var result = new List<ShifterConfig>();
             var config = LoadShifterConfigSettings();
-            var path= GetConfigPath();
+            var path = GetConfigPath();
             if (File.Exists(path))
             {
                 var list = LoadFromFile<List<ShifterConfig>>(path);
@@ -51,21 +52,18 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
         public bool SaveShifterConfigSettings(ShifterConfigSettings shifterConfigSettings)
         {
             var settings = LoadSettings();
-            if (settings != null)
-            {
-                settings.ShifterConfigSettings = shifterConfigSettings;
-                SaveSettings(settings);
-                return true;
-            }
+            if (settings != null) settings = new Settings();
 
-            return false;
+            settings.ShifterConfigSettings = shifterConfigSettings;
+            SaveSettings(settings);
+            return true;
         }
 
         public ShifterConfigSettings LoadShifterConfigSettings()
         {
             var result = new ShifterConfigSettings();
             var settings = LoadSettings();
-            if (settings != null) return settings.ShifterConfigSettings;
+            if (settings != null && settings.ShifterConfigSettings != null) return settings.ShifterConfigSettings;
 
             return result;
         }
