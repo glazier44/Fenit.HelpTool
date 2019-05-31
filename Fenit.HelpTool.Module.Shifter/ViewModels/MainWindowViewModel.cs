@@ -90,7 +90,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand<int?> DeleteCommand { get; set; }
         public DelegateCommand<int?> CloneCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
-
+        public DelegateCommand ReloadCommand { get; set; }
+        
         public List<string> Types => _shifterConfigSettings.AppType;
         public List<string> Versions => _shifterConfigSettings.AppVersion;
 
@@ -115,6 +116,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             DownComand = new DelegateCommand<int?>(ElementDown, CanDown);
             UpComand = new DelegateCommand<int?>(ElementUp, CanUp);
             ArchiveComand = new DelegateCommand<int?>(Archive);
+            ReloadCommand = new DelegateCommand(ReloadData);
         }
 
         private bool CanUp(int? id)
@@ -244,10 +246,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                     MessageError(res.Message, "ShifterCopy");
                 else
                     ShowDialog(config);
-
                 ClearProgress();
             }
-
             ChangeCancel();
         }
 
@@ -283,6 +283,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             RefreshList();
             RaisePropertyChanged(nameof(Types));
+            RaisePropertyChanged(nameof(Versions));
         }
 
         private void RefreshList()

@@ -107,11 +107,13 @@
         
 
         <WrapPanel Grid.Row="14" Grid.ColumnSpan="3"  Orientation="Horizontal">
-            <Button Content="Zapisz" Style="{StaticResource ButtonFormStyle}" Command="{Binding SaveCommand}"/>
-            <Button Content="Czyść" Style="{StaticResource ButtonFormStyle}" Command="{Binding ClearCommand}"/>
-            <Button Content="Kopiuj" Style="{StaticResource ButtonFormStyle}" Command="{Binding RunCommand}"/>
-            <Button Content="Anuluj" Style="{StaticResource ButtonFormStyle}" Command="{Binding CancelCommand}"/>
-        </WrapPanel>
+            <Button Content="Save" Style="{StaticResource ButtonFormStyle}" Command="{Binding SaveCommand}"/>
+            <Button Content="Clear" Style="{StaticResource ButtonFormStyle}" Command="{Binding ClearCommand}"/>
+            <Button Content="Clone" Style="{StaticResource ButtonFormStyle}" Command="{Binding RunCommand}"/>
+            <Button Content="Cancel" Style="{StaticResource ButtonFormStyle}" Command="{Binding CancelCommand}"/>
+            <Button Content="Reload" Style="{StaticResource ButtonFormStyle}" Command="{Binding ReloadCommand}"/>
+
+</WrapPanel>
 
         <ProgressBar Grid.Row="16" 
                      Grid.ColumnSpan="3"
