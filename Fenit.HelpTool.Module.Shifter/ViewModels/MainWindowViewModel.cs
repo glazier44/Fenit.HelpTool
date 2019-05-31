@@ -100,6 +100,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
             eventAggregator.GetEvent<ReloadKeyBindingEvent>().Subscribe(ReloadData, ThreadOption.UIThread);
             eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
+            eventAggregator.GetEvent<RunKeyBindingEvent>().Subscribe(Run, ThreadOption.UIThread);
         }
 
         private void CreateCommand()

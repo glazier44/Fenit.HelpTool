@@ -80,6 +80,7 @@
     <Compile Include="Base\IView.cs" />
     <Compile Include="Base\IDialogView.cs" />
     <Compile Include="Dialog\OpenDialog.cs" />
+    <Compile Include="Events\KeyBinding\RunKeyBindingEvent.cs" />
     <Compile Include="Events\KeyBinding\ReloadKeyBindingEvent.cs" />
     <Compile Include="Events\KeyBinding\SaveKeyBindingEvent.cs" />
     <Compile Include="Events\ReloadShiferList.cs" />

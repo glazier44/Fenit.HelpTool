@@ -47,11 +47,16 @@ namespace Fenit.HelpTool.App
                 new KeyBinding(
                     new DelegateCommand(() => { eventAggregator.GetEvent<ReloadKeyBindingEvent>().Publish(); }), Key.F5,
                     ModifierKeys.None);
-
+            var runKeyBinding =
+                new KeyBinding(
+                    new DelegateCommand(() => { eventAggregator.GetEvent<RunKeyBindingEvent>().Publish(); }), Key.R,
+                    ModifierKeys.Control);
 
 
             InputBindings.Add(saveKeyBinding);
             InputBindings.Add(reloadKeyBinding);
+            InputBindings.Add(runKeyBinding);
+
 
         }
 
