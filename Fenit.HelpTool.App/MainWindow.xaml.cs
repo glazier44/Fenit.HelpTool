@@ -1,8 +1,11 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Events;
+using Fenit.HelpTool.UI.Core.Events.KeyBinding;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
@@ -18,7 +21,17 @@ namespace Fenit.HelpTool.App
         private readonly IModuleManager _moduleManager;
         private readonly IRegionManager _regionManager;
         private readonly IUserService _userService;
+        
+        private void KeyBinding(IEventAggregator eventAggregator)
+        {
+            var saveKeyBinding = new KeyBinding(new DelegateCommand(() =>
+            {
+                eventAggregator.GetEvent<SaveKeyBindingEvent>().Publish();
 
+            }), Key.S, ModifierKeys.Control);
+
+            this.InputBindings.Add(saveKeyBinding);
+        }
         public MainWindow(IModuleManager moduleManager, IEventAggregator eventAggregator, IRegionManager regionManager,
             IModuleCatalog moduleCatalog,
             IUserService userService)
@@ -32,6 +45,7 @@ namespace Fenit.HelpTool.App
 
             eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoadApp, ThreadOption.UIThread);
             eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
+            KeyBinding(eventAggregator);
         }
 
         private void LoadApp()

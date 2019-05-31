@@ -11,6 +11,7 @@ using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
+using Fenit.HelpTool.UI.Core.Events.KeyBinding;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
@@ -36,7 +37,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             base(log)
         {
             eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
-
             _serializationService = serializationService;
             _shifterService = shifterService;
             _unityContainer = unityContainer;
@@ -44,6 +44,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             ReloadData();
             CreateCommand();
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
+            eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
+
             _openDialog = new OpenDialog();
         }
 

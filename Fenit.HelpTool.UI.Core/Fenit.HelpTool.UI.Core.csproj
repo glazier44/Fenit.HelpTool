@@ -80,6 +80,7 @@
     <Compile Include="Base\IView.cs" />
     <Compile Include="Base\IDialogView.cs" />
     <Compile Include="Dialog\OpenDialog.cs" />
+    <Compile Include="Events\KeyBinding\CloseEvent.cs" />
     <Compile Include="Events\ReloadShiferList.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>

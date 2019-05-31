@@ -9,6 +9,12 @@
         <converters:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
 
     </UserControl.Resources>
+    <!--<UserControl.InputBindings>
+        <KeyBinding Command="{Binding Path=SaveCommand}" 
+                    Key="S" 
+                    Modifiers="Control"/>
+    </UserControl.InputBindings>-->
+
     <Grid x:Name="LayoutRoot" Background="White" Margin="10,2,10,2">
         <Grid.Resources>
             <Style TargetType="{x:Type DataGridCell}">

@@ -3,6 +3,7 @@ using Fenit.HelpTool.Core.Service.Model.Settings;
 using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
+using Fenit.HelpTool.UI.Core.Events.KeyBinding;
 using Prism.Commands;
 using Prism.Events;
 
@@ -23,6 +24,8 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
             _serializationService = serializationService;
             CreateCommand();
             _openDialog = new OpenDialog();
+            eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
+
             LoadData();
         }
 
