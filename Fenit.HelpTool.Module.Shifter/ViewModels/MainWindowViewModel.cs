@@ -36,17 +36,14 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer) :
             base(log)
         {
-            eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
             _serializationService = serializationService;
             _shifterService = shifterService;
             _unityContainer = unityContainer;
             ShifterConfigClear();
             ReloadData();
             CreateCommand();
-            eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
-            eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
-
             _openDialog = new OpenDialog();
+            EventAggregatorSubscribe(eventAggregator);
         }
 
         public ObservableCollection<BaseShifterConfig> SaveList
@@ -93,9 +90,17 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand<int?> CloneCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand ReloadCommand { get; set; }
-        
+
         public List<string> Types => _shifterConfigSettings.AppType;
         public List<string> Versions => _shifterConfigSettings.AppVersion;
+
+        private void EventAggregatorSubscribe(IEventAggregator eventAggregator)
+        {
+            eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
+            eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
+            eventAggregator.GetEvent<ReloadKeyBindingEvent>().Subscribe(ReloadData, ThreadOption.UIThread);
+            eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
+        }
 
         private void CreateCommand()
         {
@@ -250,6 +255,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                     ShowDialog(config);
                 ClearProgress();
             }
+
             ChangeCancel();
         }
 
