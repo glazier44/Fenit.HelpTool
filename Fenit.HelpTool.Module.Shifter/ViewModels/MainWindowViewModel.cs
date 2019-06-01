@@ -105,13 +105,13 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void CreateCommand()
         {
-            DeleteCommand = new DelegateCommand<int?>(Delete);
+            DeleteCommand = new DelegateCommand<int?>(Delete, CanDo);
             SelectCommand = new DelegateCommand<int?>(Select);
-            SaveCommand = new DelegateCommand(Save);
+            SaveCommand = new DelegateCommand(Save, CanDo);
             ClearCommand = new DelegateCommand(ShifterConfigClear);
-            RunThisCommand = new DelegateCommand<int?>(RunThis);
-            RunCommand = new DelegateCommand(Run);
-            CloneCommand = new DelegateCommand<int?>(Clone);
+            RunThisCommand = new DelegateCommand<int?>(RunThis, CanDo);
+            RunCommand = new DelegateCommand(Run, CanDo);
+            CloneCommand = new DelegateCommand<int?>(Clone, CanDo);
             CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
             OpenSourcePathCommand = new DelegateCommand(() =>
             {
@@ -131,6 +131,23 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             var (up, @this, down) = SelectShifters(id);
             return up != null && @this != null;
+        }
+        private bool CanDo()
+        {
+            if (ShifterConfig != null)
+            {
+                return !ShifterConfig.Archive;
+            }
+            return false;
+        }
+        private bool CanDo(int? id)
+        {
+            var config = SelectShifter(id);
+            if (config != null)
+            {
+                return !config.Archive;
+            }
+            return false;
         }
 
         private bool CanDown(int? id)
@@ -336,6 +353,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void Select(int? id)
         {
             ShifterConfig = SelectShifter(id);
+            RunCommand.RaiseCanExecuteChanged();
         }
 
         private ShifterConfig SelectShifter(int? id)

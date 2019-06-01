@@ -79,6 +79,7 @@
     <Compile Include="Base\IDialogViewModel.cs" />
     <Compile Include="Base\IView.cs" />
     <Compile Include="Base\IDialogView.cs" />
+    <Compile Include="Converters\ShifterItemForegroundColorConverter.cs" />
     <Compile Include="Dialog\OpenDialog.cs" />
     <Compile Include="Events\KeyBinding\RunKeyBindingEvent.cs" />
     <Compile Include="Events\KeyBinding\ReloadKeyBindingEvent.cs" />
@@ -95,9 +96,9 @@
     <Compile Include="Converters\BooleanVisibilityConverter.cs" />
     <Compile Include="Converters\DateTimeConverter.cs" />
     <Compile Include="Converters\DoubleFormatConverter.cs" />
-    <Compile Include="Converters\EventStatusVisiblityConverter.cs" />
-    <Compile Include="Converters\EventToColor.cs" />
-    <Compile Include="Converters\EventTypeToColor.cs" />
+    <Compile Include="Converters\_EventStatusVisiblityConverter.cs" />
+    <Compile Include="Converters\_EventToColor.cs" />
+    <Compile Include="Converters\_EventTypeToColor.cs" />
     <Compile Include="Events\CloseEvent.cs" />
     <Compile Include="Events\LoginSentEvent.cs" />
     <Compile Include="ExtIRegion.cs" />
