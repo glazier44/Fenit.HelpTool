@@ -315,7 +315,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void RefreshList()
         {
             _shifterConfigsList = _serializationService.LoadConfig();
-            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList);
+            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList.Where(w => _shifterConfigSettings.ShowArchive || !w.Archive));
         }
 
         private void Save()

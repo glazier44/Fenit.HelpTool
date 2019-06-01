@@ -33,15 +33,13 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
         public List<ShifterConfig> LoadConfig()
         {
             var result = new List<ShifterConfig>();
-            var config = LoadShifterConfigSettings();
             var path = GetConfigPath();
             if (File.Exists(path))
             {
                 var list = LoadFromFile<List<ShifterConfig>>(path);
                 if (list != null)
-                    return list.Where(w => config.ShowArchive || !w.Archive).OrderBy(w => w.Order).ToList();
+                    return list.OrderBy(w => w.Order).ToList();
             }
-
             return result;
         }
 
