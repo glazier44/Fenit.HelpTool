@@ -101,7 +101,6 @@
     <Compile Include="Converters\_EventToColor.cs" />
     <Compile Include="Converters\_EventTypeToColor.cs" />
     <Compile Include="Events\CloseEvent.cs" />
-    <Compile Include="Events\LoginSentEvent.cs" />
     <Compile Include="ExtIRegion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\NotEmptyValidationRule.cs" />

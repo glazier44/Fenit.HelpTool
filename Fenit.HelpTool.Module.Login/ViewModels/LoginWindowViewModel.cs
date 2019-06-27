@@ -10,12 +10,10 @@ namespace Fenit.HelpTool.Module.Login.ViewModels
     public class LoginWindowViewModel : BindableBase
     {
         private readonly IEventAggregator _eventAggregator;
-        private readonly IUserService _userService;
         private string _userName, _password, _message;
 
-        public LoginWindowViewModel(IUserService userService, IEventAggregator eventAggregator)
+        public LoginWindowViewModel(IEventAggregator eventAggregator)
         {
-            _userService = userService;
             _eventAggregator = eventAggregator;
 
             LoginCommand = new DelegateCommand(Login, CanLogin);

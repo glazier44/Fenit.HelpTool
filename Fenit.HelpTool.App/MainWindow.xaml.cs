@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.UI.Core;
 using Fenit.HelpTool.UI.Core.Events;
 using Fenit.HelpTool.UI.Core.Events.KeyBinding;
@@ -19,20 +18,14 @@ namespace Fenit.HelpTool.App
         private readonly IModuleCatalog _moduleCatalog;
         private readonly IModuleManager _moduleManager;
         private readonly IRegionManager _regionManager;
-        private readonly IUserService _userService;
 
         public MainWindow(IModuleManager moduleManager, IEventAggregator eventAggregator, IRegionManager regionManager,
-            IModuleCatalog moduleCatalog,
-            IUserService userService)
+            IModuleCatalog moduleCatalog)
         {
             InitializeComponent();
             _moduleManager = moduleManager;
             _regionManager = regionManager;
             _moduleCatalog = moduleCatalog;
-
-            _userService = userService;
-
-            eventAggregator.GetEvent<LoggedInEvent>().Subscribe(LoadApp, ThreadOption.UIThread);
             eventAggregator.GetEvent<CloseEvent>().Subscribe(CloseApp, ThreadOption.UIThread);
             KeyBinding(eventAggregator);
         }
@@ -47,7 +40,7 @@ namespace Fenit.HelpTool.App
             var saveNewKeyBinding =
                 new KeyBinding(
                     new DelegateCommand(() => { eventAggregator.GetEvent<SaveNewKeyBindingEvent>().Publish(); }), Key.S,
-                    ModifierKeys.Control | ModifierKeys.Shift); 
+                    ModifierKeys.Control | ModifierKeys.Shift);
 
             var reloadKeyBinding =
                 new KeyBinding(
@@ -63,8 +56,6 @@ namespace Fenit.HelpTool.App
             InputBindings.Add(reloadKeyBinding);
             InputBindings.Add(runKeyBinding);
             InputBindings.Add(saveNewKeyBinding);
-
-
         }
 
         private void LoadApp()
@@ -88,10 +79,7 @@ namespace Fenit.HelpTool.App
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (_userService.IsRootMode)
-                LoadApp();
-            else
-                _moduleManager.LoadModule("ModuleLogin");
+            LoadApp();
         }
     }
 }
