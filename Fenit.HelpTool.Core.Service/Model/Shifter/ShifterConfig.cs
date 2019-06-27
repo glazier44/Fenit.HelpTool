@@ -1,6 +1,8 @@
-﻿namespace Fenit.HelpTool.Core.Service.Model.Shifter
+﻿using System;
+
+namespace Fenit.HelpTool.Core.Service.Model.Shifter
 {
-    public class ShifterConfig : BaseShifterConfig
+    public class ShifterConfig : BaseShifterConfig, ICloneable
     {
         private string _destinationPath, _sourcePath, _type, _version;
 
@@ -35,5 +37,9 @@
         public bool CreateCopy { get; set; }
         public bool Override { get; set; } = true;
         public bool Archive { get; set; } = false;
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

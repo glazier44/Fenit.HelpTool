@@ -20,6 +20,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
         private readonly IShifterService _shifterService;
@@ -39,11 +40,12 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _serializationService = serializationService;
             _shifterService = shifterService;
             _unityContainer = unityContainer;
+            _eventAggregator = eventAggregator;
             ShifterConfigClear();
             ReloadData();
             CreateCommand();
             _openDialog = new OpenDialog();
-            EventAggregatorSubscribe(eventAggregator);
+            EventAggregatorSubscribe();
         }
 
         public ObservableCollection<BaseShifterConfig> SaveList
@@ -95,14 +97,14 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public List<string> Types => _shifterConfigSettings.AppType;
         public List<string> Versions => _shifterConfigSettings.AppVersion;
 
-        private void EventAggregatorSubscribe(IEventAggregator eventAggregator)
+        private void EventAggregatorSubscribe()
         {
-            eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
-            eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
-            eventAggregator.GetEvent<SaveNewKeyBindingEvent>().Subscribe(Add, ThreadOption.UIThread);
-            eventAggregator.GetEvent<ReloadKeyBindingEvent>().Subscribe(ReloadData, ThreadOption.UIThread);
-            eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
-            eventAggregator.GetEvent<RunKeyBindingEvent>().Subscribe(Run, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
+            _eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<SaveNewKeyBindingEvent>().Subscribe(Add, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<ReloadKeyBindingEvent>().Subscribe(ReloadData, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<ReloadShiferListEvent>().Subscribe(ReloadData, ThreadOption.UIThread);
+            _eventAggregator.GetEvent<RunKeyBindingEvent>().Subscribe(Run, ThreadOption.UIThread);
         }
 
         private void CreateCommand()
@@ -225,13 +227,15 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void Clone(int? id)
         {
-            var newConfig = SelectShifter(id);
-            if (newConfig != null)
-            {
-                newConfig.Id = 0;
-                newConfig.Title = $"{newConfig.Title}_copy";
-                ShifterConfig = newConfig;
-            }
+            ShifterConfig = null;
+            ShifterConfig = new ShifterConfig();
+
+            var newConfig = (ShifterConfig) SelectShifter(id).Clone();
+
+            newConfig.Id = 0;
+            newConfig.Title = $"{newConfig.Title}_copy";
+            _shifterConfigsList.Add(newConfig);
+            Save();
         }
 
 
@@ -353,6 +357,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             SaveAndRefreshList();
             ShifterConfigClear();
+            _eventAggregator.GetEvent<LogEvent>().Publish("Save ShifterConfig");
         }
 
         private void Select(int? id)

@@ -11,13 +11,14 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
 {
     public class ShifterConfigSettingsWindowViewModel : BaseViewModel
     {
-        private readonly ISerializationService _serializationService;
-        private readonly OpenDialog _openDialog;
         private readonly IEventAggregator _eventAggregator;
+        private readonly OpenDialog _openDialog;
+        private readonly ISerializationService _serializationService;
 
         private ShifterConfigSettings _shifterConfig;
 
-        public ShifterConfigSettingsWindowViewModel(ILoggerService log, ISerializationService serializationService, IEventAggregator eventAggregator) :
+        public ShifterConfigSettingsWindowViewModel(ILoggerService log, ISerializationService serializationService,
+            IEventAggregator eventAggregator) :
             base(log)
         {
             _eventAggregator = eventAggregator;
@@ -25,7 +26,6 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
             CreateCommand();
             _openDialog = new OpenDialog();
             eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
-
             LoadData();
         }
 
@@ -52,32 +52,30 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
 
         private void CreateCommand()
         {
-            OpenSourcePathCommand = new DelegateCommand(() =>
-            {
-                ShifterConfigSettings.ConfigPath = GetDir();
-            });
+            OpenSourcePathCommand = new DelegateCommand(() => { ShifterConfigSettings.ConfigPath = GetDir(); });
             SaveCommand = new DelegateCommand(Save);
             //CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
         }
-        private bool Valid()
-        {
-            //TODOTK
-            return true;
-        }
+
+        //private bool Valid()
+        //{
+        //    //TODOTK
+        //    return true;
+        //}
+
         private void Save()
         {
-            if (!Valid())
-            {
-                MessageWarning("Prosze uzupełnić wszystkie pola", "Uwaga!");
-                return;
-            }
+            //if (!Valid())
+            //{
+            //    MessageWarning("Prosze uzupełnić wszystkie pola", "Uwaga!");
+            //    return;
+            //}
 
             if (ShifterConfigSettings != null)
             {
                 _serializationService.SaveShifterConfigSettings(ShifterConfigSettings);
-                _eventAggregator.GetEvent<ReloadShiferList>().Publish();
+                _eventAggregator.GetEvent<ReloadShiferListEvent>().Publish();
             }
         }
-
     }
 }

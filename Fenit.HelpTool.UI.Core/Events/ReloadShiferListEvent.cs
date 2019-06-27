@@ -2,7 +2,7 @@
 
 namespace Fenit.HelpTool.UI.Core.Events
 {
-    public class ReloadShiferList : PubSubEvent
+    public class ReloadShiferListEvent : PubSubEvent
     {
     }
 }

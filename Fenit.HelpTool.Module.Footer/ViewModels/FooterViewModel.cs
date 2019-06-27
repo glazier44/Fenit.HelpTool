@@ -2,6 +2,8 @@
 using System.Reflection;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.UI.Core.Base;
+using Fenit.HelpTool.UI.Core.Events;
+using Fenit.HelpTool.UI.Core.Events.KeyBinding;
 using Prism.Events;
 
 namespace Fenit.HelpTool.Module.Footer.ViewModels
@@ -17,6 +19,9 @@ namespace Fenit.HelpTool.Module.Footer.ViewModels
             var version = versionInfo.ProductVersion;
             _version = $"Wersja: {version}";
             _footerVisibility = true;
+
+            eventAggregator.GetEvent<LogEvent>().Subscribe(SaveLog, ThreadOption.UIThread);
+
         }
 
         public bool FooterVisibility
@@ -31,6 +36,10 @@ namespace Fenit.HelpTool.Module.Footer.ViewModels
             set => SetProperty(ref _version, value);
         }
 
+        private void SaveLog(string saveLog)
+        {
+            Log = saveLog;
+        }
         public string Log
         {
             get => _log;

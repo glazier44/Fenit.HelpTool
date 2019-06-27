@@ -238,7 +238,7 @@
         <ProgressBar
             Grid.Row="16"
             Grid.ColumnSpan="3"
-            Visibility="{Binding IsProgressBarVisible, Converter={StaticResource ShifterItemForegroundColorConverter}}"
+            Visibility="{Binding IsProgressBarVisible, Converter={StaticResource BooleanVisibilityConverter}}"
             Value="{Binding ProgressValue}" />
 
         <Grid
