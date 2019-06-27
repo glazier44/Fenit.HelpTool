@@ -90,6 +90,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand<int?> CloneCommand { get; set; }
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand ReloadCommand { get; set; }
+        public DelegateCommand AddCommand { get; set; }
 
         public List<string> Types => _shifterConfigSettings.AppType;
         public List<string> Versions => _shifterConfigSettings.AppVersion;
@@ -98,6 +99,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
             eventAggregator.GetEvent<SaveKeyBindingEvent>().Subscribe(Save, ThreadOption.UIThread);
+            eventAggregator.GetEvent<SaveNewKeyBindingEvent>().Subscribe(Add, ThreadOption.UIThread);
             eventAggregator.GetEvent<ReloadKeyBindingEvent>().Subscribe(ReloadData, ThreadOption.UIThread);
             eventAggregator.GetEvent<ReloadShiferList>().Subscribe(ReloadData, ThreadOption.UIThread);
             eventAggregator.GetEvent<RunKeyBindingEvent>().Subscribe(Run, ThreadOption.UIThread);
@@ -107,7 +109,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             DeleteCommand = new DelegateCommand<int?>(Delete, CanDo);
             SelectCommand = new DelegateCommand<int?>(Select);
-            SaveCommand = new DelegateCommand(Save, CanDo);
+            SaveCommand = new DelegateCommand(Save);
             ClearCommand = new DelegateCommand(ShifterConfigClear);
             RunThisCommand = new DelegateCommand<int?>(RunThis, CanDo);
             RunCommand = new DelegateCommand(Run, CanDo);
@@ -125,6 +127,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             UpComand = new DelegateCommand<int?>(ElementUp, CanUp);
             ArchiveComand = new DelegateCommand<int?>(Archive);
             ReloadCommand = new DelegateCommand(ReloadData);
+            AddCommand = new DelegateCommand(Add, CanDo);
         }
 
         private bool CanUp(int? id)
@@ -132,21 +135,17 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             var (up, @this, down) = SelectShifters(id);
             return up != null && @this != null;
         }
+
         private bool CanDo()
         {
-            if (ShifterConfig != null)
-            {
-                return !ShifterConfig.Archive;
-            }
+            if (ShifterConfig != null) return !ShifterConfig.Archive;
             return false;
         }
+
         private bool CanDo(int? id)
         {
             var config = SelectShifter(id);
-            if (config != null)
-            {
-                return !config.Archive;
-            }
+            if (config != null) return !config.Archive;
             return false;
         }
 
@@ -230,7 +229,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             if (newConfig != null)
             {
                 newConfig.Id = 0;
-                newConfig.Title = $"{newConfig.Title}_kopia";
+                newConfig.Title = $"{newConfig.Title}_copy";
                 ShifterConfig = newConfig;
             }
         }
@@ -238,9 +237,9 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private bool Valid()
         {
-            var g = ShifterConfig;
-            //TODOTK
-            return true;
+            return !(string.IsNullOrEmpty(ShifterConfig.SourcePath)
+                     || string.IsNullOrEmpty(ShifterConfig.DestinationPath) ||
+                     string.IsNullOrEmpty(ShifterConfig.Title));
         }
 
 
@@ -282,7 +281,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             var dialog = _unityContainer.Resolve<IDialogView>(ViewReservoir.ShifterModule.MessageWindow);
             dialog.ShowDialog(new MessageContext
             {
-                Text = "Proces zakończony pomyślnie.",
+                Text = "The process was completed successfully.",
                 NewPath = config.DestinationPath
             });
         }
@@ -315,14 +314,15 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void RefreshList()
         {
             _shifterConfigsList = _serializationService.LoadConfig();
-            SaveList = new ObservableCollection<BaseShifterConfig>(_shifterConfigsList.Where(w => _shifterConfigSettings.ShowArchive || !w.Archive));
+            SaveList = new ObservableCollection<BaseShifterConfig>(
+                _shifterConfigsList.Where(w => _shifterConfigSettings.ShowArchive || !w.Archive));
         }
 
-        private void Save()
+        private void Add()
         {
             if (!Valid())
             {
-                MessageWarning("Prosze uzupełnić wszystkie pola", "Uwaga!");
+                MessageWarning("Please complete all fields with an asterisk!", "Caution!");
                 return;
             }
 
@@ -346,6 +346,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 }
             }
 
+            Save();
+        }
+
+        private void Save()
+        {
             SaveAndRefreshList();
             ShifterConfigClear();
         }

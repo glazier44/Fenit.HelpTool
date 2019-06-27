@@ -83,6 +83,7 @@
     <Compile Include="Dialog\OpenDialog.cs" />
     <Compile Include="Events\KeyBinding\RunKeyBindingEvent.cs" />
     <Compile Include="Events\KeyBinding\ReloadKeyBindingEvent.cs" />
+    <Compile Include="Events\KeyBinding\SaveNewKeyBindingEvent.cs" />
     <Compile Include="Events\KeyBinding\SaveKeyBindingEvent.cs" />
     <Compile Include="Events\ReloadShiferList.cs" />
     <Compile Include="Resource.Designer.cs">
