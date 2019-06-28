@@ -10,20 +10,16 @@
         <converters:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converters:ShifterItemForegroundColorConverter x:Key="ShifterItemForegroundColorConverter" />
     </UserControl.Resources>
-    <Grid
-        x:Name="LayoutRoot"
-        Margin="10,2,10,2"
-        Background="White">
+    <Grid Margin="10,2,10,2" Background="White">
         <Grid.Resources>
             <Style TargetType="{x:Type DataGridCell}">
                 <Setter Property="Margin" Value="10" />
-
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="33" />
@@ -44,25 +40,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
             <RowDefinition Height="30" />
-
         </Grid.RowDefinitions>
-
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="3"
             Style="{StaticResource HeaderLabelBoxStyle}">
-            Kopiowanie
+            Shifter
         </Label>
-
         <Separator Grid.Row="1" Grid.ColumnSpan="3" />
-
-
         <Label
             Grid.Row="2"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             <StackPanel Orientation="Horizontal">
-                <AccessText Text="Nazwa:" />
+                <AccessText Text="Name:" />
                 <AccessText Foreground="Red" Text="*" />
             </StackPanel>
         </Label>
@@ -71,17 +62,15 @@
             Grid.Column="1"
             Style="{StaticResource GridTextBoxStyle}"
             Text="{Binding ShifterConfig.Title}" />
-
         <Label
             Grid.Row="3"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             <StackPanel Orientation="Horizontal">
-                <AccessText Text="Źródło:" />
+                <AccessText Text="Source path:" />
                 <AccessText Foreground="Red" Text="*" />
             </StackPanel>
         </Label>
-
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -94,16 +83,14 @@
                 Command="{Binding OpenSourcePathCommand}"
                 Content="..." />
         </Grid>
-
         <Label
             Grid.Row="4"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             <StackPanel Orientation="Horizontal">
-                <AccessText Text="Cel:" />
+                <AccessText Text="Destination:" />
                 <AccessText Foreground="Red" Text="*" />
             </StackPanel>
-
         </Label>
         <Grid Grid.Row="4" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -121,7 +108,7 @@
             Grid.Row="5"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
-            Rozrzerzenia:
+            Pattern:
         </Label>
         <TextBox
             Grid.Row="5"
@@ -133,12 +120,11 @@
             Text="{Binding ShifterConfig.Pattern}"
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto" />
-
         <Label
             Grid.Row="6"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
-            Pliki:
+            Exclude file:
         </Label>
         <TextBox
             Grid.Row="6"
@@ -150,22 +136,19 @@
             Text="{Binding ShifterConfig.ExcludeFile}"
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto" />
-
-
         <CheckBox
             Grid.Row="7"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.RemoveAll}"
             Style="{StaticResource CustomCheckBox}">
-            Usuń wszystkie przed
+            Delete all before
         </CheckBox>
-
         <CheckBox
             Grid.Row="8"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.CreateCopy}"
             Style="{StaticResource CustomCheckBox}">
-            Twórz kopię plików
+            Create copy of files
         </CheckBox>
 
         <CheckBox
@@ -173,14 +156,13 @@
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.Override}"
             Style="{StaticResource CustomCheckBox}">
-            Nadpisz pliki
+            Overwrite files
         </CheckBox>
-
         <Label
             Grid.Row="10"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
-            Typ:
+            Type:
         </Label>
         <ComboBox
             Grid.Row="10"
@@ -192,7 +174,7 @@
             Grid.Row="11"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
-            Wersje:
+            Versions:
         </Label>
         <ComboBox
             Grid.Row="11"
@@ -201,8 +183,6 @@
             ItemsSource="{Binding Versions}"
             SelectedItem="{Binding ShifterConfig.Version}"
             Style="{StaticResource GridComboBox}" />
-
-
         <WrapPanel
             Grid.Row="14"
             Grid.ColumnSpan="3"
@@ -211,7 +191,6 @@
                 Command="{Binding AddCommand}"
                 Content="Add"
                 Style="{StaticResource ButtonFormStyle}" />
-
             <Button
                 Command="{Binding SaveCommand}"
                 Content="Save"
@@ -232,15 +211,12 @@
                 Command="{Binding ReloadCommand}"
                 Content="Reload"
                 Style="{StaticResource ButtonFormStyle}" />
-
         </WrapPanel>
-
         <ProgressBar
             Grid.Row="16"
             Grid.ColumnSpan="3"
             Visibility="{Binding IsProgressBarVisible, Converter={StaticResource BooleanVisibilityConverter}}"
             Value="{Binding ProgressValue}" />
-
         <Grid
             Grid.Row="2"
             Grid.RowSpan="11"
@@ -252,7 +228,7 @@
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Background="PaleGoldenrod">
                 <Label HorizontalContentAlignment="Center" FontWeight="Bold">
-                    Lista
+                    List
                 </Label>
             </Border>
             <ListBox
@@ -289,6 +265,10 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <StackPanel
                                 Grid.RowSpan="2"
@@ -300,7 +280,6 @@
                                     FontWeight="Bold"
                                     Foreground="{Binding Archive, Converter={StaticResource ShifterItemForegroundColorConverter}}" />
                             </StackPanel>
-
                             <Label
                                 Grid.Column="1"
                                 Content="{Binding Version}"
@@ -309,6 +288,47 @@
                                 Grid.Column="2"
                                 Content="{Binding Type}"
                                 FontSize="15" />
+
+                            <Button
+                                Grid.Column="3"
+                                Command="{Binding DataContext.UpComand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding Id}"
+                                Style="{StaticResource ButtonGridIcon}"
+                                ToolTip="Up">
+                                <StackPanel>
+                                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/up.png" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Grid.Column="4"
+                                Command="{Binding DataContext.DownComand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding Id}"
+                                Style="{StaticResource ButtonGridIcon}"
+                                ToolTip="Down">
+                                <StackPanel>
+                                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/down.png" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Grid.Column="5"
+                                Command="{Binding DataContext.CloneCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding Id}"
+                                Style="{StaticResource ButtonGridIcon}"
+                                ToolTip="Clone">
+                                <StackPanel>
+                                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/copy.png" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                Grid.Column="6"
+                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                CommandParameter="{Binding Id}"
+                                Style="{StaticResource ButtonGridIcon}"
+                                ToolTip="Delete">
+                                <StackPanel>
+                                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/delete.png" />
+                                </StackPanel>
+                            </Button>
                             <Grid.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem
@@ -335,7 +355,6 @@
                                             <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/delete.png" Style="{StaticResource StatusIco}" />
                                         </MenuItem.Icon>
                                     </MenuItem>
-
                                     <Separator />
                                     <MenuItem
                                         Command="{Binding PlacementTarget.Tag.UpComand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"

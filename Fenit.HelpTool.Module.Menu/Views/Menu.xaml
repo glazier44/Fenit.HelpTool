@@ -5,49 +5,74 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources />
-
     <StackPanel VerticalAlignment="Top">
         <Menu DockPanel.Dock="Top" Style="{StaticResource MenuTheme}">
-
             <MenuItem
                 Command="{Binding SQLCommand}"
-                Header="SQL"
-                Style="{StaticResource MenuItemheme}" />
+                Header="SQL parser"
+                Style="{StaticResource MenuItemheme}">
+                <MenuItem.Icon>
+                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/sql.png" />
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem
                 Command="{Binding ShifterCommand}"
-                Header="Kopista"
-                Style="{StaticResource MenuItemheme}" />
+                Header="Shifter"
+                Style="{StaticResource MenuItemheme}">
+                <MenuItem.Icon>
+                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/clone.png" />
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem
                 Command="{Binding TrayCommand}"
-                Header="Zasobnik"
-                Style="{StaticResource MenuItemheme}" />
-            <MenuItem Header="Ustawienia" Style="{StaticResource MenuItemheme}">
+                Header="Runner"
+                Style="{StaticResource MenuItemheme}">
+                <MenuItem.Icon>
+                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/runner.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Settings" Style="{StaticResource MenuItemheme}">
+                <MenuItem.Icon>
+                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/settings.png" />
+                </MenuItem.Icon>
                 <MenuItem
                     Command="{Binding SettingsCommand}"
-                    Header="Kopista"
-                    Style="{StaticResource MenuItemheme}" />
+                    Header="General"
+                    Style="{StaticResource MenuItemheme}">
+                    <MenuItem.Icon>
+                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/settings.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem
+                    Command="{Binding ShifterSettingsCommand}"
+                    Header="Shifter"
+                    Style="{StaticResource MenuItemheme}">
+                    <MenuItem.Icon>
+                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/clone.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="O programie" Style="{StaticResource MenuItemheme}" />
-            <!--  <MenuItem Header="Menu">
-                <MenuItem Header="Pingowanie"/>
-                <MenuItem Header="Przesyłanie danych"/>
-                <Separator />
-                           <MenuItem.Icon>
-                    <Image Source="/NMVS.Common.UI;component/Resource/Image/connect.png"/>
+            <MenuItem Header="Help" Style="{StaticResource MenuItemheme}">
+                <MenuItem.Icon>
+                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/about.png" />
                 </MenuItem.Icon>
-        <MenuItem>
-            <MenuItem.Header>
-                <DockPanel>
-                    <TextBlock>Step</TextBlock>
-                    <TextBlock Width="10"></TextBlock>
-                    <TextBlock HorizontalAlignment="Right">F2</TextBlock>
-                </DockPanel>
-            </MenuItem.Header>
-        </MenuItem>
-        </MenuItem>
-            <MenuItem Header="Konfiguracja">
-                <MenuItem Header="User"/>
-            </MenuItem>-->
+                <MenuItem
+                    Command="{Binding SettingsCommand}"
+                    Header="Help"
+                    Style="{StaticResource MenuItemheme}">
+                    <MenuItem.Icon>
+                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/info.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem
+                    Command="{Binding SettingsCommand}"
+                    Header="About"
+                    Style="{StaticResource MenuItemheme}">
+                    <MenuItem.Icon>
+                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/about.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
         </Menu>
     </StackPanel>
 </UserControl>

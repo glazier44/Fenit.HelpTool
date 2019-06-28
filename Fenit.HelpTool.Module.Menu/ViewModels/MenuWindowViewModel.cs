@@ -19,6 +19,7 @@ namespace Fenit.HelpTool.Module.Menu.ViewModels
         public DelegateCommand ShifterCommand { get; set; }
         public DelegateCommand TrayCommand { get; set; }
         public DelegateCommand SettingsCommand { get; set; }
+        public DelegateCommand ShifterSettingsCommand { get; set; }
 
         
 
@@ -27,8 +28,8 @@ namespace Fenit.HelpTool.Module.Menu.ViewModels
             SQLCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
             ShifterCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.ShifterModule.Main));
             SettingsCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
+            ShifterSettingsCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
 
-            //TrayCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
         }
     }
 }

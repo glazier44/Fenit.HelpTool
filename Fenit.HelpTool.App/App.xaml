@@ -12,13 +12,18 @@
             <SolidColorBrush x:Key="BackgroundBrush" Color="GOLD" />
             <SolidColorBrush x:Key="ActionBrush" Color="#009788" />
 
-            <!--  Button  -->
+            <!--#region Button-->
+
+            <Style x:Key="BaseButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="BorderBrush" Value="{StaticResource BackgroundBrush}" />
+                <Setter Property="Background" Value="{StaticResource BorderBrush}" />
+            </Style>
+
             <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
                 <Style.Setters>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
-
                                 <Border
                                     x:Name="button"
                                     Margin="4,0"
@@ -41,7 +46,6 @@
                                     <Trigger Property="IsPressed" Value="True">
                                         <Setter TargetName="button" Property="Background" Value="Aqua" />
                                         <Setter Property="Foreground" Value="Black" />
-
                                     </Trigger>
                                     <Trigger Property="IsEnabled" Value="False">
                                         <Setter TargetName="button" Property="Opacity" Value="0.7" />
@@ -53,12 +57,14 @@
                     </Setter>
                 </Style.Setters>
             </Style>
+
             <Style
                 x:Key="ButtonFormStyle"
                 BasedOn="{StaticResource ButtonStyle}"
                 TargetType="Button">
                 <Setter Property="Width" Value="150px" />
             </Style>
+
             <Style
                 x:Key="ButtonDialogStyle"
                 BasedOn="{StaticResource ButtonStyle}"
@@ -66,17 +72,27 @@
                 <Setter Property="Width" Value="100px" />
             </Style>
 
-            <Style x:Key="StatusIco" TargetType="Image">
-                <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
-                <Setter Property="Stretch" Value="Fill" />
-                <Setter Property="Width" Value="17" />
-                <Setter Property="Height" Value="17" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
+            <Style
+                x:Key="ButtonGridIcon"
+                BasedOn="{StaticResource BaseButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Margin" Value="3,1,3,1" />
+                <Style.Resources>
+                    <Style TargetType="Image">
+                        <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
+                        <Setter Property="Stretch" Value="Fill" />
+                        <Setter Property="Width" Value="25" />
+                        <Setter Property="Height" Value="25" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
             </Style>
-            <Style x:Key="ListBoxButtonStyle" TargetType="Button">
-                <Setter Property="BorderBrush" Value="{StaticResource BackgroundBrush}" />
-                <Setter Property="Background" Value="{StaticResource BorderBrush}" />
+
+            <Style
+                x:Key="ListBoxButtonStyle"
+                BasedOn="{StaticResource BaseButtonStyle}"
+                TargetType="Button">
                 <Setter Property="Padding" Value="1" />
                 <Setter Property="Margin" Value="2" />
                 <Setter Property="Cursor" Value="Hand" />
@@ -87,11 +103,16 @@
                 </Style.Resources>
             </Style>
 
+            <!--#endregion Button-->
+
+            <!--#region Label-->
+
             <Style x:Key="SubHeaderLabelBoxStyle" TargetType="Label">
                 <Setter Property="Padding" Value="4" />
                 <Setter Property="Margin" Value="2" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Style>
+
             <Style x:Key="HeaderLabelBoxStyle" TargetType="Label">
                 <Setter Property="Padding" Value="4" />
                 <Setter Property="Margin" Value="2,0,2,2" />
@@ -99,31 +120,75 @@
                 <Setter Property="FontSize" Value="18" />
             </Style>
 
+            <Style x:Key="GridLabelBoxStyle" TargetType="Label">
+                <Setter Property="Padding" Value="4" />
+                <Setter Property="Margin" Value="2" />
+            </Style>
+
+            <!--#endregion Label-->
+
+            <!--#region Image-->
+
+            <Style x:Key="BaseIco" TargetType="Image">
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant" />
+                <Setter Property="Stretch" Value="Fill" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+            <Style
+                x:Key="StatusIco"
+                BasedOn="{StaticResource BaseIco}"
+                TargetType="Image">
+                <Setter Property="Width" Value="17" />
+                <Setter Property="Height" Value="17" />
+            </Style>
+
+            <!--#endregion Image-->
+
+            <!--#region MenuTheme-->
+
             <Style x:Key="MenuTheme" TargetType="Control">
                 <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
                 <Setter Property="Width" Value="Auto" />
             </Style>
 
             <Style x:Key="MenuItemheme" TargetType="MenuItem">
-
-                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontSize" Value="17" />
                 <Setter Property="Cursor" Value="Hand" />
-                <Setter Property="Padding" Value="8,6" />
+                <Setter Property="Padding" Value="10,10" />
                 <Style.Triggers>
                     <Trigger Property="IsHighlighted" Value="true">
                         <Setter Property="Background" Value="Aqua" />
                         <Setter Property="Foreground" Value="Black" />
                     </Trigger>
                 </Style.Triggers>
-
+                <Style.Resources>
+                    <Style BasedOn="{StaticResource BaseIco}" TargetType="Image">
+                        <Setter Property="Width" Value="20" />
+                        <Setter Property="Height" Value="20" />
+                    </Style>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="Padding" Value="6,6" />
+                        <Style.Triggers>
+                            <Trigger Property="IsHighlighted" Value="true">
+                                <Setter Property="Background" Value="Aqua" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                        <Style.Resources>
+                            <Style BasedOn="{StaticResource BaseIco}" TargetType="Image">
+                                <Setter Property="Width" Value="20" />
+                                <Setter Property="Height" Value="20" />
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Style.Resources>
             </Style>
 
+            <!--#endregion Image-->
 
-
-            <Style x:Key="GridLabelBoxStyle" TargetType="Label">
-                <Setter Property="Padding" Value="4" />
-                <Setter Property="Margin" Value="2" />
-            </Style>
             <Style x:Key="GridTextBoxStyle" TargetType="TextBox">
                 <Setter Property="BorderBrush" Value="DarkGray" />
                 <Setter Property="Padding" Value="2" />
@@ -209,12 +274,10 @@
                 <Setter Property="VerticalContentAlignment" Value="Center" />
             </Style>
 
-
             <Style x:Key="GridComboBox" TargetType="ComboBox">
                 <Setter Property="Padding" Value="7,3,7,3" />
                 <Setter Property="Margin" Value="0,3,0,3" />
             </Style>
-
 
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
