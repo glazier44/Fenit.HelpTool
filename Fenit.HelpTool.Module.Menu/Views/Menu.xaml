@@ -24,7 +24,7 @@
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem
-                Command="{Binding TrayCommand}"
+                Command="{Binding RunnerCommand}"
                 Header="Runner"
                 Style="{StaticResource MenuItemheme}">
                 <MenuItem.Icon>
