@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Windows.Forms;
-using Fenit.HelpTool.Core.Service;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.Toolbox.Core.Answers;
 using Fenit.Toolbox.Core.Extension;
