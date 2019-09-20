@@ -9,11 +9,8 @@ namespace Fenit.HelpTool.UI.Core.Dialog
         public Response<string> SelectFolder()
         {
             var res = new Response<string>();
-
-
             var dialog = new CommonOpenFileDialog {IsFolderPicker = true};
             var result = dialog.ShowDialog();
-
             if (result == CommonFileDialogResult.Ok)
             {
                 var dirToProcess = Directory.Exists(dialog.FileName)
@@ -25,7 +22,6 @@ namespace Fenit.HelpTool.UI.Core.Dialog
             {
                 res.AddError("No folder selected");
             }
-
             return res;
         }
     }

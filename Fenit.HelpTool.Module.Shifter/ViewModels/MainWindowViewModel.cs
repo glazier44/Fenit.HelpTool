@@ -12,6 +12,9 @@ using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
 using Fenit.HelpTool.UI.Core.Events.KeyBinding;
+using Fenit.Toolbox.Yaml.Extension;
+using InstallPackageLib.Android;
+using InstallPackageLib.ProgramsType;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
@@ -77,12 +80,14 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             get => _progressValue;
             set => SetProperty(ref _progressValue, value);
         }
+        
+        public DelegateCommand OpenDestinationZipPathCommand { get; set; }
 
         public DelegateCommand OpenSourcePathCommand { get; set; }
         public DelegateCommand OpenDestinationPathCommand { get; set; }
-        public DelegateCommand<int?> UpComand { get; set; }
-        public DelegateCommand<int?> DownComand { get; set; }
-        public DelegateCommand<int?> ArchiveComand { get; set; }
+        public DelegateCommand<int?> UpCommand { get; set; }
+        public DelegateCommand<int?> DownCommand { get; set; }
+        public DelegateCommand<int?> ArchiveCommand { get; set; }
         public DelegateCommand<int?> RunThisCommand { get; set; }
         public DelegateCommand RunCommand { get; set; }
         public DelegateCommand<int?> SelectCommand { get; set; }
@@ -93,8 +98,10 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand ReloadCommand { get; set; }
         public DelegateCommand AddCommand { get; set; }
+        public DelegateCommand LoadCommand { get; set; }
 
-        public List<string> Types => _shifterConfigSettings.AppType;
+        
+        public List<string> Types => _shifterConfigSettings.AppVersion;
         public List<string> Versions => _shifterConfigSettings.AppVersion;
 
         private void EventAggregatorSubscribe()
@@ -125,11 +132,27 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 ShifterConfig.DestinationPath = ExploreOpen(_shifterConfig.DestinationPath);
             });
-            DownComand = new DelegateCommand<int?>(ElementDown, CanDown);
-            UpComand = new DelegateCommand<int?>(ElementUp, CanUp);
-            ArchiveComand = new DelegateCommand<int?>(Archive);
+            OpenDestinationZipPathCommand = new DelegateCommand(() =>
+            {
+                ShifterConfig.DestinationZipPath = ExploreOpen(_shifterConfig.DestinationZipPath);
+            });
+            DownCommand = new DelegateCommand<int?>(ElementDown, CanDown);
+            UpCommand = new DelegateCommand<int?>(ElementUp, CanUp);
+            ArchiveCommand = new DelegateCommand<int?>(Archive);
             ReloadCommand = new DelegateCommand(ReloadData);
             AddCommand = new DelegateCommand(Add, CanDo);
+            LoadCommand = new DelegateCommand(Load);
+        }
+
+        private void Load()
+        {
+           // if (getExtension == ".apk")
+            {
+                var apkReader = new ApkReader();
+                //apkReader.Read(filename);
+                //cbPrgType.SelectedIndex = _programTypes.GetIndex("Android");
+                //return apkReader.ApkModel.VersionName;
+            }
         }
 
         private bool CanUp(int? id)
@@ -307,9 +330,16 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             RefreshList();
         }
 
+        private void Test()
+        {
+            var typ = ProgramType.Create();
+            var gg = typ.Cast<object>().ToList().SerializationYaml();
+        }
         private void ReloadData()
         {
+
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
+            Test();
             RefreshList();
             RaisePropertyChanged(nameof(Types));
             RaisePropertyChanged(nameof(Versions));

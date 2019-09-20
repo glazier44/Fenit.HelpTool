@@ -254,5 +254,24 @@ namespace Fenit.Toolbox.Core.Extension
         {
             return @string.Split(Separator).ToList();
         }
+
+
+        public static string TrimPath(this string srcDir)
+        {
+            if (string.IsNullOrEmpty(srcDir))
+            {
+                return string.Empty;
+            }
+
+            var i = srcDir.LastIndexOf('\\');
+            if (i > 0)
+            {
+                return srcDir.Substring(0, i);
+
+            }
+
+            return srcDir;
+
+        }
     }
 }

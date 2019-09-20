@@ -1,10 +1,11 @@
 ﻿using System;
+using Fenit.Toolbox.Core.Extension;
 
 namespace Fenit.HelpTool.Core.Service.Model.Shifter
 {
     public class ShifterConfig : BaseShifterConfig, ICloneable
     {
-        private string _destinationPath, _sourcePath, _type, _version;
+        private string _destinationPath, _sourcePath, _type, _version, _destinationZipPath;
 
 
         public string SourcePath
@@ -16,7 +17,11 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         public string DestinationPath
         {
             get => _destinationPath;
-            set => SetProperty(ref _destinationPath, value);
+            set
+            {
+                SetProperty(ref _destinationPath, value);
+                DestinationZipPath = _destinationPath.TrimPath();
+            }
         }
 
         public string Version
@@ -29,6 +34,11 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         {
             get => _type;
             set => SetProperty(ref _type, value);
+        }
+        public string DestinationZipPath
+        {
+            get => _destinationZipPath;
+            set => SetProperty(ref _destinationZipPath, value);
         }
 
         public string Pattern { get; set; }

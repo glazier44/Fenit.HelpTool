@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Fenit.Toolbox.Core.Extension;
+using Fenit.Toolbox.Yaml.Extension;
+using InstallPackageLib.ProgramsType;
 using Newtonsoft.Json;
 using Prism.Mvvm;
 
@@ -9,7 +12,7 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
     {
         private string _configPath = string.Empty; //, _sourcePath, _type, _version;
 
-        public List<string> AppType { get; set; } = new List<string>();
+        public List<ProgramType> ProgramType { get; set; } = new List<ProgramType>();
         public List<string> AppVersion { get; set; } = new List<string>();
 
         public string ConfigPath
@@ -23,10 +26,10 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
         public bool ShowArchive { get; set; }
 
         [JsonIgnore]
-        public string AppTypeLabel
+        public string ProgramTypeLabel
         {
-            get => AppType.JoinText();
-            set => AppType = value.SplitText();
+            get => ProgramType.Cast<object>().ToList().SerializationYaml();
+            set => ProgramType = value.DeserializationYaml<ProgramType>();
         }
 
         [JsonIgnore]

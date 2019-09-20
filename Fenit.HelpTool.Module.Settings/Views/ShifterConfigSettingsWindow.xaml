@@ -100,7 +100,7 @@
                 VerticalContentAlignment="Stretch"
                 AcceptsReturn="True"
                 Style="{StaticResource GridTextBoxStyle}"
-                Text="{Binding ShifterConfigSettings.AppTypeLabel}"
+                Text="{Binding ShifterConfigSettings.ProgramTypeLabel}"
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Auto" />
 

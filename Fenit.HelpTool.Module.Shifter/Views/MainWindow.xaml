@@ -17,9 +17,9 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="33" />
@@ -27,6 +27,8 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+
             <RowDefinition Height="80" />
             <RowDefinition Height="80" />
             <RowDefinition Height="30" />
@@ -35,10 +37,12 @@
             <RowDefinition Height="30" />
             <!--  10  -->
             <RowDefinition Height="30" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Label
@@ -88,8 +92,7 @@
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             <StackPanel Orientation="Horizontal">
-                <AccessText Text="Destination:" />
-                <AccessText Foreground="Red" Text="*" />
+                <AccessText Text="Destination dll:" />
             </StackPanel>
         </Label>
         <Grid Grid.Row="4" Grid.Column="1">
@@ -108,10 +111,31 @@
             Grid.Row="5"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
+            <StackPanel Orientation="Horizontal">
+                <AccessText Text="Destination zip:" />
+                <AccessText Foreground="Red" Text="*" />
+            </StackPanel>
+        </Label>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <TextBox Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.DestinationZipPath}" />
+            <Button
+                Grid.Column="1"
+                Margin="2"
+                Command="{Binding OpenDestinationZipPathCommand}"
+                Content="..." />
+        </Grid>
+        <Label
+            Grid.Row="6"
+            Grid.Column="0"
+            Style="{StaticResource GridLabelBoxStyle}">
             Pattern:
         </Label>
         <TextBox
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
@@ -121,13 +145,13 @@
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto" />
         <Label
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             Exclude file:
         </Label>
         <TextBox
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
@@ -137,14 +161,14 @@
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto" />
         <CheckBox
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.RemoveAll}"
             Style="{StaticResource CustomCheckBox}">
             Delete all before
         </CheckBox>
         <CheckBox
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.CreateCopy}"
             Style="{StaticResource CustomCheckBox}">
@@ -152,39 +176,40 @@
         </CheckBox>
 
         <CheckBox
-            Grid.Row="9"
+            Grid.Row="10"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.Override}"
             Style="{StaticResource CustomCheckBox}">
             Overwrite files
         </CheckBox>
         <Label
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             Type:
         </Label>
         <ComboBox
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="1"
             ItemsSource="{Binding Types}"
             SelectedItem="{Binding ShifterConfig.Type}"
             Style="{StaticResource GridComboBox}" />
         <Label
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             Versions:
         </Label>
         <ComboBox
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="1"
             Background="Aqua"
             ItemsSource="{Binding Versions}"
             SelectedItem="{Binding ShifterConfig.Version}"
             Style="{StaticResource GridComboBox}" />
+
         <WrapPanel
-            Grid.Row="14"
+            Grid.Row="17"
             Grid.ColumnSpan="3"
             Orientation="Horizontal">
             <Button
@@ -211,15 +236,19 @@
                 Command="{Binding ReloadCommand}"
                 Content="Reload"
                 Style="{StaticResource ButtonFormStyle}" />
+            <Button
+                Command="{Binding LoadCommand}"
+                Content="Load"
+                Style="{StaticResource ButtonFormStyle}" />
         </WrapPanel>
         <ProgressBar
-            Grid.Row="16"
+            Grid.Row="18"
             Grid.ColumnSpan="3"
             Visibility="{Binding IsProgressBarVisible, Converter={StaticResource BooleanVisibilityConverter}}"
             Value="{Binding ProgressValue}" />
         <Grid
             Grid.Row="2"
-            Grid.RowSpan="11"
+            Grid.RowSpan="15"
             Grid.Column="2"
             Margin="20,0,0,20">
             <Grid.RowDefinitions>
@@ -291,7 +320,7 @@
 
                             <Button
                                 Grid.Column="3"
-                                Command="{Binding DataContext.UpComand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                Command="{Binding DataContext.UpCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
                                 CommandParameter="{Binding Id}"
                                 Style="{StaticResource ButtonGridIcon}"
                                 ToolTip="Up">
@@ -301,7 +330,7 @@
                             </Button>
                             <Button
                                 Grid.Column="4"
-                                Command="{Binding DataContext.DownComand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                Command="{Binding DataContext.DownCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
                                 CommandParameter="{Binding Id}"
                                 Style="{StaticResource ButtonGridIcon}"
                                 ToolTip="Down">
@@ -365,7 +394,7 @@
                                         </MenuItem.Icon>
                                     </MenuItem>
                                     <MenuItem
-                                        Command="{Binding PlacementTarget.Tag.DownComand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"
+                                        Command="{Binding PlacementTarget.Tag.DownCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"
                                         CommandParameter="{Binding Id}"
                                         Header="Down">
                                         <MenuItem.Icon>
@@ -374,7 +403,7 @@
                                     </MenuItem>
                                     <Separator />
                                     <MenuItem
-                                        Command="{Binding PlacementTarget.Tag.ArchiveComand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"
+                                        Command="{Binding PlacementTarget.Tag.ArchiveCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}}"
                                         CommandParameter="{Binding Id}"
                                         Header="Archive">
                                         <MenuItem.Icon>
