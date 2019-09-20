@@ -20,18 +20,19 @@ namespace Fenit.HelpTool.Module.Menu.ViewModels
         public DelegateCommand RunnerCommand { get; set; }
         public DelegateCommand SettingsCommand { get; set; }
         public DelegateCommand ShifterSettingsCommand { get; set; }
+        public DelegateCommand HelpCommand { get; set; }
+        public DelegateCommand AboutCommand { get; set; }
 
-        
 
         private void RegisterCommand(IRegionManager regionManager)
         {
             SQLCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SqlLogModule.Main));
             ShifterCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.ShifterModule.Main));
-            SettingsCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
-            ShifterSettingsCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
-            RunnerCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
-
-            
+            SettingsCommand = new DelegateCommand(() =>regionManager.Activate(ViewReservoir.SettingsModule.Main));
+            ShifterSettingsCommand = new DelegateCommand(() =>regionManager.Activate(ViewReservoir.SettingsModule.ShifterConfigSettings));
+            RunnerCommand = new DelegateCommand(() =>regionManager.Activate(ViewReservoir.RunnerModule.Main));
+            HelpCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.HelpModule.Main));
+            AboutCommand = new DelegateCommand(() => regionManager.Activate(ViewReservoir.HelpModule.About));
         }
     }
 }

@@ -57,7 +57,7 @@
                     <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/about.png" />
                 </MenuItem.Icon>
                 <MenuItem
-                    Command="{Binding SettingsCommand}"
+                    Command="{Binding HelpCommand}"
                     Header="Help"
                     Style="{StaticResource MenuItemheme}">
                     <MenuItem.Icon>
@@ -65,7 +65,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem
-                    Command="{Binding SettingsCommand}"
+                    Command="{Binding AboutCommand}"
                     Header="About"
                     Style="{StaticResource MenuItemheme}">
                     <MenuItem.Icon>

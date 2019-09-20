@@ -50,5 +50,20 @@
             public static string Name = "LoginModule";
             public static string Login = "LoginModule.Login";
         }
+
+
+        public static class RunnerModule
+        {
+            public static string Name = "RunnerModule";
+            public static string Main = "RunnerModule.Main";
+        }
+
+        public static class HelpModule
+        {
+            public static string Name = "HelpModule";
+            public static string Main = "HelpModule.Main";
+            public static string About = "HelpModule.About";
+
+        }
     }
 }

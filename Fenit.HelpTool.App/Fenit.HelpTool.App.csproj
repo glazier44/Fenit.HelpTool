@@ -159,9 +159,17 @@
       <Project>{F76A2BAC-0719-4F03-93CB-40F58D0E9D7C}</Project>
       <Name>Fenit.HelpTool.Module.Footer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Help\Fenit.HelpTool.Module.Help.csproj">
+      <Project>{7bd27ceb-2268-4645-bfb6-1012b1bb4202}</Project>
+      <Name>Fenit.HelpTool.Module.Help</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.Menu\Fenit.HelpTool.Module.Menu.csproj">
       <Project>{CB0035DD-5E5F-4A8F-AE55-DA1DD0455479}</Project>
       <Name>Fenit.HelpTool.Module.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Runner\Fenit.HelpTool.Module.Runner.csproj">
+      <Project>{37e15125-3b54-4092-9c65-9c942156ef46}</Project>
+      <Name>Fenit.HelpTool.Module.Runner</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.Settings\Fenit.HelpTool.Module.Settings.csproj">
       <Project>{d057501b-0c38-4e5a-ae3b-68d0fdd7c9ab}</Project>

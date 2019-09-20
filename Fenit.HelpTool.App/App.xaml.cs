@@ -5,7 +5,9 @@ using Fenit.HelpTool.Core.SerializationService.Implement;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.ShifterService.Implement;
 using Fenit.HelpTool.Module.Footer;
+using Fenit.HelpTool.Module.Help;
 using Fenit.HelpTool.Module.Menu;
+using Fenit.HelpTool.Module.Runner;
 using Fenit.HelpTool.Module.Settings;
 using Fenit.HelpTool.Module.Shifter;
 using Fenit.HelpTool.Module.SqlLog;
@@ -46,6 +48,8 @@ namespace Fenit.HelpTool.App
             AddModule<MenuModule>(moduleCatalog);
             AddModule<ShifterModule>(moduleCatalog);
             AddModule<SettingsModule>(moduleCatalog);
+            AddModule<RunnerModule>(moduleCatalog);
+            AddModule<HelpModule>(moduleCatalog);
         }
 
         private void AddModule<T>(IModuleCatalog moduleCatalog)
