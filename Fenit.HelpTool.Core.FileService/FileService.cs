@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.Toolbox.Core.Answers;
 using Fenit.Toolbox.Core.Extension;
+using FileInfo = Fenit.HelpTool.Core.Service.Model.Shifter.FileInfo;
 
 namespace Fenit.HelpTool.Core.FileService
 {
@@ -27,6 +30,17 @@ namespace Fenit.HelpTool.Core.FileService
         {
             return text.SaveFile(OpenSaveDialog());
         }
+
+        public Response<FileInfo> GetFileInfo(string path)
+        {
+            var res = new FileInfo();
+            if (Directory.Exists(path))
+            {
+                res.FileName = path.GetFileBasedExtensionsFile("exe", "cab", "ex_", "dll", "apk");
+            }
+            return Response<FileInfo>.Create(res);
+        }
+
 
 
         private static string OpenDialog()

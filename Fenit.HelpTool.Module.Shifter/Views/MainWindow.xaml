@@ -27,21 +27,25 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
 
+
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="80" />
             <RowDefinition Height="80" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+   
             <!--  10  -->
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
 
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -132,10 +136,24 @@
             Grid.Row="6"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
-            Pattern:
+            <StackPanel Orientation="Horizontal">
+                <AccessText Text="Name:" />
+                <AccessText Foreground="Red" Text="*" />
+            </StackPanel>
         </Label>
         <TextBox
             Grid.Row="6"
+            Grid.Column="1"
+            Style="{StaticResource GridTextBoxStyle}"
+            Text="{Binding ShifterConfig.AppName}" />
+        <Label
+            Grid.Row="7"
+            Grid.Column="0"
+            Style="{StaticResource GridLabelBoxStyle}">
+            Pattern:
+        </Label>
+        <TextBox
+            Grid.Row="7"
             Grid.Column="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
@@ -145,13 +163,13 @@
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto" />
         <Label
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             Exclude file:
         </Label>
         <TextBox
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="1"
             HorizontalContentAlignment="Stretch"
             VerticalContentAlignment="Stretch"
@@ -161,14 +179,14 @@
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto" />
         <CheckBox
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.RemoveAll}"
             Style="{StaticResource CustomCheckBox}">
             Delete all before
         </CheckBox>
         <CheckBox
-            Grid.Row="9"
+            Grid.Row="10"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.CreateCopy}"
             Style="{StaticResource CustomCheckBox}">
@@ -176,32 +194,32 @@
         </CheckBox>
 
         <CheckBox
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="1"
             IsChecked="{Binding ShifterConfig.Override}"
             Style="{StaticResource CustomCheckBox}">
             Overwrite files
         </CheckBox>
         <Label
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             Type:
         </Label>
         <ComboBox
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="1"
             ItemsSource="{Binding Types}"
             SelectedItem="{Binding ShifterConfig.Type}"
             Style="{StaticResource GridComboBox}" />
         <Label
-            Grid.Row="12"
+            Grid.Row="13"
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             Versions:
         </Label>
         <ComboBox
-            Grid.Row="12"
+            Grid.Row="13"
             Grid.Column="1"
             Background="Aqua"
             ItemsSource="{Binding Versions}"
@@ -209,7 +227,7 @@
             Style="{StaticResource GridComboBox}" />
 
         <WrapPanel
-            Grid.Row="17"
+            Grid.Row="19"
             Grid.ColumnSpan="3"
             Orientation="Horizontal">
             <Button
@@ -242,13 +260,13 @@
                 Style="{StaticResource ButtonFormStyle}" />
         </WrapPanel>
         <ProgressBar
-            Grid.Row="18"
+            Grid.Row="20"
             Grid.ColumnSpan="3"
             Visibility="{Binding IsProgressBarVisible, Converter={StaticResource BooleanVisibilityConverter}}"
             Value="{Binding ProgressValue}" />
         <Grid
             Grid.Row="2"
-            Grid.RowSpan="15"
+            Grid.RowSpan="17"
             Grid.Column="2"
             Margin="20,0,0,20">
             <Grid.RowDefinitions>

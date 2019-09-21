@@ -5,15 +5,33 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
 {
     public class ShifterConfig : BaseShifterConfig, ICloneable
     {
-        private string _destinationPath, _sourcePath, _type, _version, _destinationZipPath;
+        private string _destinationPath, _sourcePath, _type, _version, _destinationZipPath, _appName;
 
+        private event SourcePathEdit _sourcePathEdit;
+
+        public event SourcePathEdit SourcePathEdit
+        {
+            add => _sourcePathEdit += value;
+            remove => _sourcePathEdit -= value;
+        }
 
         public string SourcePath
         {
             get => _sourcePath;
-            set => SetProperty(ref _sourcePath, value);
+            set
+            {
+                SetProperty(ref _sourcePath, value);
+                _sourcePathEdit?.Invoke(_sourcePath);
+            }
         }
-
+        public string AppName
+        {
+            get => _appName;
+            set
+            {
+                SetProperty(ref _appName, value);
+            }
+        }
         public string DestinationPath
         {
             get => _destinationPath;

@@ -12,7 +12,8 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
     {
         private string _configPath = string.Empty; //, _sourcePath, _type, _version;
 
-        public List<ProgramType> ProgramType { get; set; } = new List<ProgramType>();
+        public ProgramTypeList ProgramType { get; set; } = new ProgramTypeList();
+
         public List<string> AppVersion { get; set; } = new List<string>();
 
         public string ConfigPath
@@ -28,13 +29,13 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
         [JsonIgnore]
         public string ProgramTypeLabel
         {
-            get => ProgramType.Cast<object>().ToList().SerializationYaml();
+            get => ProgramType?.ProgramType.Cast<object>().ToList().SerializationYaml();
             set
             {
                 var programType = value.DeserializationYaml<ProgramTypeList>();
                 if (programType != null)
                 {
-                    ProgramType = programType.ProgramType;
+                    ProgramType = programType;
                 }
             }
         }

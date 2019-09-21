@@ -1,4 +1,5 @@
-﻿using Fenit.Toolbox.Core.Answers;
+﻿using Fenit.HelpTool.Core.Service.Model.Shifter;
+using Fenit.Toolbox.Core.Answers;
 
 namespace Fenit.HelpTool.Core.Service.Abstract
 {
@@ -8,5 +9,8 @@ namespace Fenit.HelpTool.Core.Service.Abstract
         Response<string> Load();
         Response SaveXml<T>(T obj) where T : class, new();
         Response Save(string text);
+
+        Response<FileInfo> GetFileInfo(string path);
+
     }
 }

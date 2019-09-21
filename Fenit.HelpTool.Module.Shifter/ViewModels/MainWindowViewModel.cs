@@ -12,9 +12,7 @@ using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
 using Fenit.HelpTool.UI.Core.Events.KeyBinding;
-using Fenit.Toolbox.Yaml.Extension;
 using InstallPackageLib.Android;
-using InstallPackageLib.ProgramsType;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
@@ -23,6 +21,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private readonly IFileService _fileService;
         private readonly IEventAggregator _eventAggregator;
         private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
@@ -35,16 +34,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private ShifterConfig _shifterConfig;
         private ShifterConfigSettings _shifterConfigSettings;
         private List<ShifterConfig> _shifterConfigsList;
+        private List<string> _types;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
-            IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer) :
+            IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer, IFileService fileService) :
             base(log)
         {
             _serializationService = serializationService;
             _shifterService = shifterService;
             _unityContainer = unityContainer;
             _eventAggregator = eventAggregator;
-            ShifterConfigClear();
+            _fileService = fileService;
+            _types = new List<string>();
+            SetShifterConfig(new ShifterConfig());
             ReloadData();
             CreateCommand();
             _openDialog = new OpenDialog();
@@ -80,7 +82,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             get => _progressValue;
             set => SetProperty(ref _progressValue, value);
         }
-        
+
         public DelegateCommand OpenDestinationZipPathCommand { get; set; }
 
         public DelegateCommand OpenSourcePathCommand { get; set; }
@@ -100,8 +102,12 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand AddCommand { get; set; }
         public DelegateCommand LoadCommand { get; set; }
 
-        
-        public List<string> Types => _shifterConfigSettings.AppVersion;
+        public List<string> Types
+        {
+            get => _types;
+            set => SetProperty(ref _types, value);
+        }
+
         public List<string> Versions => _shifterConfigSettings.AppVersion;
 
         private void EventAggregatorSubscribe()
@@ -119,7 +125,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             DeleteCommand = new DelegateCommand<int?>(Delete, CanDo);
             SelectCommand = new DelegateCommand<int?>(Select);
             SaveCommand = new DelegateCommand(Save);
-            ClearCommand = new DelegateCommand(ShifterConfigClear);
+            ClearCommand = new DelegateCommand(() =>
+                SetShifterConfig(new ShifterConfig()));
             RunThisCommand = new DelegateCommand<int?>(RunThis, CanDo);
             RunCommand = new DelegateCommand(Run, CanDo);
             CloneCommand = new DelegateCommand<int?>(Clone, CanDo);
@@ -146,7 +153,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void Load()
         {
-           // if (getExtension == ".apk")
+            // if (getExtension == ".apk")
             {
                 var apkReader = new ApkReader();
                 //apkReader.Read(filename);
@@ -250,8 +257,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void Clone(int? id)
         {
-            ShifterConfig = null;
-            ShifterConfig = new ShifterConfig();
+            SetShifterConfig(new ShifterConfig());
 
             var newConfig = (ShifterConfig) SelectShifter(id).Clone();
 
@@ -318,11 +324,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             Run(SelectShifter(id));
         }
 
-        private void ShifterConfigClear()
-        {
-            ShifterConfig = null;
-            ShifterConfig = new ShifterConfig();
-        }
 
         private void SaveAndRefreshList()
         {
@@ -330,19 +331,10 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             RefreshList();
         }
 
-        private void Test()
-        {
-            var typ = new ProgramTypeList()
-            {
-                ProgramType = ProgramType.Create(),
-            };
-            var gg = typ.SerializationYaml();
-        }
+
         private void ReloadData()
         {
-
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
-            Test();
             RefreshList();
             RaisePropertyChanged(nameof(Types));
             RaisePropertyChanged(nameof(Versions));
@@ -389,13 +381,35 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void Save()
         {
             SaveAndRefreshList();
-            ShifterConfigClear();
+            SetShifterConfig(new ShifterConfig());
             _eventAggregator.GetEvent<LogEvent>().Publish("Save ShifterConfig");
+        }
+
+        private void SetShifterConfig(ShifterConfig shifterConfig)
+        {
+            if (ShifterConfig != null)
+            {
+                ShifterConfig.SourcePathEdit -= ShifterConfig_SourcePathEdit;
+                ShifterConfig = null;
+            }
+
+            ShifterConfig = shifterConfig;
+            ShifterConfig.SourcePathEdit += ShifterConfig_SourcePathEdit;
+        }
+
+        private void ShifterConfig_SourcePathEdit(string path)
+        {
+            var info = _fileService.GetFileInfo(path);
+            if (info.IsSucces)
+            {
+                var fileName = info.Value;
+                var p = _shifterConfigSettings.ProgramType.FindProgram(fileName.FileNameWithoutExtension);
+            }
         }
 
         private void Select(int? id)
         {
-            ShifterConfig = SelectShifter(id);
+            SetShifterConfig(SelectShifter(id));
             RunCommand.RaiseCanExecuteChanged();
         }
 

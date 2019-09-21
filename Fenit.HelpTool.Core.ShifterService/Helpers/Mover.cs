@@ -7,6 +7,7 @@ using System.Threading;
 using Fenit.HelpTool.Core.Service.Model.Extension;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.Toolbox.Core.Answers;
+using FileInfo = System.IO.FileInfo;
 
 namespace Fenit.HelpTool.Core.ShifterService.Helpers
 {

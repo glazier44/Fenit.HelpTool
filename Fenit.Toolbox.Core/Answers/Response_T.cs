@@ -8,5 +8,12 @@
         {
             Value = el;
         }
+
+        public static Response<T> Create(T value)
+        {
+            var res=new Response<T>();
+            res.AddValue(value);
+            return res;
+        }
     }
 }

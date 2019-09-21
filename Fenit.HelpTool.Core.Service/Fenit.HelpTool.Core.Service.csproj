@@ -64,6 +64,9 @@
     <Compile Include="Model\Settings\ProgramTypeList.cs" />
     <Compile Include="Model\Settings\ShifterConfigSettings.cs" />
     <Compile Include="Model\Settings\Settings.cs" />
+    <Compile Include="Model\Settings\SourcePathEdit.cs" />
+    <Compile Include="Model\Shifter\FileInfo.cs" />
+    <Compile Include="Model\Shifter\SourcePathEdit.cs" />
     <Compile Include="Model\Shifter\ShifterConfig.cs" />
     <Compile Include="Model\Shifter\BaseShifterConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

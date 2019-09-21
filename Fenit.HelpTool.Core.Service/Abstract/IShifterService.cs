@@ -7,7 +7,6 @@ namespace Fenit.HelpTool.Core.Service.Abstract
     public interface IShifterService
     {
         Task<Response> Move(ShifterConfig shifterConfig);
-
         bool Cancel();
     }
 }
