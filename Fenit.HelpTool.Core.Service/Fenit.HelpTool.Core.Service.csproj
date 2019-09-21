@@ -61,6 +61,7 @@
     <Compile Include="Abstract\IShifterService.cs" />
     <Compile Include="Model\Event\ProgressEvent.cs" />
     <Compile Include="Model\Extension\ShifterConfigExt.cs" />
+    <Compile Include="Model\Settings\ProgramTypeList.cs" />
     <Compile Include="Model\Settings\ShifterConfigSettings.cs" />
     <Compile Include="Model\Settings\Settings.cs" />
     <Compile Include="Model\Shifter\ShifterConfig.cs" />

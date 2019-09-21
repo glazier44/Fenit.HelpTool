@@ -29,7 +29,14 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
         public string ProgramTypeLabel
         {
             get => ProgramType.Cast<object>().ToList().SerializationYaml();
-            set => ProgramType = value.DeserializationYaml<ProgramType>();
+            set
+            {
+                var programType = value.DeserializationYaml<ProgramTypeList>();
+                if (programType != null)
+                {
+                    ProgramType = programType.ProgramType;
+                }
+            }
         }
 
         [JsonIgnore]

@@ -7,7 +7,7 @@ namespace Fenit.Toolbox.Yaml.Extension
 {
     public static class Extensions
     {
-        public static string SerializationYaml(this List<object> srcDir)
+        public static string SerializationYaml(this object srcDir)
         {
             using (var stringWriter = new StringWriter())
             {
@@ -17,13 +17,11 @@ namespace Fenit.Toolbox.Yaml.Extension
             }
         }
 
-        public static List<T> DeserializationYaml<T>(this string @string)
+        public static T DeserializationYaml<T>(this string @string)
         {
-
             var deserializer = new DeserializerBuilder()
                 .Build();
-
-            var contacts = deserializer.Deserialize<List<T>>(@string);
+            var contacts = deserializer.Deserialize<T>(@string);
             return contacts;
         }
     }

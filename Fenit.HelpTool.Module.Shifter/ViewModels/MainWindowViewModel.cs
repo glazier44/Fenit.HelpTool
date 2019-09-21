@@ -332,8 +332,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void Test()
         {
-            var typ = ProgramType.Create();
-            var gg = typ.Cast<object>().ToList().SerializationYaml();
+            var typ = new ProgramTypeList()
+            {
+                ProgramType = ProgramType.Create(),
+            };
+            var gg = typ.SerializationYaml();
         }
         private void ReloadData()
         {
