@@ -38,8 +38,23 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
             {
                 var list = LoadFromFile<List<ShifterConfig>>(path);
                 if (list != null)
+                {
+                    foreach (var shifterConfig in list.GroupBy(w => w.Id))
+                        if (shifterConfig.Count() > 1 || shifterConfig.First().Id == 0)
+                        {
+                            var firstRow = shifterConfig.First().Id > 0;
+                            foreach (var config in shifterConfig)
+                            {
+                                if (!firstRow) config.AddId(list);
+
+                                firstRow = false;
+                            }
+                        }
+
                     return list.OrderBy(w => w.Order).ToList();
+                }
             }
+
             return result;
         }
 
@@ -49,9 +64,7 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
 
         public bool SaveShifterConfigSettings(ShifterConfigSettings shifterConfigSettings)
         {
-            var settings = LoadSettings();
-            if (settings != null) settings = new Settings();
-
+            var settings = LoadSettings() ?? new Settings();
             settings.ShifterConfigSettings = shifterConfigSettings;
             SaveSettings(settings);
             return true;
@@ -59,11 +72,7 @@ namespace Fenit.HelpTool.Core.SerializationService.Implement
 
         public ShifterConfigSettings LoadShifterConfigSettings()
         {
-            var result = new ShifterConfigSettings();
-            var settings = LoadSettings();
-            if (settings != null && settings.ShifterConfigSettings != null) return settings.ShifterConfigSettings;
-
-            return result;
+            return LoadSettings()?.ShifterConfigSettings ?? new ShifterConfigSettings();
         }
 
         #endregion

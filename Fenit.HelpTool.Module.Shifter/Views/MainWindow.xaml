@@ -295,10 +295,6 @@
                 Command="{Binding ReloadCommand}"
                 Content="Reload"
                 Style="{StaticResource ButtonFormStyle}" />
-            <Button
-                Command="{Binding LoadCommand}"
-                Content="Load"
-                Style="{StaticResource ButtonFormStyle}" />
         </WrapPanel>
         <ProgressBar
             Grid.Row="20"

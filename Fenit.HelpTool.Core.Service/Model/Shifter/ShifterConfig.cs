@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Fenit.HelpTool.Core.Service.Model.Shifter.Events;
 using Fenit.Toolbox.Core.Extension;
 
@@ -124,6 +126,11 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         {
             Type = Type;
 
+        }
+
+        public void AddId(List<ShifterConfig> shifterConfig)
+        {
+            Id = (shifterConfig.Any() ? shifterConfig.OrderBy(w => w.Id).Last().Id : 0) + 1;
         }
     }
 }

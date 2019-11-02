@@ -155,8 +155,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             AddCommand = new DelegateCommand(Add, CanDo);
         }
 
-
-
         private bool CanUp(int? id)
         {
             var (up, @this, down) = SelectShifters(id);
@@ -360,9 +358,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
                 }
                 else
                 {
-                    ShifterConfig.Id =
-                        (_shifterConfigsList.Any() ? _shifterConfigsList.OrderBy(w => w.Id).Last().Id : 0) +
-                        1;
+                    ShifterConfig.AddId(_shifterConfigsList);
                     _shifterConfigsList.Add(ShifterConfig);
                 }
             }
