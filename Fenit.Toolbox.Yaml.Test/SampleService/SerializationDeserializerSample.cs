@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Fenit.HelpTool.Core.Service.Model.Settings;
 using Fenit.Toolbox.Yaml.Test.Models;
 using InstallPackageLib.ProgramsType;
 using YamlDotNet.Serialization;
