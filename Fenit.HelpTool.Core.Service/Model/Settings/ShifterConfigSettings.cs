@@ -32,10 +32,10 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
             get => ProgramType?.ProgramType.Cast<object>().ToList().SerializationYaml();
             set
             {
-                var programType = value.DeserializationYaml<ProgramTypeList>();
+                var programType = value.DeserializationYaml<List<ProgramType>>();
                 if (programType != null)
                 {
-                    ProgramType = programType;
+                    ProgramType.ProgramType = programType;
                 }
             }
         }
