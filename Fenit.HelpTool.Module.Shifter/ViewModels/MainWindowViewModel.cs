@@ -113,8 +113,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             get => _types;
             set => SetProperty(ref _types, value);
         }
-        public List<string> Versions => _shifterConfigSettings.AppVersion;
-
         private void EventAggregatorSubscribe()
         {
             _eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
@@ -342,7 +340,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             RefreshList();
             Types = _shifterConfigSettings.ProgramType.GetProgramTypeName;
-            RaisePropertyChanged(nameof(Versions));
         }
 
         private void RefreshList()

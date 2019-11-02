@@ -14,8 +14,6 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
 
         public ProgramTypeList ProgramType { get; set; } = new ProgramTypeList();
 
-        public List<string> AppVersion { get; set; } = new List<string>();
-
         public string ConfigPath
         {
             get => _configPath;
@@ -38,13 +36,6 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
                     ProgramType.ProgramType = programType;
                 }
             }
-        }
-
-        [JsonIgnore]
-        public string AppVersionLabel
-        {
-            get => AppVersion.JoinText();
-            set => AppVersion = value.SplitText();
         }
     }
 }

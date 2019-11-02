@@ -230,13 +230,13 @@
             Style="{StaticResource GridLabelBoxStyle}">
             Versions:
         </Label>
-        <ComboBox
+
+
+        <TextBox
             Grid.Row="14"
             Grid.Column="1"
-            Background="Aqua"
-            ItemsSource="{Binding Versions}"
-            SelectedItem="{Binding ShifterConfig.Version}"
-            Style="{StaticResource GridComboBox}" />
+            Style="{StaticResource GridTextBoxStyle}"
+            Text="{Binding ShifterConfig.Version}" />
 
         <WrapPanel
             Grid.Row="19"
