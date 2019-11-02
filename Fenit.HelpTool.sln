@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Core", "Fenit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Yaml", "Fenit.Toolbox.Yaml\Fenit.Toolbox.Yaml.csproj", "{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fenit.Toolbox.Yaml.Test", "Fenit.Toolbox.Yaml.Test\Fenit.Toolbox.Yaml.Test.csproj", "{03224220-5600-456B-B0CB-61210F62EFFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,10 @@ Global
 		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -156,6 +162,7 @@ Global
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
 		{D469322B-1A48-434D-BA78-49D668822EFE} = {96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}
 		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13} = {96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}
+		{03224220-5600-456B-B0CB-61210F62EFFB} = {92D4B92C-A4DF-4213-A08C-11ECC7B81BBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}
