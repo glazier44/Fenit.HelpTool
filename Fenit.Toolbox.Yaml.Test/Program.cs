@@ -11,7 +11,7 @@ namespace Fenit.Toolbox.Yaml.Test
             Console.WriteLine("Start..");
 
             var serializationDeserializerSample = new SerializationDeserializerSample();
-            serializationDeserializerSample.ClassDes();
+            serializationDeserializerSample.Test();
 
 
 

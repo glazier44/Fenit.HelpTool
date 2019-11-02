@@ -11,4 +11,14 @@
     <PackageReference Include="YamlDotNet" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Fenit.HelpTool.Module.Settings\Fenit.HelpTool.Module.Settings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="InstallPackageLib">
+      <HintPath>..\Fenit.HelpTool.Core.Service\InstallPackageLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
