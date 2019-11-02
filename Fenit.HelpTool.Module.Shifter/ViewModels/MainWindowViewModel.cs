@@ -34,7 +34,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private ShifterConfig _shifterConfig;
         private ShifterConfigSettings _shifterConfigSettings;
         private List<ShifterConfig> _shifterConfigsList;
-        private List<string> _types;
+        private List<string> _types, _programs;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
             IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer, IFileService fileService) :
@@ -46,6 +46,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _eventAggregator = eventAggregator;
             _fileService = fileService;
             _types = new List<string>();
+            _programs = new List<string>();
             SetShifterConfig(new ShifterConfig());
             ReloadData();
             CreateCommand();
@@ -102,12 +103,16 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand AddCommand { get; set; }
         public DelegateCommand LoadCommand { get; set; }
 
+        public List<string> Programs
+        {
+            get => _programs;
+            set => SetProperty(ref _programs, value);
+        }
         public List<string> Types
         {
             get => _types;
             set => SetProperty(ref _types, value);
         }
-
         public List<string> Versions => _shifterConfigSettings.AppVersion;
 
         private void EventAggregatorSubscribe()
@@ -336,7 +341,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             RefreshList();
-            RaisePropertyChanged(nameof(Types));
+            Types = _shifterConfigSettings.ProgramType.GetProgramTypeName;
             RaisePropertyChanged(nameof(Versions));
         }
 
@@ -390,11 +395,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             if (ShifterConfig != null)
             {
                 ShifterConfig.SourcePathEdit -= ShifterConfig_SourcePathEdit;
+                ShifterConfig.TypeEdit -= ShifterConfig_TypeEdit;
                 ShifterConfig = null;
             }
 
             ShifterConfig = shifterConfig;
             ShifterConfig.SourcePathEdit += ShifterConfig_SourcePathEdit;
+            ShifterConfig.TypeEdit += ShifterConfig_TypeEdit;
+        }
+
+        private void ShifterConfig_TypeEdit(string type)
+        {
+            Programs = _shifterConfigSettings.ProgramType.FindProgramFromType(type).Programs.Select(w => w.Name)
+                .ToList();
         }
 
         private void ShifterConfig_SourcePathEdit(string path)
@@ -403,7 +416,13 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             if (info.IsSucces)
             {
                 var fileName = info.Value;
-                var p = _shifterConfigSettings.ProgramType.FindProgram(fileName.FileNameWithoutExtension);
+                var (programType, program) =
+                    _shifterConfigSettings.ProgramType.FindProgram(fileName.FileNameWithoutExtension);
+                if (programType != null && program != null)
+                {
+                    ShifterConfig.Type = programType.Name;
+                    ShifterConfig.Program = program.Name;
+                }
             }
         }
 

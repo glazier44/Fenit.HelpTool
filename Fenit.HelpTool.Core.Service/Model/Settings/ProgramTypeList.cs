@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using InstallPackageLib.ProgramsType;
 
 namespace Fenit.HelpTool.Core.Service.Model.Settings
@@ -10,28 +7,26 @@ namespace Fenit.HelpTool.Core.Service.Model.Settings
     public class ProgramTypeList
     {
         public List<ProgramType> ProgramType { get; set; } = new List<ProgramType>();
+        public List<string> GetProgramTypeName => ProgramType.Select(w => w.Name).ToList();
 
-        public Program FindProgram(string name)
+        public (ProgramType, Program) FindProgram(string name)
         {
             foreach (var programType in ProgramType)
             {
                 var program = programType.Programs.FirstOrDefault(w => name.Contains(w.Name));
-                if (program != null)
-                {
-                    return program;
-                }
+                if (program != null) return (programType, program);
             }
-           // _programTypeListEvent?.Invoke(new ProgramType());
-           return null;
-
+            return (null, null);
         }
-
-        private event ProgramTypeListEvent _programTypeListEvent;
-
-        public event ProgramTypeListEvent ProgramTypeListEvent
+        public ProgramType FindProgramFromType(string type)
         {
-            add => _programTypeListEvent += value;
-            remove => _programTypeListEvent -= value;
+            return ProgramType.FirstOrDefault(w => type.Contains(w.Name));
         }
+        //private event ProgramTypeListEvent _programTypeListEvent;
+        //public event ProgramTypeListEvent ProgramTypeListEvent
+        //{
+        //    add => _programTypeListEvent += value;
+        //    remove => _programTypeListEvent -= value;
+        //}
     }
 }
