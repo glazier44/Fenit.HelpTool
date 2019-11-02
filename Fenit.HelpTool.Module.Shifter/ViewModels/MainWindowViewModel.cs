@@ -21,8 +21,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private readonly IFileService _fileService;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IFileService _fileService;
         private readonly OpenDialog _openDialog;
         private readonly ISerializationService _serializationService;
         private readonly IShifterService _shifterService;
@@ -37,7 +37,8 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private List<string> _types, _programs;
 
         public MainWindowViewModel(ILoggerService log, ISerializationService serializationService,
-            IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer, IFileService fileService) :
+            IShifterService shifterService, IEventAggregator eventAggregator, IUnityContainer unityContainer,
+            IFileService fileService) :
             base(log)
         {
             _serializationService = serializationService;
@@ -101,18 +102,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         public DelegateCommand CancelCommand { get; set; }
         public DelegateCommand ReloadCommand { get; set; }
         public DelegateCommand AddCommand { get; set; }
-        public DelegateCommand LoadCommand { get; set; }
 
         public List<string> Programs
         {
             get => _programs;
             set => SetProperty(ref _programs, value);
         }
+
         public List<string> Types
         {
             get => _types;
             set => SetProperty(ref _types, value);
         }
+
         private void EventAggregatorSubscribe()
         {
             _eventAggregator.GetEvent<ProgressEvent>().Subscribe(Progress);
@@ -136,34 +138,24 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
             OpenSourcePathCommand = new DelegateCommand(() =>
             {
-                ShifterConfig.SourcePath = ExploreOpen(_shifterConfig.SourcePath);
+                ShifterConfig.SourcePath = GetDir();
             });
             OpenDestinationPathCommand = new DelegateCommand(() =>
             {
-                ShifterConfig.DestinationPath = ExploreOpen(_shifterConfig.DestinationPath);
+                ShifterConfig.DestinationPath = GetDir();
             });
             OpenDestinationZipPathCommand = new DelegateCommand(() =>
             {
-                ShifterConfig.DestinationZipPath = ExploreOpen(_shifterConfig.DestinationZipPath);
+                ShifterConfig.DestinationZipPath = GetDir();
             });
             DownCommand = new DelegateCommand<int?>(ElementDown, CanDown);
             UpCommand = new DelegateCommand<int?>(ElementUp, CanUp);
             ArchiveCommand = new DelegateCommand<int?>(Archive);
             ReloadCommand = new DelegateCommand(ReloadData);
             AddCommand = new DelegateCommand(Add, CanDo);
-            LoadCommand = new DelegateCommand(Load);
         }
 
-        private void Load()
-        {
-            // if (getExtension == ".apk")
-            {
-                var apkReader = new ApkReader();
-                //apkReader.Read(filename);
-                //cbPrgType.SelectedIndex = _programTypes.GetIndex("Android");
-                //return apkReader.ApkModel.VersionName;
-            }
-        }
+
 
         private bool CanUp(int? id)
         {
@@ -196,17 +188,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             var res = _openDialog.SelectFolder();
             if (res.IsSucces) return res.Value;
             return string.Empty;
-        }
-
-        private string ExploreOpen(string path)
-        {
-            //TODOTK new dialogs
-            //if (!Directory.Exists(path))
-            //{
-            //    path = _tempPath;
-            //}
-            //  return _tempPath;
-            return GetDir();
         }
 
 
@@ -340,6 +321,15 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             RefreshList();
             Types = _shifterConfigSettings.ProgramType.GetProgramTypeName;
+
+            // if (getExtension == ".apk")
+            {
+                var apkReader = new ApkReader();
+                //apkReader.Read(filename);
+                //cbPrgType.SelectedIndex = _programTypes.GetIndex("Android");
+                //return apkReader.ApkModel.VersionName;
+            }
+            //TODO na podstawie nowych danych przelicz
         }
 
         private void RefreshList()
@@ -399,12 +389,19 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             ShifterConfig = shifterConfig;
             ShifterConfig.SourcePathEdit += ShifterConfig_SourcePathEdit;
             ShifterConfig.TypeEdit += ShifterConfig_TypeEdit;
+            ShifterConfig.LoadDataOnForm();
         }
 
         private void ShifterConfig_TypeEdit(string type)
         {
-            Programs = _shifterConfigSettings.ProgramType.FindProgramFromType(type).Programs.Select(w => w.Name)
-                .ToList();
+            if (!string.IsNullOrEmpty(type))
+            {
+                var programs = _shifterConfigSettings.ProgramType.FindProgramFromType(type);
+                if (programs != null)
+                {
+                    Programs = programs.Programs.Select(w => w.Name).ToList();
+                }
+            }
         }
 
         private void ShifterConfig_SourcePathEdit(string path)
@@ -412,14 +409,17 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             var info = _fileService.GetFileInfo(path);
             if (info.IsSucces)
             {
-                var fileName = info.Value;
+                var fileInfo = info.Value;
                 var (programType, program) =
-                    _shifterConfigSettings.ProgramType.FindProgram(fileName.FileNameWithoutExtension);
+                    _shifterConfigSettings.ProgramType.FindProgram(fileInfo.FileNameWithoutExtension);
                 if (programType != null && program != null)
                 {
                     ShifterConfig.Type = programType.Name;
                     ShifterConfig.Program = program.Name;
                 }
+
+                ShifterConfig.Version = fileInfo.Version;
+                ShifterConfig.PrepareAppName();
             }
         }
 
@@ -438,14 +438,14 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         {
             ShifterConfig up = null, @this = null, down = null;
 
-            var thisIndes = _shifterConfigsList.FindIndex(w => w.Id == id);
-            if (thisIndes >= 0)
+            var findIndex = _shifterConfigsList.FindIndex(w => w.Id == id);
+            if (findIndex >= 0)
             {
-                @this = _shifterConfigsList[thisIndes];
+                @this = _shifterConfigsList[findIndex];
 
-                if (thisIndes > 0) up = _shifterConfigsList[thisIndes - 1];
+                if (findIndex > 0) up = _shifterConfigsList[findIndex - 1];
 
-                if (thisIndes < _shifterConfigsList.Count - 1) down = _shifterConfigsList[thisIndes + 1];
+                if (findIndex < _shifterConfigsList.Count - 1) down = _shifterConfigsList[findIndex + 1];
             }
 
             return (up, @this, down);

@@ -276,7 +276,7 @@
 
             <Style x:Key="GridComboBox" TargetType="ComboBox">
                 <Setter Property="Padding" Value="7,3,7,3" />
-                <Setter Property="Margin" Value="0,3,0,3" />
+                <Setter Property="Margin" Value="2" />
             </Style>
 
         </ResourceDictionary>

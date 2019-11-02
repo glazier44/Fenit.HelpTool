@@ -43,18 +43,24 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
             ShifterConfigSettings = _serializationService.LoadShifterConfigSettings();
         }
 
-        private string GetDir() //TODOTK FRD
+        private string GetDir(string path)
         {
-            var res = _openDialog.SelectFolder();
+            var res = _openDialog.SelectFolder(path);
             if (res.IsSucces) return res.Value;
             return string.Empty;
         }
 
         private void CreateCommand()
         {
-            OpenSourcePathCommand = new DelegateCommand(() => { ShifterConfigSettings.ConfigPath = GetDir(); });
+            OpenSourcePathCommand = new DelegateCommand(GetConfigPathWindow);
             SaveCommand = new DelegateCommand(Save);
             //CancelCommand = new DelegateCommand(CancelCopy, CanCancel);
+        }
+
+        private void GetConfigPathWindow()
+        {
+            var path = GetDir(ShifterConfigSettings.ConfigPath);
+            if (!string.IsNullOrEmpty(path)) ShifterConfigSettings.ConfigPath = path;
         }
 
         //private bool Valid()

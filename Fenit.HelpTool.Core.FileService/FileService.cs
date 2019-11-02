@@ -37,6 +37,15 @@ namespace Fenit.HelpTool.Core.FileService
             if (Directory.Exists(path))
             {
                 res.FileName = path.GetFileBasedExtensionsFile("exe", "cab", "ex_", "dll", "apk");
+                if (path.HasFileExtension("exe", "ex_", "dll"))
+                {
+                    res.Version = Path.Combine(path, res.FileName).GetVersion(true); //TODO: dodac z configa
+                }
+                else if (path.HasFileExtension("apk"))
+                {
+                    //TODO: event żeby wczytało z zewnątrz
+                }
+
             }
             return Response<FileInfo>.Create(res);
         }

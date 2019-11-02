@@ -6,7 +6,14 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
 {
     public class ShifterConfig : BaseShifterConfig, ICloneable
     {
-        private string _destinationPath, _sourcePath, _type, _version, _destinationZipPath, _appName, _program;
+        private string _destinationPath,
+            _sourcePath,
+            _type,
+            _version,
+            _destinationZipPath,
+            _appName,
+            _appNamePattern,
+            _program;
 
 
         public string SourcePath
@@ -23,6 +30,12 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         {
             get => _appName;
             set => SetProperty(ref _appName, value);
+        }
+
+        public string AppNamePattern
+        {
+            get => _appNamePattern;
+            set => SetProperty(ref _appNamePattern, value);
         }
 
         public string DestinationPath
@@ -75,7 +88,7 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
             return MemberwiseClone();
         }
 
-        
+
         private event TypeEdit _typeEdit;
 
         public event TypeEdit TypeEdit
@@ -92,6 +105,25 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
             remove => _sourcePathEdit -= value;
         }
 
+        public void PrepareAppName()
+        {
+            if (!string.IsNullOrEmpty(AppNamePattern))
+            {
+                var text = AppNamePattern.Replace("[N]", Program);
+                text = text.Replace("[V]", Version);
+                text = text.Replace("[D]", DateTime.Now.ToString("ddMMyyyy"));
+                AppName = text;
+            }
+            else
+            {
+                AppName = Program + ".zip";
+            }
+        }
 
+        public void LoadDataOnForm()
+        {
+            Type = Type;
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -22,6 +23,30 @@ namespace Fenit.Toolbox.Core.Extension
                 }
             }
             return string.Empty;
+        }
+        public static string GetVersion(this string path, bool removeFeature)
+        {
+            var versionInfo = FileVersionInfo.GetVersionInfo(path);
+            if (removeFeature)
+            {
+                var sp = versionInfo.ProductVersion.Split('-');
+                return sp[0];
+            }
+            return versionInfo.ProductVersion;
+        }
+
+
+        public static bool HasFileExtension(this string path, params string[] ext)
+        {
+            foreach (var el in ext)
+            {
+                var res = path.GetFileBasedExtension(el);
+                if (!string.IsNullOrEmpty(res))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public static string GetFileWithoutExtension(this string fileName)
         {
