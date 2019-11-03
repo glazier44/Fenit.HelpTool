@@ -116,6 +116,10 @@
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fenit.Toolbox.Android\Fenit.Toolbox.Android.csproj">
+      <Project>{EB167AAF-E0CC-43C1-8B60-346AC139B62A}</Project>
+      <Name>Fenit.Toolbox.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>

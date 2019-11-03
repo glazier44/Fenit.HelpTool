@@ -59,12 +59,12 @@
     <Compile Include="Abstract\ILoggerService.cs" />
     <Compile Include="Abstract\ISerializationService.cs" />
     <Compile Include="Abstract\IShifterService.cs" />
+    <Compile Include="Events\GetAndroidFileInfo.cs" />
     <Compile Include="Model\Event\ProgressEvent.cs" />
     <Compile Include="Model\Extension\ShifterConfigExt.cs" />
     <Compile Include="Model\Settings\ProgramTypeList.cs" />
     <Compile Include="Model\Settings\ShifterConfigSettings.cs" />
     <Compile Include="Model\Settings\Settings.cs" />
-    <Compile Include="Model\Settings\SourcePathEdit.cs" />
     <Compile Include="Model\Shifter\Events\TypeEdit.cs" />
     <Compile Include="Model\Shifter\FileInfo.cs" />
     <Compile Include="Model\Shifter\Events\SourcePathEdit.cs" />

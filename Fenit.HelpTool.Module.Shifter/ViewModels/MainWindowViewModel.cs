@@ -12,7 +12,7 @@ using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
 using Fenit.HelpTool.UI.Core.Events.KeyBinding;
-using InstallPackageLib.Android;
+using Fenit.Toolbox.Android.ApkReadVersion;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
@@ -53,6 +53,13 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             CreateCommand();
             _openDialog = new OpenDialog();
             EventAggregatorSubscribe();
+        }
+
+        private string FileServiceGetAndroidFileInfo(string fullPath)
+        {
+            var apkReader = new ApkReader();
+            apkReader.Read(fullPath);
+            return apkReader.ApkModel.VersionName;
         }
 
         public ObservableCollection<BaseShifterConfig> SaveList
@@ -313,20 +320,11 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             RefreshList();
         }
 
-
         private void ReloadData()
         {
             _shifterConfigSettings = _serializationService.LoadShifterConfigSettings();
             RefreshList();
             Types = _shifterConfigSettings.ProgramType.GetProgramTypeName;
-
-            // if (getExtension == ".apk")
-            {
-                var apkReader = new ApkReader();
-                //apkReader.Read(filename);
-                //cbPrgType.SelectedIndex = _programTypes.GetIndex("Android");
-                //return apkReader.ApkModel.VersionName;
-            }
             //TODO na podstawie nowych danych przelicz
         }
 
@@ -402,7 +400,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
 
         private void ShifterConfig_SourcePathEdit(string path)
         {
-            var info = _fileService.GetFileInfo(path);
+            var info = _fileService.GetFileInfo(path, FileServiceGetAndroidFileInfo);
             if (info.IsSucces)
             {
                 var fileInfo = info.Value;

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Fenit.HelpTool.Core.Service.Abstract;
+using Fenit.HelpTool.Core.Service.Events;
 using Fenit.Toolbox.Core.Answers;
 using Fenit.Toolbox.Core.Extension;
 using FileInfo = Fenit.HelpTool.Core.Service.Model.Shifter.FileInfo;
@@ -31,22 +32,24 @@ namespace Fenit.HelpTool.Core.FileService
             return text.SaveFile(OpenSaveDialog());
         }
 
-        public Response<FileInfo> GetFileInfo(string path)
+        public Response<FileInfo> GetFileInfo(string path, Func<string, string> getAndroidFileInfo)
         {
             var res = new FileInfo();
             if (Directory.Exists(path))
             {
                 res.FileName = path.GetFileBasedExtensionsFile("exe", "cab", "ex_", "dll", "apk");
+                var fullPath = Path.Combine(path, res.FileName);
                 if (path.HasFileExtension("exe", "ex_", "dll"))
                 {
-                    res.Version = Path.Combine(path, res.FileName).GetVersion(true); //TODO: dodac z configa
+                    res.Version = fullPath.GetVersion(true); //TODO: dodac z configa
                 }
                 else if (path.HasFileExtension("apk"))
                 {
-                    //TODO: event żeby wczytało z zewnątrz
+                    res.Version = getAndroidFileInfo?.Invoke(fullPath);
                 }
 
             }
+
             return Response<FileInfo>.Create(res);
         }
 
