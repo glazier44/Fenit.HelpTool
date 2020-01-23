@@ -47,8 +47,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Module.Help"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Core.Resource", "Fenit.HelpTool.Core.Resource\Fenit.HelpTool.Core.Resource.csproj", "{A085383D-3558-4E22-A0E7-9EB61F9B90E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Yaml", "Fenit.Toolbox.Yaml\Fenit.Toolbox.Yaml.csproj", "{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}"
+EndProject
+<<<<<<< HEAD
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fenit.Toolbox.Yaml.Test", "Fenit.Toolbox.Yaml.Test\Fenit.Toolbox.Yaml.Test.csproj", "{03224220-5600-456B-B0CB-61210F62EFFB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.Android", "Fenit.Toolbox.Android\Fenit.Toolbox.Android.csproj", "{EB167AAF-E0CC-43C1-8B60-346AC139B62A}"
 EndProject
+=======
+>>>>>>> beta
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,10 +130,21 @@ Global
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03224220-5600-456B-B0CB-61210F62EFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB167AAF-E0CC-43C1-8B60-346AC139B62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB167AAF-E0CC-43C1-8B60-346AC139B62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB167AAF-E0CC-43C1-8B60-346AC139B62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB167AAF-E0CC-43C1-8B60-346AC139B62A}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+>>>>>>> beta
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,7 +166,12 @@ Global
 		{37E15125-3B54-4092-9C65-9C942156EF46} = {A53D772C-7DE9-4863-9C9D-033671728199}
 		{7BD27CEB-2268-4645-BFB6-1012B1BB4202} = {A53D772C-7DE9-4863-9C9D-033671728199}
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
+		{F95ECC31-237D-4E85-BD6A-A55DF0A43E13} = {96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}
+<<<<<<< HEAD
+		{03224220-5600-456B-B0CB-61210F62EFFB} = {92D4B92C-A4DF-4213-A08C-11ECC7B81BBD}
 		{EB167AAF-E0CC-43C1-8B60-346AC139B62A} = {96E1E1E1-6A12-400A-BBBB-2E5CCBFC4882}
+=======
+>>>>>>> beta
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}

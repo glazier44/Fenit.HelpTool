@@ -51,8 +51,11 @@
     <Reference Include="Costura, Version=3.3.3.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.3.3\lib\net40\Costura.dll</HintPath>
     </Reference>
-    <Reference Include="Fenit.Toolbox.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fenit.Toolbox.Core.1.0.3\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
+    <Reference Include="Fenit.Toolbox.Core, Version=1.0.5.28, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fenit.Toolbox.Core.1.0.5\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fenit.Toolbox.Yaml, Version=1.0.25.28, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fenit.Toolbox.Yaml.1.0.25\lib\net48\Fenit.Toolbox.Yaml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -109,6 +112,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="YamlDotNet, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.8.1.0\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -140,7 +146,6 @@
     <Resource Include="Properties\logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\logo.ico" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

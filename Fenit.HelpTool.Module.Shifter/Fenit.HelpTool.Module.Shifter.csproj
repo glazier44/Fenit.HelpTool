@@ -41,6 +41,9 @@
     <Reference Include="Costura, Version=3.3.3.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.3.3\lib\net40\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Fenit.Toolbox.Core, Version=1.0.5.28, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fenit.Toolbox.Core.1.0.5\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
+    </Reference>
     <Reference Include="InstallPackageLib">
       <HintPath>..\Fenit.HelpTool.Core.Service\InstallPackageLib.dll</HintPath>
     </Reference>
@@ -123,10 +126,6 @@
     <ProjectReference Include="..\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
       <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
       <Name>Fenit.Toolbox.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fenit.Toolbox.Yaml\Fenit.Toolbox.Yaml.csproj">
-      <Project>{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}</Project>
-      <Name>Fenit.Toolbox.Yaml</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
