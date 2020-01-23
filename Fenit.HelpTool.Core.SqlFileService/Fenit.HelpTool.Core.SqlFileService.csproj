@@ -38,8 +38,8 @@
     <Reference Include="Costura, Version=3.3.3.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.3.3\lib\net40\Costura.dll</HintPath>
     </Reference>
-    <Reference Include="Fenit.Toolbox.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fenit.Toolbox.Core.1.0.3\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
+    <Reference Include="Fenit.Toolbox.Core, Version=1.0.5.28, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fenit.Toolbox.Core.1.0.5\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,7 +61,6 @@
     <Compile Include="XmlModel\Sql.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\logo.ico" />
     <Content Include="SampleSql\procedure.xml" />
     <Content Include="SampleSql\select.xml" />
   </ItemGroup>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Fenit.Toolbox.Core.Extension;
 using Fenit.Toolbox.Yaml.Extension;
 using InstallPackageLib.ProgramsType;
 using Newtonsoft.Json;
