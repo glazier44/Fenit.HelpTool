@@ -38,6 +38,9 @@
     <Reference Include="Costura, Version=3.3.3.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.3.3\lib\net40\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Fenit.Toolbox.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fenit.Toolbox.Core.1.0.3\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
+    </Reference>
     <Reference Include="InstallPackageLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -76,16 +79,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fenit.Toolbox.Core\Fenit.Toolbox.Core.csproj">
-      <Project>{D469322B-1A48-434D-BA78-49D668822EFE}</Project>
-      <Name>Fenit.Toolbox.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fenit.Toolbox.Yaml\Fenit.Toolbox.Yaml.csproj">
       <Project>{F95ECC31-237D-4E85-BD6A-A55DF0A43E13}</Project>
       <Name>Fenit.Toolbox.Yaml</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\logo.ico" />
     <Content Include="InstallPackageLib.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
