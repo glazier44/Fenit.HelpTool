@@ -12,7 +12,6 @@ using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
 using Fenit.HelpTool.UI.Core.Events.KeyBinding;
-using Fenit.Toolbox.Android.ApkReadVersion;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
