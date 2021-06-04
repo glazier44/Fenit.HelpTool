@@ -12,6 +12,7 @@ using Fenit.HelpTool.UI.Core.Base;
 using Fenit.HelpTool.UI.Core.Dialog;
 using Fenit.HelpTool.UI.Core.Events;
 using Fenit.HelpTool.UI.Core.Events.KeyBinding;
+using InstallPackageLib.Android;
 using Prism.Commands;
 using Prism.Events;
 using Unity;
