@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Fenit.HelpTool.Core.Service.Model.Shifter.Events;
-using Fenit.Toolbox.Core.Extension;
 
 namespace Fenit.HelpTool.Core.Service.Model.Shifter
 {

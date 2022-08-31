@@ -1,6 +1,5 @@
 ﻿using System;
-using Fenit.HelpTool.Core.Service;
-using Fenit.HelpTool.Core.Service.Abstract;
+using Fenit.Toolbox.WPF.UI.Service;
 using NLog;
 using Prism.Logging;
 

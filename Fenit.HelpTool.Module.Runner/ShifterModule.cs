@@ -1,8 +1,10 @@
 ﻿using Fenit.HelpTool.Module.Runner.Views;
 using Fenit.HelpTool.UI.Core;
-using Fenit.HelpTool.UI.Core.Base;
+using Fenit.Toolbox.WPF.UI;
+using Fenit.Toolbox.WPF.UI.Base;
 using Prism.Ioc;
 using Prism.Regions;
+
 using Unity;
 
 namespace Fenit.HelpTool.Module.Runner

@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IFileService.cs" />
-    <Compile Include="Abstract\ILoggerService.cs" />
     <Compile Include="Abstract\ISerializationService.cs" />
     <Compile Include="Abstract\IShifterService.cs" />
     <Compile Include="Events\GetAndroidFileInfo.cs" />

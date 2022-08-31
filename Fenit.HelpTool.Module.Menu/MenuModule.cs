@@ -1,5 +1,5 @@
-﻿using Fenit.HelpTool.Module.Menu.Views;
-using Fenit.HelpTool.UI.Core;
+﻿using Fenit.HelpTool.UI.Core;
+using Fenit.Toolbox.WPF.UI;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;

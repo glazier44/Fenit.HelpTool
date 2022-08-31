@@ -1,5 +1,4 @@
 ﻿using System;
-using Fenit.HelpTool.Core.Service.Events;
 using Fenit.HelpTool.Core.Service.Model.Shifter;
 using Fenit.Toolbox.Core.Answers;
 

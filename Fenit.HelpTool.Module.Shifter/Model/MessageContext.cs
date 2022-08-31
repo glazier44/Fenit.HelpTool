@@ -1,5 +1,5 @@
 ﻿using System;
-using Fenit.HelpTool.UI.Core.Base;
+using Fenit.Toolbox.WPF.UI.Base;
 
 namespace Fenit.HelpTool.Module.Shifter.Model
 {

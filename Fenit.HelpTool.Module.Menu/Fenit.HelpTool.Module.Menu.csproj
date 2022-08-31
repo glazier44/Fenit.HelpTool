@@ -76,6 +76,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FenitToolbox\Fenit.Toolbox.WPF.UI\Fenit.Toolbox.WPF.UI.csproj">
+      <Project>{fcf3e30d-ea04-4760-8924-bf554ce5aa77}</Project>
+      <Name>Fenit.Toolbox.WPF.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.UI.Core\Fenit.HelpTool.UI.Core.csproj">
       <Project>{122AADEF-69A2-4B94-85D6-A765F0DBA443}</Project>
       <Name>Fenit.HelpTool.UI.Core</Name>

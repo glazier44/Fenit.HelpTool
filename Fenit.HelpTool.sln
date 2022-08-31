@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Module.Help"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.HelpTool.Core.Resource", "Fenit.HelpTool.Core.Resource\Fenit.HelpTool.Core.Resource.csproj", "{A085383D-3558-4E22-A0E7-9EB61F9B90E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenit.Toolbox.WPF.UI", "..\FenitToolbox\Fenit.Toolbox.WPF.UI\Fenit.Toolbox.WPF.UI.csproj", "{FCF3E30D-EA04-4760-8924-BF554CE5AA77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,10 @@ Global
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCF3E30D-EA04-4760-8924-BF554CE5AA77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCF3E30D-EA04-4760-8924-BF554CE5AA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCF3E30D-EA04-4760-8924-BF554CE5AA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCF3E30D-EA04-4760-8924-BF554CE5AA77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{37E15125-3B54-4092-9C65-9C942156EF46} = {A53D772C-7DE9-4863-9C9D-033671728199}
 		{7BD27CEB-2268-4645-BFB6-1012B1BB4202} = {A53D772C-7DE9-4863-9C9D-033671728199}
 		{A085383D-3558-4E22-A0E7-9EB61F9B90E6} = {23C1FB97-5619-43E4-85BD-8FEBBB6D441B}
+		{FCF3E30D-EA04-4760-8924-BF554CE5AA77} = {896663B4-BFC7-4582-A6EF-FCCDA02E8256}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {37F6DDB1-2D78-4375-B441-3FE758A6AE82}

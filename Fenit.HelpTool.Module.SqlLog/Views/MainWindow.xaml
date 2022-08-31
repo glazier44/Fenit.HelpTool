@@ -2,7 +2,7 @@
     x:Class="Fenit.HelpTool.Module.SqlLog.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Fenit.HelpTool.UI.Core.Converters;assembly=Fenit.HelpTool.UI.Core"
+    xmlns:converters="clr-namespace:Fenit.Toolbox.WPF.UI.Converters;assembly=Fenit.Toolbox.WPF.UI"
     xmlns:enum="clr-namespace:Fenit.HelpTool.Core.SqlFileService.Enum;assembly=Fenit.HelpTool.Core.SqlFileService"
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="True">

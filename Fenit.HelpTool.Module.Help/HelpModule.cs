@@ -1,6 +1,7 @@
 ﻿using Fenit.HelpTool.Module.Help.Views;
 using Fenit.HelpTool.UI.Core;
-using Fenit.HelpTool.UI.Core.Base;
+using Fenit.Toolbox.WPF.UI;
+using Fenit.Toolbox.WPF.UI.Base;
 using Prism.Ioc;
 using Prism.Regions;
 using Unity;

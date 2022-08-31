@@ -93,6 +93,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FenitToolbox\Fenit.Toolbox.WPF.UI\Fenit.Toolbox.WPF.UI.csproj">
+      <Project>{FCF3E30D-EA04-4760-8924-BF554CE5AA77}</Project>
+      <Name>Fenit.Toolbox.WPF.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Core.Service\Fenit.HelpTool.Core.Service.csproj">
       <Project>{70BF6F5C-1691-4476-902E-A8620409D0FF}</Project>
       <Name>Fenit.HelpTool.Core.Service</Name>

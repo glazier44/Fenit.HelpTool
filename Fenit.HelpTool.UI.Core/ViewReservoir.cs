@@ -1,27 +1,9 @@
-﻿namespace Fenit.HelpTool.UI.Core
+﻿using Fenit.Toolbox.WPF.UI;
+
+namespace Fenit.HelpTool.UI.Core
 {
-    public static class ViewReservoir
+    public class ViewReservoir: BaseViewReservoir
     {
-        public static class Regions
-        {
-            public static string MenuRegion = "MenuRegion";
-            public static string ContentRegion = "ContentRegion";
-            public static string FooterRegion = "FooterRegion";
-        }
-
-        public static class FooterModule
-        {
-            public static string Name = "FooterModule";
-            public static string Footer = "FooterModule.Footer";
-        }
-
-        public static class MenuModule
-        {
-            public static string Name = "MenuModule";
-
-            public static string Menu = "MenuModule.Menu";
-        }
-
         public static class SettingsModule
         {
             public static string Name = "SettingsModule";

@@ -1,8 +1,10 @@
 ﻿using Fenit.HelpTool.Module.Footer.Views;
 using Fenit.HelpTool.UI.Core;
+using Fenit.Toolbox.WPF.UI;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+
 
 namespace Fenit.HelpTool.Module.Footer
 {

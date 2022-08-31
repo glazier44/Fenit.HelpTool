@@ -1,8 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Fenit.HelpTool.UI.Core;
-using Fenit.HelpTool.UI.Core.Events;
-using Fenit.HelpTool.UI.Core.Events.KeyBinding;
+using Fenit.Toolbox.WPF.UI;
+using Fenit.Toolbox.WPF.UI.Events;
+using Fenit.Toolbox.WPF.UI.Events.KeyBinding;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Modularity;

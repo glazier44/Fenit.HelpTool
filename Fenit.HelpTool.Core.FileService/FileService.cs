@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using Fenit.HelpTool.Core.Service.Abstract;
-using Fenit.HelpTool.Core.Service.Events;
 using Fenit.Toolbox.Core.Answers;
 using Fenit.Toolbox.Core.Extension;
 using FileInfo = Fenit.HelpTool.Core.Service.Model.Shifter.FileInfo;

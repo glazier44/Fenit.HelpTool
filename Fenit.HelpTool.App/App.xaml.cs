@@ -11,6 +11,7 @@ using Fenit.HelpTool.Module.Runner;
 using Fenit.HelpTool.Module.Settings;
 using Fenit.HelpTool.Module.Shifter;
 using Fenit.HelpTool.Module.SqlLog;
+using Fenit.Toolbox.WPF.UI.Service;
 using Prism.Ioc;
 using Prism.Modularity;
 

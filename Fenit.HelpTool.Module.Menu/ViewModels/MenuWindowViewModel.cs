@@ -1,4 +1,5 @@
 ﻿using Fenit.HelpTool.UI.Core;
+using Fenit.Toolbox.WPF.UI;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;

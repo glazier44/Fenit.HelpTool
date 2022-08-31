@@ -1,9 +1,10 @@
 ﻿using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Settings;
-using Fenit.HelpTool.UI.Core.Base;
-using Fenit.HelpTool.UI.Core.Dialog;
-using Fenit.HelpTool.UI.Core.Events;
-using Fenit.HelpTool.UI.Core.Events.KeyBinding;
+using Fenit.Toolbox.WPF.UI.Base;
+using Fenit.Toolbox.WPF.UI.Dialog;
+using Fenit.Toolbox.WPF.UI.Events;
+using Fenit.Toolbox.WPF.UI.Events.KeyBinding;
+using Fenit.Toolbox.WPF.UI.Service;
 using Prism.Commands;
 using Prism.Events;
 
