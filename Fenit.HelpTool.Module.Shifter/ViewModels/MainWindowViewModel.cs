@@ -92,7 +92,6 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             set => SetProperty(ref _progressValue, value);
         }
 
-        public DelegateCommand OpenDestinationZipPathCommand { get; set; }
 
         public DelegateCommand OpenSourcePathCommand { get; set; }
         public DelegateCommand OpenDestinationPathCommand { get; set; }
@@ -151,10 +150,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
             {
                 ShifterConfig.DestinationPath = GetDir();
             });
-            OpenDestinationZipPathCommand = new DelegateCommand(() =>
-            {
-                ShifterConfig.DestinationZipPath = GetDir();
-            });
+
             DownCommand = new DelegateCommand<int?>(ElementDown, CanDown);
             UpCommand = new DelegateCommand<int?>(ElementUp, CanUp);
             ArchiveCommand = new DelegateCommand<int?>(Archive);
@@ -367,7 +363,7 @@ namespace Fenit.HelpTool.Module.Shifter.ViewModels
         private void Save()
         {
             SaveAndRefreshList();
-            SetShifterConfig(new ShifterConfig());
+          //  SetShifterConfig(new ShifterConfig());
             _eventAggregator.GetEvent<LogEvent>().Publish("Save ShifterConfig");
         }
 

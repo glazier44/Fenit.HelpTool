@@ -34,8 +34,8 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="60" />
             <RowDefinition Height="60" />
-           
-   
+
+
             <!--  10  -->
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
@@ -97,21 +97,10 @@
             Grid.Column="0"
             Style="{StaticResource GridLabelBoxStyle}">
             <StackPanel Orientation="Horizontal">
-                <AccessText Text="Destination dll:" />
+                <AccessText Text="." />
             </StackPanel>
         </Label>
-        <Grid Grid.Row="4" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="20" />
-            </Grid.ColumnDefinitions>
-            <TextBox Style="{StaticResource GridTextBoxStyle}" Text="{Binding ShifterConfig.DestinationPath}" />
-            <Button
-                Grid.Column="1"
-                Margin="2"
-                Command="{Binding OpenDestinationPathCommand}"
-                Content="..." />
-        </Grid>
+        <Grid Grid.Row="4" Grid.Column="1" />
         <Label
             Grid.Row="5"
             Grid.Column="0"
@@ -140,17 +129,19 @@
             <StackPanel Orientation="Horizontal">
                 <AccessText Text="Name:" />
                 <AccessText Foreground="Red" Text="* " />
-                <AccessText Foreground="Blue" FontWeight="Bold">
+                <AccessText FontWeight="Bold" Foreground="Blue">
                     <AccessText.ToolTip>
                         <StackPanel>
-                            <TextBlock FontWeight="Bold" FontSize="14" Margin="0,0,0,5">Pattern</TextBlock>
-                            <TextBlock>
-                                [N] program name
-                                <LineBreak />
-                                [V] - version
-                                <LineBreak />
-                                [D] - datetime
+                            <TextBlock
+                                Margin="0,0,0,5"
+                                FontSize="14"
+                                FontWeight="Bold">
+                                Pattern
                             </TextBlock>
+                            <TextBlock>
+                                [N] program name<LineBreak />
+                                [V] - version<LineBreak />
+                                [D] - datetime</TextBlock>
                         </StackPanel>
                     </AccessText.ToolTip>
                     ?
@@ -168,12 +159,10 @@
         <TextBox
             Grid.Row="7"
             Grid.Column="1"
-            Style="{StaticResource GridTextBoxStyle}"
-            IsReadOnly ="True"
             Background="LightGray"
-            Text="{Binding ShifterConfig.AppName}">
-          
-        </TextBox>
+            IsReadOnly="True"
+            Style="{StaticResource GridTextBoxStyle}"
+            Text="{Binding ShifterConfig.AppName}" />
 
         <Label
             Grid.Row="8"

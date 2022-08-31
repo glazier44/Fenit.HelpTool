@@ -12,7 +12,6 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
             _sourcePath,
             _type,
             _version,
-            _destinationZipPath,
             _appName,
             _appNamePattern,
             _program;
@@ -46,7 +45,6 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
             set
             {
                 SetProperty(ref _destinationPath, value);
-                DestinationZipPath = _destinationPath.TrimPath();
             }
         }
 
@@ -70,12 +68,6 @@ namespace Fenit.HelpTool.Core.Service.Model.Shifter
         {
             get => _program;
             set => SetProperty(ref _program, value);
-        }
-
-        public string DestinationZipPath
-        {
-            get => _destinationZipPath;
-            set => SetProperty(ref _destinationZipPath, value);
         }
 
         public string Pattern { get; set; }
