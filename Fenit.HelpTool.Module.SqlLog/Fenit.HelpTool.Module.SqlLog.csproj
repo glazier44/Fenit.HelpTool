@@ -44,6 +44,10 @@
     <Reference Include="Fenit.Toolbox.Core, Version=1.0.5.28, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fenit.Toolbox.Core.1.0.5\lib\net472\Fenit.Toolbox.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.7\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -55,6 +59,11 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -62,6 +71,7 @@
       <HintPath>..\packages\Prism.Wpf.7.2.0.1367\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +89,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FenitToolbox\Fenit.Toolbox.Logger\Fenit.Toolbox.Logger.csproj">
+      <Project>{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}</Project>
+      <Name>Fenit.Toolbox.Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\FenitToolbox\Fenit.Toolbox.WPF.UI\Fenit.Toolbox.WPF.UI.csproj">
       <Project>{FCF3E30D-EA04-4760-8924-BF554CE5AA77}</Project>
       <Name>Fenit.Toolbox.WPF.UI</Name>

@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using CommonServiceLocator;
-using Fenit.HelpTool.Core.Logger;
 using Fenit.HelpTool.Core.SerializationService.Implement;
 using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.ShifterService.Implement;
@@ -11,7 +10,7 @@ using Fenit.HelpTool.Module.Runner;
 using Fenit.HelpTool.Module.Settings;
 using Fenit.HelpTool.Module.Shifter;
 using Fenit.HelpTool.Module.SqlLog;
-using Fenit.Toolbox.WPF.UI.Service;
+using Fenit.Toolbox.Logger;
 using Prism.Ioc;
 using Prism.Modularity;
 

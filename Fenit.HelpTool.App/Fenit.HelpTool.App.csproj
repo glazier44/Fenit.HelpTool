@@ -169,6 +169,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FenitToolbox\Fenit.Toolbox.Logger\Fenit.Toolbox.Logger.csproj">
+      <Project>{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}</Project>
+      <Name>Fenit.Toolbox.Logger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\FenitToolbox\Fenit.Toolbox.WPF.UI\Fenit.Toolbox.WPF.UI.csproj">
       <Project>{FCF3E30D-EA04-4760-8924-BF554CE5AA77}</Project>
       <Name>Fenit.Toolbox.WPF.UI</Name>
@@ -184,10 +188,6 @@
     <ProjectReference Include="..\Fenit.HelpTool.Core.ShifterService\Fenit.HelpTool.Core.ShifterService.csproj">
       <Project>{66801C82-C604-4ECA-AD6B-FA0BFB0241A6}</Project>
       <Name>Fenit.HelpTool.Core.ShifterService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fenit.HelpTool.Core.UserService.Logger\Fenit.HelpTool.Core.Logger.csproj">
-      <Project>{C8063B39-F26E-4A26-9F3C-C4FF0FE6E26F}</Project>
-      <Name>Fenit.HelpTool.Core.Logger</Name>
     </ProjectReference>
     <ProjectReference Include="..\Fenit.HelpTool.Module.Footer\Fenit.HelpTool.Module.Footer.csproj">
       <Project>{F76A2BAC-0719-4F03-93CB-40F58D0E9D7C}</Project>

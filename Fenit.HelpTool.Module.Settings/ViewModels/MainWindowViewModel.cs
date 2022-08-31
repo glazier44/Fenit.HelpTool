@@ -1,7 +1,7 @@
 ﻿using Fenit.HelpTool.Core.Service.Abstract;
 using Fenit.HelpTool.Core.Service.Model.Settings;
+using Fenit.Toolbox.Logger;
 using Fenit.Toolbox.WPF.UI.Base;
-using Fenit.Toolbox.WPF.UI.Service;
 using Prism.Commands;
 
 namespace Fenit.HelpTool.Module.Settings.ViewModels

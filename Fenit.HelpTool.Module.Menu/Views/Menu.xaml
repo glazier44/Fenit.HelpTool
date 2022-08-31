@@ -20,7 +20,7 @@
                 Header="Shifter"
                 Style="{StaticResource MenuItemheme}">
                 <MenuItem.Icon>
-                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/clone.png" />
+                    <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/clone.png" />
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem
@@ -33,14 +33,14 @@
             </MenuItem>
             <MenuItem Header="Settings" Style="{StaticResource MenuItemheme}">
                 <MenuItem.Icon>
-                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/settings.png" />
+                    <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/settings.png" />
                 </MenuItem.Icon>
                 <MenuItem
                     Command="{Binding SettingsCommand}"
                     Header="General"
                     Style="{StaticResource MenuItemheme}">
                     <MenuItem.Icon>
-                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/settings.png" />
+                        <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/settings.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem
@@ -48,20 +48,20 @@
                     Header="Shifter"
                     Style="{StaticResource MenuItemheme}">
                     <MenuItem.Icon>
-                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/clone.png" />
+                        <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/clone.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Help" Style="{StaticResource MenuItemheme}">
                 <MenuItem.Icon>
-                    <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/about.png" />
+                    <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/about.png" />
                 </MenuItem.Icon>
                 <MenuItem
                     Command="{Binding HelpCommand}"
                     Header="Help"
                     Style="{StaticResource MenuItemheme}">
                     <MenuItem.Icon>
-                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/info.png" />
+                        <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/info.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem
@@ -69,7 +69,7 @@
                     Header="About"
                     Style="{StaticResource MenuItemheme}">
                     <MenuItem.Icon>
-                        <Image Source="/Fenit.HelpTool.UI.Core;component/Resources/about.png" />
+                        <Image Source="/Fenit.Toolbox.WPF.UI;component/Resources/about.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

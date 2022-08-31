@@ -1,5 +1,5 @@
-﻿using Fenit.Toolbox.WPF.UI.Base;
-using Fenit.Toolbox.WPF.UI.Service;
+﻿using Fenit.Toolbox.Logger;
+using Fenit.Toolbox.WPF.UI.Base;
 
 namespace Fenit.HelpTool.Module.Help.ViewModels
 {

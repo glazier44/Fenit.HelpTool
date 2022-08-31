@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using Fenit.Toolbox.Logger;
 using Fenit.Toolbox.WPF.UI.Base;
 using Fenit.Toolbox.WPF.UI.Events;
-using Fenit.Toolbox.WPF.UI.Service;
 using Prism.Events;
 
 namespace Fenit.HelpTool.Module.Footer.ViewModels
