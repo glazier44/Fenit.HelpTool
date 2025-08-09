@@ -6,7 +6,7 @@
     xmlns:converters="clr-namespace:Fenit.Toolbox.WPF.UI.Converters;assembly=Fenit.Toolbox.WPF.UI"
     prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
-
+    
         <converters:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter" />
 
     </UserControl.Resources>

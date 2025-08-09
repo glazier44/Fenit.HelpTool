@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/glazier44/Fenit.Toolbox</projectUrl>
+    <repository type="git" url="https://github.com/glazier44/Fenit.Toolbox.git" />
+    <iconUrl>http://fenit.pl/logo.ico</iconUrl>
+    <description>$description$</description>
+    <releaseNotes>Start</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>c# net development library utils</tags>
+  </metadata>
+
+</package>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Fenit.Toolbox.Logger</id>
+    <version>1.0.0</version>
+    <title>Fenit.Toolbox.Logger</title>
+    <authors>Fenit</authors>
+    <owners>Fenit</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <icon>logo.png</icon>
+    <projectUrl>https://github.com/glazier44/Fenit.Toolbox</projectUrl>
+    <description>FenitToolbox.Core</description>
+    <releaseNotes>Start</releaseNotes>
+    <copyright>Copyright 2022</copyright>
+    <tags>c# net development library utils</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.8">
+        <dependency id="NLog" version="4.6.7" />
+      </group>
+    </dependencies>
+  </metadata>
+      <files>
+	   <file src="bin\Release\Fenit.Toolbox.Logger.dll" target="lib" />     
+        <file src="logo.png" target="" />
+    </files>
+</package>

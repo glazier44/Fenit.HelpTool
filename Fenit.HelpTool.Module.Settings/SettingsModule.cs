@@ -5,6 +5,7 @@ using Fenit.Toolbox.WPF.UI.Base;
 using Prism.Ioc;
 using Prism.Regions;
 using Unity;
+using ViewReservoir = Fenit.HelpTool.UI.Core.ViewReservoir;
 
 namespace Fenit.HelpTool.Module.Settings
 {

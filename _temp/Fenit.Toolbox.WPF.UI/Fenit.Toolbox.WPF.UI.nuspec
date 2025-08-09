@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+   <metadata>
+      <id>Fenit.Toolbox.WPF.UI</id>
+      <version>1.0.0</version>
+      <title>Fenit.Toolbox.WPF.UI</title>
+      <authors>Fenit</authors>
+      <owners>Fenit</owners>
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+      <license type="expression">MIT</license>
+      <icon>logo.ico</icon>
+      <projectUrl>https://github.com/glazier44/Fenit.Toolbox</projectUrl>
+      <description>FenitToolbox.Core</description>
+      <releaseNotes>Start</releaseNotes>
+      <copyright>Copyright 2022</copyright>
+      <tags>c# net development library utils</tags>
+      <dependencies>
+         <group>
+            <dependency id="CommonServiceLocator" version="2.0.4" exclude="Build,Analyzers" />
+            <dependency id="Fenit.Toolbox.Core" version="1.0.5" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.WindowsAPICodePack-Core" version="1.1.0.2" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.WindowsAPICodePack-Shel" version="1.1.0.0" exclude="Build,Analyzers" />
+            <dependency id="Prism.Core" version="7.2.0.1367" exclude="Build,Analyzers" />
+            <dependency id="Prism.Wpf" version="7.2.0.1367" exclude="Build,Analyzers" />
+            <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" exclude="Build,Analyzers" />
+            <dependency id="System.Threading.Tasks.Extensions" version="4.5.3" exclude="Build,Analyzers" />
+            <dependency id="System.ValueTuple" version="4.5.0" exclude="Build,Analyzers" />
+            <dependency id="Unity.Abstractions" version="5.11.1" exclude="Build,Analyzers" />
+
+            </group>
+      </dependencies>
+   </metadata>
+</package>
