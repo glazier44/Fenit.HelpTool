@@ -1,0 +1,188 @@
+[
+  {
+    "SourcePath": "C:\\SRC\\Fenit\\HelpTool\\Fenit.HelpTool.App\\bin\\Release",
+    "DestinationPath": "L:\\users\\TomekK\\Tools\\FenitHelpTool-beta",
+    "Pattern": ".xml|.txt",
+    "ExcludeFile": "ShifterConfig.json",
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": false,
+    "Id": 1,
+    "Title": "Test Helptool"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\21\\PolsoftCS\\Aplikacje\\MMagazyn\\RemoteHostApp\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\ApplicationHost\\6.21.000\\ApplicationHost\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": false,
+    "Id": 2,
+    "Title": "Host 21"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\22\\PolsoftCS\\Aplikacje\\MMagazyn\\RemoteHostApp\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\ApplicationHost\\6.22.000\\ApplicationHost\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": false,
+    "Id": 3,
+    "Title": "Host 22"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\71\\PolsoftCS\\Aplikacje\\MMagazyn\\RemoteHostApp\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\ApplicationHost\\6.71.000\\ApplicationHost\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": "",
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 4,
+    "Title": "Host 71"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\72\\PolsoftCS\\Aplikacje\\MMagazyn\\RemoteHostApp\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\ApplicationHost\\6.72.000\\ApplicationHost\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": false,
+    "Id": 5,
+    "Title": "Host 72"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\71\\PolsoftCS\\Aplikacje\\NetConnector\\NetConnector\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Desktopowe\\NetConnector\\06.71.000\\NetConnector\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": "",
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 6,
+    "Title": "NetConnector 71"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\72\\PolsoftCS\\Aplikacje\\NetConnector\\NetConnector\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Desktopowe\\NetConnector\\06.72.000\\NetConnector\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": "",
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 7,
+    "Title": "NetConnector 72"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\21\\PolsoftCS\\Aplikacje\\ReturnsAndCancellations\\ReturnsAndCancellations\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Desktopowe\\ReturnsAndCancellations\\6.21.000\\ReturnsAndCancellations\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 8,
+    "Title": "Zwroty 21"
+  },  {
+      "SourcePath": "C:\\SRC\\PL\\22\\PolsoftCS\\Aplikacje\\ReturnsAndCancellations\\ReturnsAndCancellations\\bin\\Release\\",
+      "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Desktopowe\\ReturnsAndCancellations\\6.22.000\\ReturnsAndCancellations\\",
+      "Pattern": ".pdb",
+      "ExcludeFile": null,
+      "RemoveAll": false,
+      "CreateCopy": false,
+      "Override": true,
+      "Id": 9,
+      "Title": "Zwroty 22"
+    },
+    {
+      "SourcePath": "C:\\SRC\\PL\\71\\PolsoftCS\\Aplikacje\\ReturnsAndCancellations\\ReturnsAndCancellations\\bin\\Release\\",
+      "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Desktopowe\\ReturnsAndCancellations\\6.71.000\\ReturnsAndCancellations\\",
+      "Pattern": ".pdb",
+      "ExcludeFile": null,
+      "RemoveAll": false,
+      "CreateCopy": false,
+      "Override": true,
+      "Id": 10,
+      "Title": "Zwroty 71"
+    },
+      {
+    "SourcePath": "C:\\SRC\\PL\\72\\PolsoftCS\\Aplikacje\\ReturnsAndCancellations\\ReturnsAndCancellations\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Desktopowe\\ReturnsAndCancellations\\6.72.000\\ReturnsAndCancellations\\",
+    "Pattern": ".pdb",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 11,
+    "Title": "Zwroty 72"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\21\\PolsoftCS\\Aplikacje\\NMVS\\NMVS\\NMVS.App\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\SerwerSerializacji\\6.21.000\\SerwerSerializacji\\",
+    "Pattern": ".pdb, .txt",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 12,
+    "Title": "SS 21"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\22\\PolsoftCS\\Aplikacje\\NMVS\\NMVS\\NMVS.App\\bin\\Release\\",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\SerwerSerializacji\\6.22.000\\SerwerSerializacji\\",
+    "Pattern": ".pdb, .txt",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 13,
+    "Title": "SS 22"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\71\\PolsoftCS\\Aplikacje\\NMVS\\NMVS\\NMVS.App\\bin\\Release",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\SerwerSerializacji\\6.71.000\\SerwerSerializacji\\",
+    "Pattern": ".pdb, .txt",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 14,
+    "Title": "SS 71"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\72\\PolsoftCS\\Aplikacje\\NMVS\\NMVS\\NMVS.App\\bin\\Release",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Serwerowe\\SerwerSerializacji\\6.72.000\\SerwerSerializacji\\",
+    "Pattern": ".pdb, .txt",
+    "ExcludeFile": null,
+    "RemoveAll": false,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 15,
+    "Title": "SS 72"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\71\\PolsoftCS\\Aplikacje\\MMagazyn\\InwentaryzacjaInstall\\Release",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Mobilne\\WT41N0\\6.71.000\\Inwentaryzacja\\Inwentaryzacja",
+    "Pattern": ".inf,.log",
+    "ExcludeFile": null,
+    "RemoveAll": true,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 16,
+    "Title": "Inw WT41N0 [M] 71"
+  },
+  {
+    "SourcePath": "C:\\SRC\\PL\\71\\PolsoftCS\\Aplikacje\\MMagazyn\\InwentaryzacjaInstall\\Release",
+    "DestinationPath": "L:\\_Aplikacje mobilne\\MobilnyMagazyn\\Mobilne\\MC92N0\\6.71.000\\Inwentaryzacja\\Inwentaryzacja",
+    "Pattern": ".inf,.log",
+    "ExcludeFile": null,
+    "RemoveAll": true,
+    "CreateCopy": false,
+    "Override": true,
+    "Id": 17,
+    "Title": "Inw MC92N0 [D] 71"
+  }
+]

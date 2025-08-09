@@ -1,0 +1,34 @@
+- Programs:
+  - Name: ApplicationHost
+  - Name: SerwerSerializacji
+  - Name: CmdServer
+  - Name: Mobmago
+  - Name: AppLoader
+  Name: Serwerowe
+- Programs:
+  - Name: KomoraCE
+  - Name: ZatowCE
+  - Name: KodyKreskowe
+  - Name: Inwentaryzacja
+  - Name: MagazynCE
+  - Name: StacjaWydań
+  - Name: Dotowarowanie
+  Name: Mobilny
+- Programs:
+  - Name: Zwroty
+  - Name: NetConnector
+  - Name: UniversalReports
+  - Name: SalesLimit
+  - Name: ChangesRegister
+  - Name: PSPermision
+  - Name: PsParameterMgr
+  Name: Desktop
+- Programs:
+  - Name: Komora
+  - Name: KodyKreskowe
+  - Name: MobilnyMagazynier
+  - Name: MobilnyMagazynAndroid
+  Name: Android
+- Programs:
+  - Name: HelpTool
+  Name: Inne
