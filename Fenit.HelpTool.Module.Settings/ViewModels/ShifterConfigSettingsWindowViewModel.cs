@@ -46,7 +46,13 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
 
         private string GetDir(string path)
         {
-            var res = _openDialog.SelectFolder(path);
+            var res = _openDialog.SelectFile(path, new System.Collections.Generic.Dictionary<string, string>
+            {
+                {"*.ft", "FT Files" },
+                                {"*.json", "Json Files" }
+
+            });
+
             if (res.IsSucces) return res.Value;
             return string.Empty;
         }
@@ -84,5 +90,6 @@ namespace Fenit.HelpTool.Module.Settings.ViewModels
                 _eventAggregator.GetEvent<ReloadShiferListEvent>().Publish();
             }
         }
+
     }
 }
